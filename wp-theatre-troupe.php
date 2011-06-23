@@ -28,13 +28,7 @@ add_action('admin_menu', 'ttroupe_menu');
 
 function ttroupe_menu() {
 	global $theatreTroupe;
-	add_management_page( __('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'theatre_troupe_menu', array(&$theatreTroupe, 'print_admin_page'));
-}
-
-function ttroupe_print_admin_page() {
-
-	global $theatreTroupe;
-	echo $theatreTroupe->print_admin_page();
+	add_management_page( __('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array(&$theatreTroupe, 'print_admin_page'));
 }
 
 

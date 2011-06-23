@@ -6,11 +6,11 @@ Tested up to: 0.0.1
 Stable tag: 0.0.1
 License: GPLv2
 
-General short description
+A Wordpress plugin for small performing groups for listing shows and associated actors.
 
 == Description ==
 
-WP-theatretroupe is a plugin that...[cont]
+A Wordpress plugin for small performing groups for listing shows and associated actors ...[cont]
 
 == Installation ==
 

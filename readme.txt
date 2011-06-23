@@ -1,5 +1,5 @@
 === WP Theatre Troupe ===
-Contributors: peep pullerits, andres jakovlev
+Contributors: peep pullerits
 Tags: theatre, improv, shows
 Requires at least: 2.0
 Tested up to: 0.0.1

@@ -9,8 +9,9 @@ Author URI: http://ando.roots.ee/
 */
 
 // Translations
-$i18n_dir = basename(dirname(__FILE__)).'/translations/';
-load_plugin_textdomain( 'theatre-troupe', false, $i18n_dir );
+define('TTROUPE_DIR', '/wp-theatre-troupe');
+
+load_plugin_textdomain( 'theatre-troupe', false, TTROUPE_DIR.'/languages/' );
 
 // Include the main plugin class file
 if ( !class_exists('Theatre_Troupe') ) {
@@ -18,28 +19,31 @@ if ( !class_exists('Theatre_Troupe') ) {
 }
 
 // Create a new instance of the main class file
-if ( class_exists('TheatreTroupe') ) {
-	$theatreTroupe = new TheatreTroupe();
+if ( class_exists('Theatre_Troupe') ) {
+	$theatreTroupe = new Theatre_Troupe();
 }
 
 // Registrer admin page
-add_action('admin_menu', 'theatre_troupe_menu');
+add_action('admin_menu', 'ttroupe_menu');
 
-function theatre_troupe_menu() {
-	add_management_page( __('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'theatre_troupe_menu', 'print_theatre_troupe_options');
+function ttroupe_menu() {
+	global $theatreTroupe;
+	add_management_page( __('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'theatre_troupe_menu', array(&$theatreTroupe, 'print_admin_page'));
 }
 
-function print_theatre_troupe_options() {
-	if (!current_user_can('manage_options'))  {
-		wp_die( __('You do not have sufficient permissions to access this page.') );
-	}
-	echo file_get_contents('templates/admin.php');
+function ttroupe_print_admin_page() {
+
+	global $theatreTroupe;
+	echo $theatreTroupe->print_admin_page();
 }
+
+
 
 //Actions and Filters
 if ( isset($theatreTroupe) ) {
 	//Actions
 	//Filters
 }
+
 
 ?>

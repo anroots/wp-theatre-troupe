@@ -1,0 +1,46 @@
+# Copyright (C) 2010 WP Theatre Troupe
+# This file is distributed under the same license as the WP Theatre Troupe package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Theatre Troupe 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-theatre-troupe\n"
+"POT-Creation-Date: 2011-06-23 18:45:24+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2011-06-23 21:47+0300\n"
+"Last-Translator: Ando Roots <ando@roots.ee>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wp-theatre-troupe.php:28
+msgid "Theatre Troupe Options"
+msgstr "TeatriGrupi Seaded"
+
+#: wp-theatre-troupe.php:28
+msgid "Theatre Troupe"
+msgstr "TeatriGrupp"
+
+#: wp-theatre-troupe.php:33
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Sul pole vastavaid privileege."
+
+#. Plugin Name of the plugin/theme
+msgid "WP Theatre Troupe"
+msgstr "WP TeatriGrupp"
+
+#. Plugin URI of the plugin/theme
+msgid "http://jaa.ee/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This plugin will enable small theatre troups and other performing groups to list their shows and participating actors."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Ando Roots"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://ando.roots.ee/"
+msgstr ""
+

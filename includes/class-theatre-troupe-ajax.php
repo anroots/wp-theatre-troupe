@@ -21,11 +21,8 @@ class Theatre_Troupe_Ajax {
 		global $theatreTroupe;
 
 		$series_id = (int) @$_POST['series_id'];
-		if ( $series_id <= 0 ) {
-			die('System error #0x001');
-		}
 
-		if ( $theatreTroupe->delete_series($series_id) ) {
+		if ( $theatreTroupe->change_status('series', $series_id, 'deleted') ) {
 			die('1');
 		}
 		die('0');
@@ -41,16 +38,28 @@ class Theatre_Troupe_Ajax {
 		global $theatreTroupe;
 
 		$show_id = (int) @$_POST['show_id'];
-		if ( $show_id <= 0 ) {
-			die('System error #0x003');
-		}
 
-		if ( $theatreTroupe->delete_show($show_id) ) {
+		if ( $theatreTroupe->change_status('shows', $show_id, 'deleted') ) {
 			die('1');
 		}
 		die('0');
 	}
 
+
+	/**
+	 * Show un-delete
+	 * @return void
+	 */
+	public function restore_show() {
+		global $theatreTroupe;
+
+		$show_id = (int) @$_POST['show_id'];
+
+		if ( $theatreTroupe->change_status('shows', $show_id, 'active') ) {
+			die('1');
+		}
+		die('0');
+	}
 
 	/**
 	 * Saves plugin settings

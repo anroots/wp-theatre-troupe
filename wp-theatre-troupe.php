@@ -10,21 +10,24 @@ Author URI: http://ando.roots.ee/
 
 
 define('TTROUPE_DIR', '/wp-theatre-troupe');
+
 // Translations
 load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
-// Include the main plugin class file
+// Include plugin classes and helpers
 if ( !class_exists('Theatre_Troupe') ) {
 	include('includes/class-theatre-troupe.php');
 	include('includes/class-theatre-troupe-ajax.php');
+	include('includes/display_controller.php');
+	include_once('includes/helper.php');
 }
-include_once('includes/helper.php');
 
 
-// Create a new instance of the main class file
+// Create a new instance of the main class files
 if ( class_exists('Theatre_Troupe') ) {
 	$theatreTroupe = new Theatre_Troupe();
 	$ajax = new Theatre_Troupe_Ajax();
+	$display = new Display_Controller();
 }
 
 
@@ -32,37 +35,18 @@ if ( class_exists('Theatre_Troupe') ) {
 if ( isset($_POST['add-series']) ) {
 	// New series
 	$theatreTroupe->add_series(@$_POST['series-title']);
-} elseif ( isset($_POST['create-show']) ) {
-	// New show
-	$theatreTroupe->create_show(@$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
 }
 
 
 // Registrer admin page
-add_action('admin_menu', 'ttroupe_menu');
+add_action('admin_menu', array( &$display, 'attach_menus' ));
 
 // AJAX bindings
 add_action('wp_ajax_ttroupe_save_settings', array( &$ajax, 'save_settings' ));
 add_action('wp_ajax_ttroupe_delete_series', array( &$ajax, 'delete_series' ));
 add_action('wp_ajax_ttroupe_delete_show', array( &$ajax, 'delete_show' ));
+add_action('wp_ajax_ttroupe_restore_show', array( &$ajax, 'restore_show' ));
 
-
-function ttroupe_menu() {
-	global $theatreTroupe;
-
-	// $ttroupe_hook value: tools_page_ttroupe_admin
-	$ttroupe_hook = add_management_page(__('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$theatreTroupe, 'print_admin_page' ));
-	add_action("admin_print_scripts-$ttroupe_hook", 'ttroupe_admin_head');
-
-	$ttroupe_hook = add_submenu_page('tools.php', __('Theatre Troupe Shows', 'theatre-troupe'), __('Theatre Troupe Shows', 'theatre-troupe'), 'manage_options', 'ttroupe_shows', array( &$theatreTroupe, 'print_shows_page' ));
-	add_action("admin_print_scripts-$ttroupe_hook", 'ttroupe_admin_head');
-}
-
-
-// Echo JavaScript in plugin page header
-function ttroupe_admin_head() {
-	wp_enqueue_script('tools_page_ttroupe_admin', plugins_url() . TTROUPE_DIR . '/js/script.js', array( 'jquery' ));
-}
 
 
 ?>

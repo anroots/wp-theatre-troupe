@@ -38,46 +38,6 @@ class Theatre_Troupe {
 
 
 	/**
-	 * Prints the configuration page for the plugin
-	 * @return void
-	 */
-	public function print_admin_page() {
-		if ( !current_user_can('manage_options') ) {
-			wp_die(__('You do not have sufficient permissions to access this page.'));
-		}
-
-		$series = $this->get_series();
-
-		include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
-	}
-
-
-	/**
-	 * Prints the configuration page for managing shows
-	 * @return void
-	 */
-	public function print_shows_page() {
-		if ( !current_user_can('manage_options') ) {
-			wp_die(__('You do not have sufficient permissions to access this page.'));
-		}
-
-		if ( isset($_POST['save-show']) ) {
-			$this->update_show(@$_POST['show_id'], @$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
-		}
-
-		if ( isset($_GET['edit']) && $this->check_existence('shows', $_GET['edit']) ) {
-			$show = $this->get_shows($_GET['edit']);
-			include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/edit_show.php');
-
-		} else {
-			$shows = $this->get_shows();
-			$series = $this->get_series();
-			include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/shows.php');
-		}
-	}
-
-
-	/**
 	 * Returns series
 	 * @param string $status
 	 * @return mixed
@@ -92,19 +52,24 @@ class Theatre_Troupe {
 	/**
 	 * Returns shows
 	 * @param int $show_id If specified, return info about a specific show
+	 * @param string $status Allows to view deleted or active shows
 	 * @return mixed
 	 */
-	public function get_shows($show_id = NULL) {
+	public function get_shows($show_id = NULL, $status = 'active') {
 		global $wpdb;
 		if ( !empty($show_id) ) {
 			$show_id = " AND $wpdb->ttroupe_shows.id = '$show_id'";
 		}
 
-		$query = $wpdb->get_results("SELECT $wpdb->ttroupe_shows.*, $wpdb->ttroupe_series.title AS series_title
+		$sql = "SELECT $wpdb->ttroupe_shows.*, $wpdb->ttroupe_series.title AS series_title
 									FROM $wpdb->ttroupe_shows
 									LEFT JOIN $wpdb->ttroupe_series ON ($wpdb->ttroupe_series.id = $wpdb->ttroupe_shows.series_id)
-									WHERE $wpdb->ttroupe_shows.status = 'active'
-									AND $wpdb->ttroupe_series.status = 'active'$show_id", OBJECT);
+									WHERE $wpdb->ttroupe_shows.status = '$status'$show_id";
+		if ($status == 'active') {
+			$sql .= "AND $wpdb->ttroupe_series.status = '$status'$show_id";
+		}
+
+		$query = $wpdb->get_results($sql, OBJECT);
 		if ( empty($show_id) ) {
 			return $query;
 		}
@@ -138,30 +103,30 @@ class Theatre_Troupe {
 
 
 	/**
-	 * Change series status to deleted
-	 * @param int $series_id
+	 * Delete an object (show, actor, series)
+	 * @param string $where Which table to use
+	 * @param int $id
+	 * @param string $status New status
 	 * @return bool
 	 */
-	public function delete_series($series_id) {
-		global $wpdb;
-		$wpdb->update($wpdb->ttroupe_series, array( 'status' => 'deleted' ), array( 'id' => $series_id ));
-		return TRUE;
-	}
-
-
-	/**
-	 * Delete a show
-	 * @param  $show_id
-	 * @return bool
-	 */
-	public function delete_show($show_id) {
-		if ( !$this->check_existence('shows', $show_id) ) {
+	public function change_status($where = 'shows', $id, $status = 'active') {
+		if ( !$this->check_existence($where, $id) || !in_array($status, array('active', 'deleted') )) {
 			return FALSE;
 		}
 		global $wpdb;
-		$wpdb->update($wpdb->ttroupe_shows, array( 'status' => 'deleted' ), array( 'id' => $show_id ));
+
+		if ( $where == 'series' ) {
+			$table = $wpdb->ttroupe_series;
+		} else {
+			$table = $wpdb->ttroupe_shows;
+		}
+
+		$wpdb->update($table, array( 'status' => $status ), array( 'id' => $id ));
 		return TRUE;
 	}
+
+
+
 
 	/**
 	 * Create a new show
@@ -174,8 +139,7 @@ class Theatre_Troupe {
 	 */
 	public function create_show($series_id, $title, $location, $start, $end) {
 		$series_id = (int) $series_id;
-		if ( empty($title) ||
-		     empty($start) ||
+		if ( empty($start) ||
 		     empty($series_id) ||
 		     !$this->check_existence('series', $series_id)
 		) {

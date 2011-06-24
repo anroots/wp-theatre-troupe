@@ -11,32 +11,37 @@ Author URI: http://ando.roots.ee/
 // Translations
 define('TTROUPE_DIR', '/wp-theatre-troupe');
 
-load_plugin_textdomain( 'theatre-troupe', false, TTROUPE_DIR.'/languages/' );
+load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
 // Include the main plugin class file
 if ( !class_exists('Theatre_Troupe') ) {
 	include('includes/class-theatre-troupe.php');
 }
+include_once('includes/helper.php');
+
 
 // Create a new instance of the main class file
 if ( class_exists('Theatre_Troupe') ) {
 	$theatreTroupe = new Theatre_Troupe();
 }
 
+
+// Check $_POST actions
+if ( isset($_POST['add-series']) ) {
+	// New series
+	$theatreTroupe->add_series(@$_POST['series-title']);
+} elseif ( isset($_POST['create-show']) ) {
+	// New show
+	$theatreTroupe->create_show(@$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
+}
+
+
 // Registrer admin page
 add_action('admin_menu', 'ttroupe_menu');
 
 function ttroupe_menu() {
 	global $theatreTroupe;
-	add_management_page( __('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array(&$theatreTroupe, 'print_admin_page'));
-}
-
-
-
-//Actions and Filters
-if ( isset($theatreTroupe) ) {
-	//Actions
-	//Filters
+	add_management_page(__('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$theatreTroupe, 'print_admin_page' ));
 }
 
 

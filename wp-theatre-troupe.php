@@ -8,9 +8,9 @@ Version: 0.1
 Author URI: http://ando.roots.ee/
 */
 
-// Translations
-define('TTROUPE_DIR', '/wp-theatre-troupe');
 
+define('TTROUPE_DIR', '/wp-theatre-troupe');
+// Translations
 load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
 // Include the main plugin class file
@@ -44,6 +44,7 @@ add_action('admin_menu', 'ttroupe_menu');
 // AJAX bindings
 add_action('wp_ajax_ttroupe_save_settings', array( &$ajax, 'save_settings' ));
 add_action('wp_ajax_ttroupe_delete_series', array( &$ajax, 'delete_series' ));
+add_action('wp_ajax_ttroupe_delete_show', array( &$ajax, 'delete_show' ));
 
 
 function ttroupe_menu() {
@@ -51,6 +52,9 @@ function ttroupe_menu() {
 
 	// $ttroupe_hook value: tools_page_ttroupe_admin
 	$ttroupe_hook = add_management_page(__('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$theatreTroupe, 'print_admin_page' ));
+	add_action("admin_print_scripts-$ttroupe_hook", 'ttroupe_admin_head');
+
+	$ttroupe_hook = add_submenu_page('tools.php', __('Theatre Troupe Shows', 'theatre-troupe'), __('Theatre Troupe Shows', 'theatre-troupe'), 'manage_options', 'ttroupe_shows', array( &$theatreTroupe, 'print_shows_page' ));
 	add_action("admin_print_scripts-$ttroupe_hook", 'ttroupe_admin_head');
 }
 

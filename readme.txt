@@ -12,6 +12,9 @@ A Wordpress plugin for small performing groups for listing shows and associated 
 
 A Wordpress plugin for small performing groups for listing shows and associated actors ...[cont]
 
+== TODO ==
+@ Implement nounces
+
 == Installation ==
 
 Install instructions here

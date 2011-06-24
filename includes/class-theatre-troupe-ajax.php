@@ -33,6 +33,26 @@ class Theatre_Troupe_Ajax {
 
 
 	/**
+	 * Series deletion
+	 * @todo Implement nounces
+	 * @return void
+	 */
+	public function delete_show() {
+		global $theatreTroupe;
+
+		$show_id = (int) @$_POST['show_id'];
+		if ( $show_id <= 0 ) {
+			die('System error #0x003');
+		}
+
+		if ( $theatreTroupe->delete_show($show_id) ) {
+			die('1');
+		}
+		die('0');
+	}
+
+
+	/**
 	 * Saves plugin settings
 	 * @return void
 	 */

@@ -38,7 +38,7 @@ class Theatre_Troupe {
 
 
 	/**
-	 * Prints the configuration page for wp-admin
+	 * Prints the configuration page for the plugin
 	 * @return void
 	 */
 	public function print_admin_page() {
@@ -47,8 +47,33 @@ class Theatre_Troupe {
 		}
 
 		$series = $this->get_series();
-		$shows = $this->get_shows();
+
 		include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
+	}
+
+
+	/**
+	 * Prints the configuration page for managing shows
+	 * @return void
+	 */
+	public function print_shows_page() {
+		if ( !current_user_can('manage_options') ) {
+			wp_die(__('You do not have sufficient permissions to access this page.'));
+		}
+
+		if ( isset($_POST['save-show']) ) {
+			$this->update_show(@$_POST['show_id'], @$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
+		}
+
+		if ( isset($_GET['edit']) && $this->check_existence('shows', $_GET['edit']) ) {
+			$show = $this->get_shows($_GET['edit']);
+			include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/edit_show.php');
+
+		} else {
+			$shows = $this->get_shows();
+			$series = $this->get_series();
+			include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/shows.php');
+		}
 	}
 
 
@@ -66,15 +91,24 @@ class Theatre_Troupe {
 
 	/**
 	 * Returns shows
+	 * @param int $show_id If specified, return info about a specific show
 	 * @return mixed
 	 */
-	public function get_shows() {
+	public function get_shows($show_id = NULL) {
 		global $wpdb;
-		return $wpdb->get_results("SELECT $wpdb->ttroupe_shows.*, $wpdb->ttroupe_series.title AS series_title
+		if ( !empty($show_id) ) {
+			$show_id = " AND $wpdb->ttroupe_shows.id = '$show_id'";
+		}
+
+		$query = $wpdb->get_results("SELECT $wpdb->ttroupe_shows.*, $wpdb->ttroupe_series.title AS series_title
 									FROM $wpdb->ttroupe_shows
 									LEFT JOIN $wpdb->ttroupe_series ON ($wpdb->ttroupe_series.id = $wpdb->ttroupe_shows.series_id)
 									WHERE $wpdb->ttroupe_shows.status = 'active'
-									AND $wpdb->ttroupe_series.status = 'active'", OBJECT);
+									AND $wpdb->ttroupe_series.status = 'active'$show_id", OBJECT);
+		if ( empty($show_id) ) {
+			return $query;
+		}
+		return $query[0];
 	}
 
 
@@ -116,6 +150,20 @@ class Theatre_Troupe {
 
 
 	/**
+	 * Delete a show
+	 * @param  $show_id
+	 * @return bool
+	 */
+	public function delete_show($show_id) {
+		if ( !$this->check_existence('shows', $show_id) ) {
+			return FALSE;
+		}
+		global $wpdb;
+		$wpdb->update($wpdb->ttroupe_shows, array( 'status' => 'deleted' ), array( 'id' => $show_id ));
+		return TRUE;
+	}
+
+	/**
 	 * Create a new show
 	 * @param int $series_id Required, links shows with series
 	 * @param string $title Required
@@ -129,7 +177,7 @@ class Theatre_Troupe {
 		if ( empty($title) ||
 		     empty($start) ||
 		     empty($series_id) ||
-		     !$this->series_exists($series_id)
+		     !$this->check_existence('series', $series_id)
 		) {
 			return FALSE;
 		}
@@ -145,18 +193,57 @@ class Theatre_Troupe {
 
 
 	/**
-	 * Check for series existence
+	 * Update show info
+	 * @param  $show_id
 	 * @param  $series_id
+	 * @param  $title
+	 * @param  $location
+	 * @param  $start
+	 * @param  $end
 	 * @return bool
 	 */
-	public function series_exists($series_id) {
+	public function update_show($show_id, $series_id, $title, $location, $start, $end) {
+		$series_id = (int) $series_id;
+		if ( empty($title) ||
+		     empty($start) ||
+		     empty($series_id) ||
+		     !$this->check_existence('series', $series_id) ||
+		     !$this->check_existence('shows', $show_id)
+		) {
+			return FALSE;
+		}
+
 		global $wpdb;
-		$result = $wpdb->get_row("SELECT id FROM $wpdb->ttroupe_series WHERE id='$series_id'");
+		$wpdb->update($wpdb->ttroupe_shows, array( 'series_id' => $series_id,
+		                                         'title' => $title,
+		                                         'location' => $location,
+		                                         'start_date' => $start,
+		                                         'end_date' => $end ), array( 'id' => $show_id ));
+		return TRUE;
+	}
+
+
+	/**
+	 * Check for series/show existence
+	 * @param string $where Either series or shows
+	 * @param int $id
+	 * @return bool
+	 */
+	public function check_existence($where, $id) {
+		global $wpdb;
+
+		if ( $where == 'series' ) {
+			$table = $wpdb->ttroupe_series;
+		} else {
+			$table = $wpdb->ttroupe_shows;
+		}
+		$result = $wpdb->get_row("SELECT id FROM $table WHERE id='$id'");
 		if ( !empty($result) ) {
 			return TRUE;
 		}
 		return FALSE;
 	}
+
 
 	/**
 	 * Create database tables during the installation of the plugin

@@ -7,16 +7,21 @@
 
 /**
  * Generates selectbox options for series list
+ * @param int $active ID of the selected series
  * @return null|string
  */
-function ttroupe_series_options() {
+function ttroupe_series_options($active = NULL) {
 	global $theatreTroupe;
 	$series = $theatreTroupe->get_series();
 
 	$html = NULL;
 	if ( !empty ($series) ) {
 		foreach ( $series as $row ) {
-			$html .= "<option value=\"$row->id\">$row->title</option>";
+			$selected = NULL;
+			if ( $row->id == $active ) {
+				$selected = ' selected';
+			}
+			$html .= "<option value=\"$row->id\"$selected>$row->title</option>";
 		}
 	}
 	return $html;

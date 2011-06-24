@@ -7,16 +7,31 @@
 	<div id="icon-users" class="icon32"></div>
 	<h2><?php _e('Theatre Troupe Options', 'theatre-troupe')?></h2>
 
+	<div id="ajax-response"></div>
 
 	<!-- SERIES -->
 	<h3><?php _e('Series', 'theatre-troupe') ?></h3>
 
+	<!-- Add new series -->
 	<form action="" method="post"/>
+	<?php
+		if ( function_exists('wp_nonce_field') ) {
+			wp_nonce_field('ttroupe_series');
+		}
+	?>
+	<?php _e('Add new series', 'theatre-troupe') ?>: * <input type="text"
+	                                                          placeholder="<?php _e('Series title', 'theatre-troupe') ?>"
+	                                                          name="series-title" size="30"
+	                                                          maxlength="255"/>
+	<input type="submit" name="add-series" class="button-primary"
+	       value="<?php _e('Create', 'theatre-troupe') ?>"/>
+	<br class="clear"/>
+
+	<!-- List existing series -->
 	<table class="widefat">
 		<thead>
 		<tr>
-			<th><?php _e('Title', 'theatre-troupe') ?></th>
-			<th><?php _e('Status', 'theatre-troupe') ?></th>
+			<th><?php _e('Series title', 'theatre-troupe') ?></th>
 			<th><?php _e('Delete', 'theatre-troupe') ?></th>
 		</tr>
 		</thead>
@@ -25,9 +40,9 @@
 			foreach ( $series as $row ): ?>
 			<tr>
 				<td><?php echo $row->title ?></td>
-				<td><?php echo $row->status ?></td>
 				<td>
-					<input type="submit" name="delete-series" class="button-secondary"
+					<span class="hidden"><?php echo $row->id ?></span>
+					<input type="button" name="delete-series" class="button-secondary delete-series"
 					       value="<?php _e('Delete', 'theatre-troupe') ?>"/>
 				</td>
 			</tr>
@@ -36,25 +51,26 @@
 		</tbody>
 		<tfoot>
 		<tr>
-			<th colspan="3">
-				<?php _e('Add new series', 'theatre-troupe') ?>: * <input type="text"
-				                                                          placeholder="<?php _e('Series title', 'theatre-troupe') ?>"
-				                                                          name="series-title" size="30"
-				                                                          maxlength="255"/>
-				<input type="submit" name="add-series" class="button-primary"
-				       value="<?php _e('Create', 'theatre-troupe') ?>"/>
-			</th>
+			<th colspan="2"></th>
+			&nbsp;
 		</tr>
 		</tfoot>
 	</table>
 	</form>
+
 
 	<!-- SHOWS -->
 	<h3><?php _e('Shows', 'theatre-troupe') ?></h3>
 
 	<?php if ( count($series) > 0 ): ?>
 
+	<!-- Create a show -->
 	<form action="" method="POST"/>
+	<?php
+if ( function_exists('wp_nonce_field') ) {
+		wp_nonce_field('ttroupe_shows');
+	}
+	?>
 	<table>
 		<tr>
 			<td><?php _e('Title', 'theatre-troupe') ?></td>
@@ -96,9 +112,11 @@
 	<div class="update-nag"><?php _e('You must add a series first.', 'theatre-troupe') ?></div>
 	<?php endif; ?>
 
+
 	<!-- ACTORS -->
 	<h3><?php _e('Actors', 'theatre-troupe') ?></h3>
 
+	<!-- List actors -->
 	<table class="widefat">
 		<thead>
 		<tr>

@@ -34,7 +34,7 @@ function ttroupe_actor_rows() {
 
 	if ( !empty($actors) ) {
 		foreach ( $actors as $actor ) {
-			$html = "
+			$html .= "
 	<tr>
 			<td>$actor->post_title</td>
 			<td>

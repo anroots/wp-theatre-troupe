@@ -68,6 +68,18 @@ class Theatre_Troupe {
 
 
 	/**
+	 * Change series status to deleted
+	 * @param int $series_id
+	 * @return bool
+	 */
+	public function delete_series($series_id) {
+		global $wpdb;
+		$wpdb->update($wpdb->ttroupe_series, array('status' => 'deleted'), array('id' => $series_id));
+		return TRUE;
+	}
+
+
+	/**
 	 * Create a new show
 	 * @param string $title Required
 	 * @param string $location

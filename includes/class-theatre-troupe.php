@@ -4,15 +4,36 @@
  */
 class Theatre_Troupe {
 
+	public $options = array('actors_main_page' => 2); // Plugin settings
+
 	function Theatre_Troupe() {
 		global $wpdb;
-		//$this->install();
+
+		//$this->install(); // Uncomment to create SQL tables
 
 		// Set database table names
 		if ( !isset($wpdb->ttroupe_series) ) {
 			$wpdb->ttroupe_series = $wpdb->prefix . 'ttroupe_series';
 			$wpdb->ttroupe_shows = $wpdb->prefix . 'ttroupe_shows';
 		}
+
+
+		// Overwrite default settings with those saved by the user
+		$storedOptions = get_option('theatre_troupe_options');
+		if (!empty($storedOptions) && is_array($storedOptions)) {
+			foreach ($storedOptions as $key => $value) {
+				$this->options[$key] = $value;
+			}
+		}
+	}
+
+
+	/**
+	 * Saves plugin settings to the WP options table
+	 * @return void
+	 */
+	public function save_options() {
+		update_option('theatre_troupe_options', $this->options);
 	}
 
 
@@ -25,6 +46,7 @@ class Theatre_Troupe {
 			wp_die(__('You do not have sufficient permissions to access this page.'));
 		}
 		$series = $this->get_series();
+		$shows = $this->get_shows();
 		include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
 	}
 
@@ -42,12 +64,23 @@ class Theatre_Troupe {
 
 
 	/**
+	 * Returns shows
+	 * @return mixed
+	 */
+	public function get_shows() {
+		global $wpdb;
+		return $wpdb->get_results("SELECT $wpdb->ttroupe_shows.*, $wpdb->ttroupe_series.name AS series_name FROM $wpdb->ttroupe_shows
+									LEFT JOIN $wpdb->ttroupe_series ON ($wpdb->ttroupe_series.id = $wpdb->ttroupe_shows.series_id)
+									WHERE status = 'active'", OBJECT);
+	}
+
+
+	/**
 	 * Return information about the actors
 	 * @return mixed
 	 */
 	public function get_actors() {
-		// @todo: Make this variable changable in the admin panel
-		$profile_parent = 2; // ID of the page whose subpages are actors.
+		$profile_parent = $this->options['actors_main_page']; // ID of the page whose subpages are actors.
 		return get_pages('child_of=' . $profile_parent);
 	}
 
@@ -124,10 +157,12 @@ class Theatre_Troupe {
 		$table_name = $wpdb->prefix . 'ttroupe_shows';
 		$sql = "CREATE TABLE IF NOT EXISTS " . $table_name . " (
 		  id mediumint(9) NOT NULL AUTO_INCREMENT,
+		  series_id mediumint(9) NOT NULL,
 		  title VARCHAR(255) DEFAULT 'No Name' NOT NULL,
 		  location VARCHAR(255) DEFAULT 'The usual' NOT NULL,
 		  start_date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 		  end_date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+		  status VARCHAR(15) DEFAULT 'active' NOT NULL,
 		  UNIQUE KEY id (id)
 		);";
 		dbDelta($sql);

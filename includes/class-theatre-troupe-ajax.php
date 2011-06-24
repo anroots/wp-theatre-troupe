@@ -22,13 +22,30 @@ class Theatre_Troupe_Ajax {
 
 		$series_id = (int) @$_POST['series_id'];
 		if ( $series_id <= 0 ) {
-			die(__('System error #0x001', 'theatre-troupe'));
+			die('System error #0x001');
 		}
 
 		if ($theatreTroupe->delete_series($series_id)) {
 			die('1');
 		}
 		die('0');
+	}
+
+
+
+	/**
+	 * Saves plugin settings
+	 * @return void
+	 */
+	public function save_settings() {
+		global $theatreTroupe;
+		$actors_main_page = (int) @$_POST['actors_main_page'];
+		if ($actors_main_page <= 0) {
+			die('System error #0x002');
+		}
+		$theatreTroupe->options['actors_main_page'] = $actors_main_page;
+		$theatreTroupe->save_options();
+		die('1');
 	}
 }
 

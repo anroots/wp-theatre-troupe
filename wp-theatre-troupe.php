@@ -42,7 +42,9 @@ if ( isset($_POST['add-series']) ) {
 add_action('admin_menu', 'ttroupe_menu');
 
 // AJAX binders
-add_action('wp_ajax_delete_series',  array( &$ajax, 'delete_series') );
+add_action('wp_ajax_ttroupe_save_settings',  array( &$ajax, 'save_settings') );
+add_action('wp_ajax_ttroupe_delete_series',  array( &$ajax, 'delete_series') );
+
 
 
 function ttroupe_menu() {

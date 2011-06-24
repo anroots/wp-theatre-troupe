@@ -11,7 +11,7 @@ class Theatre_Troupe_Ajax {
 
 	}
 
-	
+
 	/**
 	 * Series deletion
 	 * @todo Implement nounces
@@ -25,12 +25,11 @@ class Theatre_Troupe_Ajax {
 			die('System error #0x001');
 		}
 
-		if ($theatreTroupe->delete_series($series_id)) {
+		if ( $theatreTroupe->delete_series($series_id) ) {
 			die('1');
 		}
 		die('0');
 	}
-
 
 
 	/**
@@ -40,7 +39,7 @@ class Theatre_Troupe_Ajax {
 	public function save_settings() {
 		global $theatreTroupe;
 		$actors_main_page = (int) @$_POST['actors_main_page'];
-		if ($actors_main_page <= 0) {
+		if ( $actors_main_page <= 0 ) {
 			die('System error #0x002');
 		}
 		$theatreTroupe->options['actors_main_page'] = $actors_main_page;

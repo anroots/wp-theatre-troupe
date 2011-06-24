@@ -1,7 +1,7 @@
-jQuery(document).ready(function(){
+jQuery(document).ready(function() {
 
 	// AJAX query to delete a series
-	jQuery('.delete-series').click(function(){
+	jQuery('.delete-series').click(function() {
 		var data = {
 			action: 'ttroupe_delete_series',
 			series_id:     jQuery(this).prev().html()
@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
 
 
 	// AJAX query to save plugin settings
-	jQuery('#save-settings').click(function(){
+	jQuery('#save-settings').click(function() {
 		var data = {
 			action: 'ttroupe_save_settings',
 			actors_main_page: jQuery('select[name=actors-main-page]').val()

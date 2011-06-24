@@ -102,7 +102,7 @@ if ( function_exists('wp_nonce_field') ) {
 		<tr>
 			<td><?php _e('Series', 'theatre-troupe') ?></td>
 			<td>
-				<select name="series">
+				<select name="series_id">
 					<?php echo ttroupe_series_options() ?>
 				</select>
 			</td>
@@ -135,11 +135,11 @@ if ( function_exists('wp_nonce_field') ) {
 		<thead>
 		<tr>
 			<th><?php _e('Show title', 'theatre-troupe') ?></th>
-			<th><?php _e('Series', 'theatre-troupe') ?></th>
+			<th><?php _e('Series title', 'theatre-troupe') ?></th>
 			<th><?php _e('Location', 'theatre-troupe') ?></th>
 			<th><?php _e('Start', 'theatre-troupe') ?></th>
 			<th><?php _e('End', 'theatre-troupe') ?></th>
-			<th><?php _e('Edit', 'theatre-troupe') ?></th>
+			<th><?php _e('Edit / Delete', 'theatre-troupe') ?></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -147,14 +147,15 @@ if ( function_exists('wp_nonce_field') ) {
 			foreach ( $shows as $show ): ?>
 			<tr>
 				<td><?php echo $show->title ?></td>
-				<td><?php echo $show->series_name ?></td>
+				<td><?php echo $show->series_title ?></td>
 				<td><?php echo $show->location ?></td>
-				<td><?php echo $show->start ?></td>
-				<td><?php echo $show->end ?></td>
+				<td><?php echo $show->start_date ?></td>
+				<td><?php echo $show->end_date ?></td>
 				<td>
-
-					<input type="button" name="delete-series" class="button-secondary"
+					<input type="button" name="edit-show" class="button-secondary"
 					       value="<?php _e('Edit', 'theatre-troupe') ?>"/>
+					<input type="button" name="delete-show" class="button-secondary"
+					       value="<?php _e('Delete', 'theatre-troupe') ?>"/>
 				</td>
 			</tr>
 				<?php endforeach;

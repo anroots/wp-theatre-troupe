@@ -70,7 +70,7 @@ function ttroupe_actor_page_options() {
 		foreach ( $pages as $page ) {
 
 			$selected = NULL;
-			if ($page->ID == $theatreTroupe->options['actors_main_page']) {
+			if ( $page->ID == $theatreTroupe->options['actors_main_page'] ) {
 				$selected = ' selected';
 			}
 

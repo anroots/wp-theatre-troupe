@@ -7,9 +7,10 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
      * Returns shows
      * @param int $show_id If specified, return info about a specific show
      * @param string $status Allows to view deleted or active shows
+     * @param string $timeline Only return all|upcoming|past shows
      * @return mixed
      */
-    public function get($show_id = NULL, $status = 'active') {
+    public function get($show_id = NULL, $status = 'active', $timeline = 'all') {
         global $wpdb;
         if ( !empty($show_id) ) {
             $show_id = " AND $wpdb->ttroupe_shows.id = '$show_id'";
@@ -19,8 +20,17 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
 									FROM $wpdb->ttroupe_shows
 									LEFT JOIN $wpdb->ttroupe_series ON ($wpdb->ttroupe_series.id = $wpdb->ttroupe_shows.series_id)
 									WHERE $wpdb->ttroupe_shows.status = '$status'$show_id";
+
+        // Filter by status
         if ( $status == 'active' ) {
             $sql .= "AND $wpdb->ttroupe_series.status = '$status'$show_id";
+        }
+
+        // Filter by timeline
+        if ( $timeline == 'past' ) {
+            $sql .= "AND $wpdb->ttroupe_shows.start_date < CURDATE()";
+        } elseif ( $timeline == 'future' ) {
+            $sql .= "AND $wpdb->ttroupe_shows.start_date > CURDATE()";
         }
 
         $query = $wpdb->get_results($sql, OBJECT);

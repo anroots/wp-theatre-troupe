@@ -17,7 +17,7 @@ function ttroupe_series_options($active = NULL) {
     $html = NULL;
     if ( !empty ($series) ) {
         foreach ( $series as $row ) {
-            $html .= "<option value=\"$row->id\" ".selected($row->id, $active).">$row->title</option>";
+            $html .= "<option value=\"$row->id\" " . selected($row->id, $active) . ">$row->title</option>";
         }
     }
     return $html;
@@ -42,7 +42,7 @@ function ttroupe_actor_rows() {
             $actor_status = get_user_meta($actor->ID, 'ttroupe_status');
 
             foreach ( $model_actors->actor_statuses() as $key => $status ) {
-                $options .= "<option value=\"$key\" ".selected($actor_status, $key).">$status</option>";
+                $options .= "<option value=\"$key\" " . selected($actor_status, $key) . ">$status</option>";
             }
 
             $html .= "
@@ -94,7 +94,7 @@ function ttroupe_actor_page_options() {
 
     if ( !empty($pages) ) {
         foreach ( $pages as $page ) {
-            $html .= "<option value=\"$page->ID\" ".selected( $theatreTroupe->options['actors_main_page'], $page->ID ).">$page->post_title</option>";
+            $html .= "<option value=\"$page->ID\" " . selected($theatreTroupe->options['actors_main_page'], $page->ID) . ">$page->post_title</option>";
         }
     }
     return $html;

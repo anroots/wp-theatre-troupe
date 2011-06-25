@@ -11,8 +11,8 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
     public function get($status = NULL) {
         global $model_actors;
 
-        if ($status != NULL && array_key_exists($status, $model_actors->actor_statuses())) {
-            return get_users(array('meta_key' => 'ttroupe_status', 'meta_value' => $status));
+        if ( $status != NULL && array_key_exists($status, $model_actors->actor_statuses()) ) {
+            return get_users(array( 'meta_key' => 'ttroupe_status', 'meta_value' => $status ));
         }
         return get_users();
     }
@@ -55,10 +55,10 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
             return FALSE;
         }
 
-        if (!current_user_can('manage_options')) {
+        if ( !current_user_can('manage_options') ) {
             die(__('Sorry, only Admin can do that', 'theatre-troupe'));
         }
-        return update_user_meta( $actor_id, 'ttroupe_status', $status );
+        return update_user_meta($actor_id, 'ttroupe_status', $status);
     }
 
 

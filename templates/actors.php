@@ -1,7 +1,8 @@
 <!-- ACTORS -->
 <div id="icon-users" class="icon32"></div>
 <h2><?php _e('Actors', 'theatre-troupe') ?></h2>
-
+<div id="message"></div>
+    
 <!-- List actors -->
 <h3><?php _e('Change actor membership status', 'theatre-troupe') ?></h3>
 <table class="widefat">

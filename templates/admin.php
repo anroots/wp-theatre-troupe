@@ -7,7 +7,7 @@
     <div id="icon-users" class="icon32"></div>
     <h2><?php _e('Theatre Troupe Options', 'theatre-troupe')?></h2>
 
-    <div id="ajax-response"></div>
+    <div id="message"></div>
 
     <!-- GENERAL SETTINGS -->
     <h3><?php _e('General settings', 'theatre-troupe') ?></h3>

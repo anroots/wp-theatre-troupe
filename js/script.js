@@ -9,11 +9,7 @@ jQuery(document).ready(function() {
 
         // Send data
         jQuery.post(ajaxurl, data, function(response) {
-            if (response == '1') {
-                jQuery('#ajax-response').html('Settings saved.');
-            } else {
-                jQuery('#ajax-response').html(response);
-            }
+            process_response_msg(response, 'Settings saved');
         });
 
     });
@@ -42,13 +38,8 @@ function restore(what, id, that) {
     jQuery.post(ajaxurl, data, function(response) {
         if (response == '1') {
             jQuery(that).closest('tr').fadeOut('fast');
-        } else {
-            if (response == '0') {
-                response = 'Validation error - check required fields and formatting.'
-            }
-            jQuery('#ajax-response').html(response).attr('class', 'error');
-
         }
+        process_response_msg(response);
     });
 }
 
@@ -71,13 +62,8 @@ function trash(what, id, that) {
     jQuery.post(ajaxurl, data, function(response) {
         if (response == '1') {
             jQuery(that).closest('tr').fadeOut('fast');
-        } else {
-            if (response == '0') {
-                response = 'Validation error - check required fields and formatting.'
-            }
-            jQuery('#ajax-response').html(response).attr('class', 'error');
-
         }
+        process_response_msg(response);
     });
 }
 
@@ -105,12 +91,8 @@ function manage_show_participants(type, show_id, actor_id, that) {
                 var name = jQuery("#actor_select option[value='" + actor_id + "']").text();
                 jQuery('#list-of-actors > tbody:last').append('<tr><td colspan="2">' + name + '</td> </tr>');
             }
-        } else {
-            if (response == '0') {
-                response = 'Validation error - is the actor a participant already?'
-            }
-            jQuery('#ajax-response').html(response).attr('class', 'error');
         }
+        process_response_msg(response);
     });
 }
 
@@ -128,15 +110,28 @@ function change_actor_status(actor_id, status, that) {
     jQuery.post(ajaxurl, data, function(response) {
         jQuery(that).next('img').remove();
         jQuery(that).removeAttr('disabled');
-        
-        if (response == '1') {
-
-        } else {
-            if (response == '0') {
-                response = 'Something went wrong...'
-            }
-            jQuery('#ajax-response').html(response).attr('class', 'error');
-        }
-        console.debug(response);
+        process_response_msg(response);
     });
+}
+
+
+/**
+ * Handles displaying AJAX responses to the user
+ * @param response Server's response, usually 0 or 1
+ * @param success_msg A custom success message
+ */
+function process_response_msg(response, success_msg) {
+
+    if (typeof(success_msg) == 'undefined') {
+        success_msg = 'Changes saved.';
+    }
+    if (response == '1') {
+        jQuery('#message').attr('class', 'updated').html(success_msg);
+    } else {
+        jQuery('#message').attr('class', 'error');
+        if (response == '0') {
+            response = 'Something went wrong, the data didn\'t validate...';
+        }
+        jQuery('#message').html(response);
+    }
 }

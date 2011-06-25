@@ -16,7 +16,6 @@ class Theatre_Troupe {
             $wpdb->ttroupe_show_participants = $wpdb->prefix . 'ttroupe_show_participants';
         }
 
-
         // Overwrite default settings with those saved by the user
         $storedOptions = get_option('theatre_troupe_options');
         if ( !empty($storedOptions) && is_array($storedOptions) ) {
@@ -139,9 +138,6 @@ class Theatre_Troupe {
 		        );";
         dbDelta($sql);
 
-        $table = $wpdb->prefix . 'users';
-        $sql = "ALTER TABLE $table ADD ttroupe_status VARCHAR( 15 ) NOT NULL DEFAULT 'passive'";
-        dbDelta($sql);
     }
 }
 

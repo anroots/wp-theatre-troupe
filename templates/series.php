@@ -2,7 +2,7 @@
 <div id="icon-edit-pages" class="icon32"></div>
 <h2><?php _e('Series', 'theatre-troupe') ?></h2>
 
-<div id="ajax-response"></div>
+<div id="message"></div>
 <br class="clear"/>
 <!-- Add new series -->
 <form action="" method="post"/>

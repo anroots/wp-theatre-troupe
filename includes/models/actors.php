@@ -5,9 +5,15 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
     /**
      * Return information about the actors
+     * @param string $status Return only actors with a status active|passive|previous
      * @return mixed
      */
-    public function get() {
+    public function get($status = NULL) {
+        global $model_actors;
+
+        if ($status != NULL && array_key_exists($status, $model_actors->actor_statuses())) {
+            return get_users(array('meta_key' => 'ttroupe_status', 'meta_value' => $status));
+        }
         return get_users();
     }
 
@@ -42,15 +48,17 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
      * @return bool
      */
     public function change_status($actor_id, $status) {
+
         if ( !$this->check_existence('actors', $actor_id)
-             || !in_array($status, array( 'active', 'passive', 'previous' ))
+             || !array_key_exists($status, $this->actor_statuses())
         ) {
             return FALSE;
         }
 
-        global $wpdb;
-        $wpdb->update($wpdb->prefix.'users', array( 'ttroupe_status' => $status ), array( 'ID' => $actor_id ));
-        return TRUE;
+        if (!current_user_can('manage_options')) {
+            die(__('Sorry, only Admin can do that', 'theatre-troupe'));
+        }
+        return update_user_meta( $actor_id, 'ttroupe_status', $status );
     }
 
 
@@ -69,6 +77,19 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
         global $wpdb;
         $wpdb->query("DELETE FROM $wpdb->ttroupe_show_participants WHERE show_id='$show_id' AND actor_id='$actor_id'");
         return TRUE;
+    }
+
+
+    /**
+     * Returns a list of all statuses an actor can have
+     * @return array
+     */
+    public function actor_statuses() {
+        return array(
+            'active' => __('Active', 'theatre-troupe'),
+            'passive' => __('Passive', 'theatre-troupe'),
+            'previous' => __('Previous Member', 'theatre-troupe')
+        );
     }
 }
 

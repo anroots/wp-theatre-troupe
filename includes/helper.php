@@ -11,17 +11,13 @@
  * @return null|string
  */
 function ttroupe_series_options($active = NULL) {
-    global $theatreTroupe, $model_series;
+    global $model_series;
     $series = $model_series->get();
 
     $html = NULL;
     if ( !empty ($series) ) {
         foreach ( $series as $row ) {
-            $selected = NULL;
-            if ( $row->id == $active ) {
-                $selected = ' selected';
-            }
-            $html .= "<option value=\"$row->id\"$selected>$row->title</option>";
+            $html .= "<option value=\"$row->id\" ".selected($row->id, $active).">$row->title</option>";
         }
     }
     return $html;
@@ -37,24 +33,16 @@ function ttroupe_actor_rows() {
     $actors = $model_actors->get();
 
     $html = NULL;
-    $statuses = array(
-        'active' => __('Active', 'theatre-troupe'),
-        'passive' => __('Passive', 'theatre-troupe'),
-        'previous' => __('Previous Member', 'theatre-troupe')
-    );
 
     if ( !empty($actors) ) {
         foreach ( $actors as $actor ) {
 
             // Generate status selectbox
             $options = NULL;
+            $actor_status = get_user_meta($actor->ID, 'ttroupe_status');
 
-            foreach ( $statuses as $key => $status ) {
-                $selected = NULL;
-                if ( $actor->ttroupe_status == $key ) {
-                    $selected = ' selected="selected"';
-                }
-                $options .= "<option value=\"$key\"$selected>$status</option>";
+            foreach ( $model_actors->actor_statuses() as $key => $status ) {
+                $options .= "<option value=\"$key\" ".selected($actor_status, $key).">$status</option>";
             }
 
             $html .= "
@@ -80,7 +68,7 @@ function ttroupe_actor_rows() {
  */
 function ttroupe_actor_options() {
     global $model_actors;
-    $actors = $model_actors->get();
+    $actors = $model_actors->get('active');
 
     $html = NULL;
 
@@ -106,13 +94,7 @@ function ttroupe_actor_page_options() {
 
     if ( !empty($pages) ) {
         foreach ( $pages as $page ) {
-
-            $selected = NULL;
-            if ( $page->ID == $theatreTroupe->options['actors_main_page'] ) {
-                $selected = ' selected';
-            }
-
-            $html .= "<option value=\"$page->ID\"$selected>$page->post_title</option>";
+            $html .= "<option value=\"$page->ID\" ".selected( $theatreTroupe->options['actors_main_page'], $page->ID ).">$page->post_title</option>";
         }
     }
     return $html;

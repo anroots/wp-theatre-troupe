@@ -7,7 +7,7 @@
     <div id="icon-upload" class="icon32"></div>
     <h2><?php _e('Theatre Troupe Shows', 'theatre-troupe')?></h2>
 
-    <div id="ajax-response"></div>
+    <div id="message"></div>
 
     <!-- SHOWS -->
     <h3><?php _e('Add a new show', 'theatre-troupe') ?></h3>

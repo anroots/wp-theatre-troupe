@@ -22,7 +22,8 @@ if ( !class_exists('Theatre_Troupe') ) {
     include('includes/models/actors.php');
     include('includes/ajax.php');
     include('includes/display_controller.php');
-    include_once('includes/helper.php');
+    include('includes/helper.php');
+    include('includes/shows_widget.php');
 }
 
 
@@ -46,7 +47,5 @@ add_action('wp_ajax_ttroupe_manage_show_participants', array( &$ajax, 'manage_sh
 add_action('wp_ajax_ttroupe_change_actor_status', array( &$ajax, 'change_actor_status' ));
 add_action('wp_ajax_ttroupe_delete', array( &$ajax, 'delete' ));
 add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
-
-
 
 ?>

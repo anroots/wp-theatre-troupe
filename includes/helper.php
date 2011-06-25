@@ -28,11 +28,12 @@ function ttroupe_series_options($active = NULL) {
 }
 
 /**
- * Generate rows for the actors table in the admin panel
+ * Generate rows for the actors
+ * table in the admin panel Actors section
  * @return null|string
  */
 function ttroupe_actor_rows() {
-    global $theatreTroupe, $model_actors;
+    global $model_actors;
     $actors = $model_actors->get();
 
     $html = NULL;
@@ -41,13 +42,12 @@ function ttroupe_actor_rows() {
         foreach ( $actors as $actor ) {
             $html .= "
 	<tr>
-			<td>$actor->post_title</td>
+			<td>$actor->display_name</td>
 			<td>
 				<select name=\"\">
 					<option value=\"\">Aktiivne</option>
 					<option value=\"\">Passiivne</option>
 					<option value=\"\">Endine liige</option>
-					<option value=\"\">Kustutatud</option>
 				</select>
 				<input type=\"button\" name=\"change-actor-status\" class=\"button-secondary\"
 				       value=\"" . __('Save', 'theatre-troupe') . "\"/>
@@ -58,6 +58,24 @@ function ttroupe_actor_rows() {
     return $html;
 }
 
+
+/**
+ * Generates selectbox options of actors
+ * @return null|string
+ */
+function ttroupe_actor_options() {
+    global $model_actors;
+    $actors = $model_actors->get();
+
+    $html = NULL;
+
+    if ( !empty($actors) ) {
+        foreach ( $actors as $actor ) {
+            $html .= "<option value=\"$actor->ID\">$actor->display_name</option>";
+        }
+    }
+    return $html;
+}
 
 /**
  * Generates selectbox options for selecting the main actors page.
@@ -80,6 +98,26 @@ function ttroupe_actor_page_options() {
             }
 
             $html .= "<option value=\"$page->ID\"$selected>$page->post_title</option>";
+        }
+    }
+    return $html;
+}
+
+
+/**
+ * Generates table rows for admin panel show participants table
+ * @param  $show_id
+ * @return null|string
+ */
+function ttroupe_show_actors($show_id) {
+    global $model_shows;
+    $html = NULL;
+    $actors = $model_shows->get_actors($show_id);
+    if ( !empty($actors) ) {
+        foreach ( $actors as $actor ) {
+            $html .= "<tr><td>$actor->display_name</td>
+            <td><button class=\"button-secondary\" onclick=\"manage_show_participants('remove', $show_id, $actor->ID, this);\">" . __('Remove', 'theatre-troupe') . "</button></td>
+            </tr>";
         }
     }
     return $html;

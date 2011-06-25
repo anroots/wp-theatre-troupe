@@ -15,6 +15,7 @@ class Theatre_Troupe {
         if ( !isset($wpdb->ttroupe_series) ) {
             $wpdb->ttroupe_series = $wpdb->prefix . 'ttroupe_series';
             $wpdb->ttroupe_shows = $wpdb->prefix . 'ttroupe_shows';
+            $wpdb->ttroupe_show_participants = $wpdb->prefix . 'ttroupe_show_participants';
         }
 
 
@@ -35,8 +36,6 @@ class Theatre_Troupe {
     public function save_options() {
         update_option('theatre_troupe_options', $this->options);
     }
-
-
 
 
     /**
@@ -91,6 +90,8 @@ class Theatre_Troupe {
 
         if ( $where == 'series' ) {
             $table = $wpdb->ttroupe_series;
+        } elseif ( $where == 'actors' ) {
+            $table = $wpdb->prefix . 'users';
         } else {
             $table = $wpdb->ttroupe_shows;
         }
@@ -111,8 +112,7 @@ class Theatre_Troupe {
         global $wpdb;
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        $table_name = $wpdb->prefix . 'ttroupe_series';
-        $sql = "CREATE TABLE IF NOT EXISTS " . $table_name . " (
+        $sql = "CREATE TABLE IF NOT EXISTS " . $wpdb->ttroupe_series . " (
 		  id mediumint(9) NOT NULL AUTO_INCREMENT,
 		  title VARCHAR(55) DEFAULT 'No Name' NOT NULL,
 		  description TEXT NULL DEFAULT NULL,
@@ -121,8 +121,7 @@ class Theatre_Troupe {
 		);";
         dbDelta($sql);
 
-        $table_name = $wpdb->prefix . 'ttroupe_shows';
-        $sql = "CREATE TABLE IF NOT EXISTS " . $table_name . " (
+        $sql = "CREATE TABLE IF NOT EXISTS " . $wpdb->ttroupe_shows . " (
 		  id mediumint(9) NOT NULL AUTO_INCREMENT,
 		  series_id mediumint(9) NOT NULL,
 		  title VARCHAR(255) DEFAULT 'No Name' NOT NULL,
@@ -132,6 +131,14 @@ class Theatre_Troupe {
 		  status VARCHAR(15) DEFAULT 'active' NOT NULL,
 		  UNIQUE KEY id (id)
 		);";
+        dbDelta($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS " . $wpdb->ttroupe_show_participants . " (
+                id INT( 10 ) NOT NULL AUTO_INCREMENT,
+                actor_id INT( 8 ) UNSIGNED NOT NULL,
+                show_id INT( 8 ) UNSIGNED NOT NULL,
+                UNIQUE KEY id (id)
+		        );";
         dbDelta($sql);
     }
 }

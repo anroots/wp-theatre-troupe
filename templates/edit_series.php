@@ -27,7 +27,7 @@ if ( function_exists('wp_nonce_field') ) {
         <tr>
             <td><?php _e('Description', 'theatre-troupe') ?></td>
             <td><textarea cols="30" rows="5" placeholder="<?php _e('Description', 'theatre-troupe') ?>"
-                       name="description"><?php echo $series->description ?></textarea></td>
+                          name="description"><?php echo $series->description ?></textarea></td>
         </tr>
 
         <tr>

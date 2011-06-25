@@ -21,7 +21,8 @@
     </tr>
     <tr>
         <td><?php _e('Description', 'theatre-troupe') ?></td>
-        <td><textarea name="series-description" placeholder="<?php _e('Description', 'theatre-troupe') ?>" cols="30" rows="5"></textarea></td>
+        <td><textarea name="series-description" placeholder="<?php _e('Description', 'theatre-troupe') ?>" cols="30"
+                      rows="5"></textarea></td>
     </tr>
     <tr>
         <td></td>

@@ -31,8 +31,6 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
     }
 
 
-
-
     /**
      * Update show info
      * @param  $show_id
@@ -64,8 +62,6 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
     }
 
 
-
-
     /**
      * Create a new show
      * @param int $series_id Required, links shows with series
@@ -91,6 +87,52 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
                                                  'start_date' => $start,
                                                  'end_date' => $end ));
         return $wpdb->insert_id;
+    }
+
+
+    /**
+     * Returns actors who are participants of a given show
+     * @param int $show_id
+     * @return bool|mixed An array of objects containing user information
+     */
+    public function get_actors($show_id) {
+        global $wpdb;
+        if ( empty($show_id) || $show_id < 1 ) {
+            return FALSE;
+        }
+
+        $actors = NULL;
+
+        $query = $wpdb->get_results("SELECT actor_id FROM $wpdb->ttroupe_show_participants WHERE show_id='$show_id'", OBJECT);
+        if ( count($query) > 0 ) {
+            foreach ( $query as $participant ) {
+                $actors[] = get_userdata($participant->actor_id);
+            }
+        }
+        return $actors;
+    }
+
+
+    /**
+     * Check if a actor is participant in a show
+     * @param int $show_id
+     * @param int $actor_id
+     * @return bool Returns TRUE if a actor is a participant in a show, FALSE otherwise
+     */
+    public function has_actor($show_id, $actor_id) {
+        if ( !$this->check_existence('shows', $show_id)
+             || !$this->check_existence('actors', $actor_id)
+        ) {
+            return FALSE;
+        }
+        global $wpdb;
+
+        $query = $wpdb->get_var("SELECT id FROM $wpdb->ttroupe_show_participants WHERE actor_id='$actor_id' AND show_id='$show_id'");
+
+        if ( empty($query) ) {
+            return FALSE;
+        }
+        return TRUE;
     }
 
 }

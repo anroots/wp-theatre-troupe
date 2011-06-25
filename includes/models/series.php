@@ -28,7 +28,6 @@ class Theatre_Troupe_Series extends Theatre_Troupe {
     }
 
 
-
     /**
      * Insert a new series to the database.
      * @param string $title
@@ -43,7 +42,6 @@ class Theatre_Troupe_Series extends Theatre_Troupe {
         $wpdb->insert($wpdb->ttroupe_series, array( 'title' => $title, 'description' => $description ));
         return $wpdb->insert_id;
     }
-
 
 
     /**
@@ -63,7 +61,7 @@ class Theatre_Troupe_Series extends Theatre_Troupe {
 
         global $wpdb;
         $wpdb->update($wpdb->ttroupe_series, array( 'title' => $title,
-                                                 'description' => $description),
+                                                  'description' => $description ),
                       array( 'id' => $series_id ));
         return TRUE;
     }

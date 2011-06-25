@@ -58,5 +58,30 @@ if ( function_exists('wp_nonce_field') ) {
     </table>
     </form>
     <br class="clear"/>
+
+    <h3><?php _e('Actors associated with the show', 'theatre-troupe') ?></h3>
+
+    <?php _e('Add actor to the show', 'theatre-troupe') ?>:
+    <select id="actor_select"><?php echo ttroupe_actor_options()?></select>
+    <button class="button-secondary"
+            onclick="manage_show_participants('add', <?php echo $show->id ?>, jQuery('#actor_select').val());"><?php _e('Add', 'theatre-troupe') ?></button>
+    <br class="clear"/>
+
+    <table class="widefat" id="list-of-actors">
+        <thead>
+        <tr>
+            <th><?php _e('Name', 'theatre-troupe') ?></th>
+            <th><?php _e('Remove', 'theatre-troupe') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php echo ttroupe_show_actors($show->id) ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="2">&nbsp;</th>
+        </tr>
+        </tfoot>
+    </table>
 </div>
 

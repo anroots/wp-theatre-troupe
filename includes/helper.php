@@ -11,8 +11,8 @@
  * @return null|string
  */
 function ttroupe_series_options($active = NULL) {
-    global $theatreTroupe;
-    $series = $theatreTroupe->get_series();
+    global $theatreTroupe, $model_series;
+    $series = $model_series->get();
 
     $html = NULL;
     if ( !empty ($series) ) {
@@ -32,8 +32,8 @@ function ttroupe_series_options($active = NULL) {
  * @return null|string
  */
 function ttroupe_actor_rows() {
-    global $theatreTroupe;
-    $actors = $theatreTroupe->get_actors();
+    global $theatreTroupe, $model_actors;
+    $actors = $model_actors->get();
 
     $html = NULL;
 

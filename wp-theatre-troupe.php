@@ -16,8 +16,11 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
 // Include plugin classes and helpers
 if ( !class_exists('Theatre_Troupe') ) {
-    include('includes/class-theatre-troupe.php');
-    include('includes/class-theatre-troupe-ajax.php');
+    include('includes/models/main.php');
+    include('includes/models/series.php');
+    include('includes/models/shows.php');
+    include('includes/models/actors.php');
+    include('includes/ajax.php');
     include('includes/display_controller.php');
     include_once('includes/helper.php');
 }
@@ -25,9 +28,12 @@ if ( !class_exists('Theatre_Troupe') ) {
 
 // Create a new instance of the main class files
 if ( class_exists('Theatre_Troupe') ) {
-    $theatreTroupe = new Theatre_Troupe();
-    $ajax = new Theatre_Troupe_Ajax();
-    $display = new Display_Controller();
+    $theatreTroupe  = new Theatre_Troupe();
+    $model_series   = new Theatre_Troupe_Series();
+    $model_shows    = new Theatre_Troupe_Shows();
+    $model_actors   = new Theatre_Troupe_Actors();
+    $ajax           = new Theatre_Troupe_Ajax();
+    $display        = new Display_Controller();
 }
 
 

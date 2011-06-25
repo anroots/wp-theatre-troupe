@@ -16,25 +16,25 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
 // Include plugin classes and helpers
 if ( !class_exists('Theatre_Troupe') ) {
-	include('includes/class-theatre-troupe.php');
-	include('includes/class-theatre-troupe-ajax.php');
-	include('includes/display_controller.php');
-	include_once('includes/helper.php');
+    include('includes/class-theatre-troupe.php');
+    include('includes/class-theatre-troupe-ajax.php');
+    include('includes/display_controller.php');
+    include_once('includes/helper.php');
 }
 
 
 // Create a new instance of the main class files
 if ( class_exists('Theatre_Troupe') ) {
-	$theatreTroupe = new Theatre_Troupe();
-	$ajax = new Theatre_Troupe_Ajax();
-	$display = new Display_Controller();
+    $theatreTroupe = new Theatre_Troupe();
+    $ajax = new Theatre_Troupe_Ajax();
+    $display = new Display_Controller();
 }
 
 
 // Check $_POST actions
 if ( isset($_POST['add-series']) ) {
-	// New series
-	$theatreTroupe->add_series(@$_POST['series-title']);
+    // New series
+    $theatreTroupe->add_series(@$_POST['series-title']);
 }
 
 
@@ -43,9 +43,8 @@ add_action('admin_menu', array( &$display, 'attach_menus' ));
 
 // AJAX bindings
 add_action('wp_ajax_ttroupe_save_settings', array( &$ajax, 'save_settings' ));
-add_action('wp_ajax_ttroupe_delete_series', array( &$ajax, 'delete_series' ));
-add_action('wp_ajax_ttroupe_delete_show', array( &$ajax, 'delete_show' ));
-add_action('wp_ajax_ttroupe_restore_show', array( &$ajax, 'restore_show' ));
+add_action('wp_ajax_ttroupe_delete', array( &$ajax, 'delete' ));
+add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
 
 
 

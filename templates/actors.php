@@ -4,19 +4,19 @@
 
 <!-- List actors -->
 <table class="widefat">
-	<thead>
-	<tr>
-		<th><?php _e('Actor name', 'theatre-troupe') ?></th>
-		<th><?php _e('Change Status', 'theatre-troupe') ?></th>
-	</tr>
-	</thead>
-	<tfoot>
-	<tr>
-		<th><?php _e('Actor name', 'theatre-troupe') ?></th>
-		<th><?php _e('Change Status', 'theatre-troupe') ?></th>
-	</tr>
-	</tfoot>
-	<tbody>
-	<?php echo ttroupe_actor_rows() ?>
-	</tbody>
+    <thead>
+    <tr>
+        <th><?php _e('Actor name', 'theatre-troupe') ?></th>
+        <th><?php _e('Change Status', 'theatre-troupe') ?></th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th><?php _e('Actor name', 'theatre-troupe') ?></th>
+        <th><?php _e('Change Status', 'theatre-troupe') ?></th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <?php echo ttroupe_actor_rows() ?>
+    </tbody>
 </table>

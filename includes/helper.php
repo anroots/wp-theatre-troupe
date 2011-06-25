@@ -11,20 +11,20 @@
  * @return null|string
  */
 function ttroupe_series_options($active = NULL) {
-	global $theatreTroupe;
-	$series = $theatreTroupe->get_series();
+    global $theatreTroupe;
+    $series = $theatreTroupe->get_series();
 
-	$html = NULL;
-	if ( !empty ($series) ) {
-		foreach ( $series as $row ) {
-			$selected = NULL;
-			if ( $row->id == $active ) {
-				$selected = ' selected';
-			}
-			$html .= "<option value=\"$row->id\"$selected>$row->title</option>";
-		}
-	}
-	return $html;
+    $html = NULL;
+    if ( !empty ($series) ) {
+        foreach ( $series as $row ) {
+            $selected = NULL;
+            if ( $row->id == $active ) {
+                $selected = ' selected';
+            }
+            $html .= "<option value=\"$row->id\"$selected>$row->title</option>";
+        }
+    }
+    return $html;
 }
 
 /**
@@ -32,14 +32,14 @@ function ttroupe_series_options($active = NULL) {
  * @return null|string
  */
 function ttroupe_actor_rows() {
-	global $theatreTroupe;
-	$actors = $theatreTroupe->get_actors();
+    global $theatreTroupe;
+    $actors = $theatreTroupe->get_actors();
 
-	$html = NULL;
+    $html = NULL;
 
-	if ( !empty($actors) ) {
-		foreach ( $actors as $actor ) {
-			$html .= "
+    if ( !empty($actors) ) {
+        foreach ( $actors as $actor ) {
+            $html .= "
 	<tr>
 			<td>$actor->post_title</td>
 			<td>
@@ -53,9 +53,9 @@ function ttroupe_actor_rows() {
 				       value=\"" . __('Save', 'theatre-troupe') . "\"/>
 			</td>
 		</tr>";
-		}
-	}
-	return $html;
+        }
+    }
+    return $html;
 }
 
 
@@ -66,23 +66,23 @@ function ttroupe_actor_rows() {
  * @return void
  */
 function ttroupe_actor_page_options() {
-	global $theatreTroupe;
-	$pages = get_pages();
+    global $theatreTroupe;
+    $pages = get_pages();
 
-	$html = NULL;
+    $html = NULL;
 
-	if ( !empty($pages) ) {
-		foreach ( $pages as $page ) {
+    if ( !empty($pages) ) {
+        foreach ( $pages as $page ) {
 
-			$selected = NULL;
-			if ( $page->ID == $theatreTroupe->options['actors_main_page'] ) {
-				$selected = ' selected';
-			}
+            $selected = NULL;
+            if ( $page->ID == $theatreTroupe->options['actors_main_page'] ) {
+                $selected = ' selected';
+            }
 
-			$html .= "<option value=\"$page->ID\"$selected>$page->post_title</option>";
-		}
-	}
-	return $html;
+            $html .= "<option value=\"$page->ID\"$selected>$page->post_title</option>";
+        }
+    }
+    return $html;
 }
 
 ?>

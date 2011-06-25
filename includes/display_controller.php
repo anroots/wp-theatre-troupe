@@ -15,6 +15,10 @@ class Display_Controller extends Theatre_Troupe {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
+        if ( isset($_GET['install']) ) {
+            $this->install(); // Uncomment to create SQL tables
+        }
+
         include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
     }
 

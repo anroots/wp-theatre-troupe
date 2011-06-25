@@ -37,20 +37,35 @@ function ttroupe_actor_rows() {
     $actors = $model_actors->get();
 
     $html = NULL;
+    $statuses = array(
+        'active' => __('Active', 'theatre-troupe'),
+        'passive' => __('Passive', 'theatre-troupe'),
+        'previous' => __('Previous Member', 'theatre-troupe')
+    );
 
     if ( !empty($actors) ) {
         foreach ( $actors as $actor ) {
+
+            // Generate status selectbox
+            $options = NULL;
+
+            foreach ( $statuses as $key => $status ) {
+                $selected = NULL;
+                if ( $actor->ttroupe_status == $key ) {
+                    $selected = ' selected="selected"';
+                }
+                $options .= "<option value=\"$key\"$selected>$status</option>";
+            }
+
             $html .= "
 	<tr>
 			<td>$actor->display_name</td>
 			<td>
-				<select name=\"\">
-					<option value=\"\">Aktiivne</option>
-					<option value=\"\">Passiivne</option>
-					<option value=\"\">Endine liige</option>
-				</select>
-				<input type=\"button\" name=\"change-actor-status\" class=\"button-secondary\"
-				       value=\"" . __('Save', 'theatre-troupe') . "\"/>
+				<select>
+				    $options
+                </select>
+				<button class=\"button-secondary\" onclick=\"change_actor_status($actor->ID, jQuery(this).prev().val(), this);\">
+				       " . __('Save', 'theatre-troupe') . "</button>
 			</td>
 		</tr>";
         }

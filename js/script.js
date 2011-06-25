@@ -22,6 +22,8 @@ jQuery(document).ready(function() {
 }); // End of .ready()
 
 
+var loading_image_src = 'images/loading.gif'; // Loading image to show the user during AJAX query execution
+
 /**
  * Un-deletes an item
  * @param what shows|series
@@ -110,5 +112,31 @@ function manage_show_participants(type, show_id, actor_id, that) {
             jQuery('#ajax-response').html(response).attr('class', 'error');
         }
     });
+}
 
+
+// Change actor's status (active|passive|previous)
+function change_actor_status(actor_id, status, that) {
+    var data = {
+        action: 'ttroupe_change_actor_status',
+        status: status,
+        actor_id: actor_id
+    };
+    jQuery(that).after('<img style="margin-left: 15px;" alt="Loading..." title="Loading..." src="' + loading_image_src + '" />');
+    jQuery(that).attr('disabled', 'disabled');
+    // Send data
+    jQuery.post(ajaxurl, data, function(response) {
+        jQuery(that).next('img').remove();
+        jQuery(that).removeAttr('disabled');
+        
+        if (response == '1') {
+
+        } else {
+            if (response == '0') {
+                response = 'Something went wrong...'
+            }
+            jQuery('#ajax-response').html(response).attr('class', 'error');
+        }
+        console.debug(response);
+    });
 }

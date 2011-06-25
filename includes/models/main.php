@@ -9,8 +9,6 @@ class Theatre_Troupe {
     function Theatre_Troupe() {
         global $wpdb;
 
-        //$this->install(); // Uncomment to create SQL tables
-
         // Set database table names
         if ( !isset($wpdb->ttroupe_series) ) {
             $wpdb->ttroupe_series = $wpdb->prefix . 'ttroupe_series';
@@ -139,6 +137,10 @@ class Theatre_Troupe {
                 show_id INT( 8 ) UNSIGNED NOT NULL,
                 UNIQUE KEY id (id)
 		        );";
+        dbDelta($sql);
+
+        $table = $wpdb->prefix . 'users';
+        $sql = "ALTER TABLE $table ADD ttroupe_status VARCHAR( 15 ) NOT NULL DEFAULT 'passive'";
         dbDelta($sql);
     }
 }

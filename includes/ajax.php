@@ -89,6 +89,20 @@ class Theatre_Troupe_Ajax {
         }
         die('0');
     }
+
+
+    /**
+     * Change actor's status
+     * @return void
+     */
+    public function change_actor_status() {
+        global $model_actors;
+
+        if ( $model_actors->change_status((int) @$_POST['actor_id'], @$_POST['status']) ) {
+            die('1');
+        }
+        die('0');
+    }
 }
 
 ?>

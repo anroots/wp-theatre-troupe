@@ -24,7 +24,7 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
         if ( !$this->check_existence('shows', $show_id)
              || !$this->check_existence('actors', $actor_id)
-            || $model_shows->has_actor($show_id, $actor_id)
+             || $model_shows->has_actor($show_id, $actor_id)
         ) {
             return FALSE;
         }
@@ -32,6 +32,25 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
         $wpdb->insert($wpdb->ttroupe_show_participants, array( 'show_id' => $show_id, 'actor_id' => $actor_id ));
         return $wpdb->insert_id;
+    }
+
+
+    /**
+     * Change actor's status
+     * @param int $actor_id
+     * @param string $status active|passive|previous
+     * @return bool
+     */
+    public function change_status($actor_id, $status) {
+        if ( !$this->check_existence('actors', $actor_id)
+             || !in_array($status, array( 'active', 'passive', 'previous' ))
+        ) {
+            return FALSE;
+        }
+
+        global $wpdb;
+        $wpdb->update($wpdb->prefix.'users', array( 'ttroupe_status' => $status ), array( 'ID' => $actor_id ));
+        return TRUE;
     }
 
 

@@ -31,6 +31,8 @@
         </tr>
     </table>
 
+    <br/>
+    <a href="<?php echo add_query_arg('install', 'true') ?>" class="button-primary">Run MYSQL installation routine</a>
 
 </div>
 

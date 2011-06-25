@@ -81,12 +81,26 @@ class Display_Controller extends Theatre_Troupe {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
-        if ( isset($_GET['deleted']) ) {
-            $series = $this->get_series(NULL, 'deleted');
-        } else {
-            $series = $this->get_series();
+        // New series
+        if ( isset($_POST['add-series']) ) {
+            $this->add_series(@$_POST['series-title'], @$_POST['series-description']);
+
+        } elseif ( isset($_POST['save-series']) ) {
+            $this->update_series(@$_POST['series_id'], @$_POST['title'], @$_POST['description']);
         }
-        include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/series.php');
+
+        if ( isset($_GET['edit']) && $this->check_existence('series', $_GET['edit']) ) {
+            $series = $this->get_series($_GET['edit']);
+            include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/edit_series.php');
+
+        } else {
+            if ( isset($_GET['deleted']) ) {
+                $series = $this->get_series(NULL, 'deleted');
+            } else {
+                $series = $this->get_series();
+            }
+            include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/series.php');
+        }
 
     }
 

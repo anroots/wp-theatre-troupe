@@ -31,12 +31,6 @@ if ( class_exists('Theatre_Troupe') ) {
 }
 
 
-// Check $_POST actions
-if ( isset($_POST['add-series']) ) {
-    // New series
-    $theatreTroupe->add_series(@$_POST['series-title']);
-}
-
 
 // Registrer admin page
 add_action('admin_menu', array( &$display, 'attach_menus' ));

@@ -85,9 +85,11 @@
                 <td>
 
                     <?php if ( isset($_GET['deleted']) ): ?>
-                    <input type="button" class="button-secondary" onclick="trash('shows', <?php echo $show->id ?>, this);"
+                    <input type="button" class="button-secondary"
+                           onclick="trash('shows', <?php echo $show->id ?>, this);"
                            value="<?php _e('Delete permanently', 'theatre-troupe') ?>"/>
-                    <input type="button" class="button-secondary" onclick="restore('shows', <?php echo $show->id ?>, this);"
+                    <input type="button" class="button-secondary"
+                           onclick="restore('shows', <?php echo $show->id ?>, this);"
                            value="<?php _e('Restore', 'theatre-troupe') ?>"/>
 
                     <?php else: ?>
@@ -96,7 +98,8 @@
                        title="<?php _e('Edit', 'theatre-troupe') ?>">
                         <?php _e('Edit', 'theatre-troupe') ?></a>
 
-                    <input type="button" class="button-secondary" onclick="trash('shows', <?php echo $show->id ?>, this);"
+                    <input type="button" class="button-secondary"
+                           onclick="trash('shows', <?php echo $show->id ?>, this);"
                            value="<?php _e('Trash', 'theatre-troupe') ?>"/>
 
                     <?php endif; ?>
@@ -117,7 +120,7 @@
 
 
     <?php
-     /* Link to deleted or active entries */
+ /* Link to deleted or active entries */
     if ( isset($_GET['deleted']) ): ?>
         <a href="<?php echo remove_query_arg('deleted') ?>" class="button-secondary"
            style="float: right; margin-top: 20px;"

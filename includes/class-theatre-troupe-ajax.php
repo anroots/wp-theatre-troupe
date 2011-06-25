@@ -23,7 +23,7 @@ class Theatre_Troupe_Ajax {
         $id = (int) @$_POST['id'];
         $what = @$_POST['what'];
 
-         if ( !in_array($what, array( 'shows', 'series' )) ) {
+        if ( !in_array($what, array( 'shows', 'series' )) ) {
             die('0');
         }
         if ( $theatreTroupe->change_status($what, $id, 'deleted') ) {

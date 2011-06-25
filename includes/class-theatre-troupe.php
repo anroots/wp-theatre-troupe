@@ -48,8 +48,13 @@ class Theatre_Troupe {
         if ( !empty($series_id) ) {
             $series_id = " AND id='$series_id'";
         }
-        return $wpdb->get_results("SELECT * FROM $wpdb->ttroupe_series
+        $query = $wpdb->get_results("SELECT * FROM $wpdb->ttroupe_series
 				WHERE status = '$status' $series_id", OBJECT);
+
+        if ( empty($series_id) ) {
+            return $query;
+        }
+        return $query[0];
     }
 
 
@@ -94,14 +99,15 @@ class Theatre_Troupe {
     /**
      * Insert a new series to the database.
      * @param string $title
+     * @param string $description
      * @return bool|int New row ID
      */
-    public function add_series($title) {
+    public function add_series($title, $description) {
         if ( empty($title) ) {
             return FALSE;
         }
         global $wpdb;
-        $wpdb->insert($wpdb->ttroupe_series, array( 'title' => $title ));
+        $wpdb->insert($wpdb->ttroupe_series, array( 'title' => $title, 'description' => $description ));
         return $wpdb->insert_id;
     }
 
@@ -206,6 +212,29 @@ class Theatre_Troupe {
     }
 
 
+
+    /**
+     * Updates series information
+     * @param  $series_id
+     * @param  $title Required
+     * @param  $description
+     * @return bool
+     */
+    public function update_series($series_id, $title, $description) {
+        $series_id = (int) $series_id;
+        if ( empty($title) ||
+             !$this->check_existence('series', $series_id)
+        ) {
+            return FALSE;
+        }
+
+        global $wpdb;
+        $wpdb->update($wpdb->ttroupe_series, array( 'title' => $title,
+                                                 'description' => $description),
+                      array( 'id' => $series_id ));
+        return TRUE;
+    }
+
     /**
      * Check for series/show existence
      * @param string $where Either series or shows
@@ -241,6 +270,7 @@ class Theatre_Troupe {
         $sql = "CREATE TABLE IF NOT EXISTS " . $table_name . " (
 		  id mediumint(9) NOT NULL AUTO_INCREMENT,
 		  title VARCHAR(55) DEFAULT 'No Name' NOT NULL,
+		  description TEXT NULL DEFAULT NULL,
 		  status VARCHAR(15) DEFAULT 'active' NOT NULL,
 		  UNIQUE KEY id (id)
 		);";

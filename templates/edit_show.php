@@ -11,8 +11,8 @@
 
 
     <!-- Edit show -->
-    <form action="<?php echo remove_query_arg('edit') ?>" method="POST"/>
-<?php wp_nonce_field('edit-shows'); ?>
+    <form action="<?php echo remove_query_arg('edit') ?>" method="post">
+    <?php wp_nonce_field('edit-shows'); ?>
     <table>
         <tr>
             <td><?php _e('Title', 'theatre-troupe') ?></td>

@@ -4,15 +4,35 @@ Plugin Name: WP Theatre Troupe
 Plugin URI: http://jaa.ee/
 Description: This plugin will enable small theatre troups and other performing groups to list their shows and participating actors.
 Author: Ando Roots
-Version: 0.1
+Version: 1.0
 Author URI: http://ando.roots.ee/
+Licence: GPL2
+*/
+
+/*
+Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 
 define('TTROUPE_DIR', '/wp-theatre-troupe');
+define('TTROUPE_VERSION', '1.0');
 
 // Translations
 load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
+
 
 // Include plugin classes and helpers
 if ( !class_exists('Theatre_Troupe') ) {
@@ -47,6 +67,6 @@ add_action('wp_ajax_ttroupe_change_actor_status', array( &$ajax, 'change_actor_s
 add_action('wp_ajax_ttroupe_delete', array( &$ajax, 'delete' ));
 add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
 
-register_activation_hook( __FILE__, array(&$theatreTroupe, 'install') );
+register_activation_hook(__FILE__, array( &$theatreTroupe, 'install' ));
 
 ?>

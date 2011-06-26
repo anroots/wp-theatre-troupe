@@ -8,6 +8,7 @@
     <h2><?php _e('Theatre Troupe Shows', 'theatre-troupe')?></h2>
 
     <div id="message"></div>
+    <?php echo @$error ?>
 
     <!-- SHOWS -->
     <h3><?php _e('Add a new show', 'theatre-troupe') ?></h3>
@@ -15,8 +16,8 @@
     <?php if ( count($series) > 0 ): ?>
 
     <!-- Create a show -->
-    <form action="" method="POST"/>
-<?php wp_nonce_field('create-show'); ?>
+    <form action="" method="post">
+    <?php wp_nonce_field('create-show'); ?>
     <table>
         <tr>
             <td><?php _e('Title', 'theatre-troupe') ?></td>
@@ -104,10 +105,10 @@
             </tr>
                 <?php endforeach;
         else: ?>
-              <tr>
-                  <td colspan="6"><?php _e('Empty', 'theatre-troupe')?></td>
-              </tr>
-        <?php endif; ?>
+        <tr>
+            <td colspan="6"><?php _e('Empty', 'theatre-troupe')?></td>
+        </tr>
+            <?php endif; ?>
         </tbody>
         <tfoot>
         <tr>
@@ -122,10 +123,10 @@
     <?php
     wp_nonce_field('delete_item', 'delete_nonce');
 
- /* Link to deleted or active entries */
+    /* Link to deleted or active entries */
     if ( isset($_GET['deleted']) ):
         wp_nonce_field('restore_item', 'restore_nonce'); ?>
-            
+
         <a href="<?php echo remove_query_arg('deleted') ?>" class="button-secondary"
            style="float: right; margin-top: 20px;"
            title="<?php _e('View active')?>"><?php _e('View active')?></a>
@@ -137,7 +138,7 @@
 
 
     <?php else: ?>
-    <div class="update-nag"><?php _e('You must add a series first.', 'theatre-troupe') ?></div>
+    <div class="error"><?php _e('You must add a series first.', 'theatre-troupe') ?></div>
     <?php endif; ?>
 
 

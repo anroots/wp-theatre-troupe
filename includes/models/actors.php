@@ -59,7 +59,7 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
             die(__('Sorry, only Admin can do that', 'theatre-troupe'));
         }
 
-        if ($this->get_status($actor_id) != $status) {
+        if ( $this->get_status($actor_id) != $status ) {
             return update_user_meta($actor_id, 'ttroupe_status', $status);
         }
         return TRUE;

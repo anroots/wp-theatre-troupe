@@ -11,14 +11,6 @@ class Display_Controller extends Theatre_Troupe {
      * @return void
      */
     public function print_admin() {
-        if ( !current_user_can('manage_options') ) {
-            wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
-
-        if ( isset($_GET['install']) ) {
-            $this->install(); // Uncomment to create SQL tables
-        }
-
         include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
     }
 
@@ -34,12 +26,15 @@ class Display_Controller extends Theatre_Troupe {
 
         global $model_series, $model_shows;
 
-        if ( isset($_POST['save-show']) && check_admin_referer('edit-shows')) {
+        if ( isset($_POST['save-show']) && check_admin_referer('edit-shows') ) {
             $model_shows->update(@$_POST['show_id'], @$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
 
-        } elseif ( isset($_POST['create-show']) && check_admin_referer('create-show')) {
+        } elseif ( isset($_POST['create-show']) && check_admin_referer('create-show') ) {
             // New show
-            $model_shows->create(@$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
+            $result = $model_shows->create(@$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
+            if ( !$result ) {
+                $error = '<div class="error below-h2">' . __('Did you fill all the required fields?', 'theatre-troupe') . '</div>';
+            }
         }
 
 
@@ -89,7 +84,7 @@ class Display_Controller extends Theatre_Troupe {
         if ( isset($_POST['add-series']) && check_admin_referer('add-series') ) {
             $model_series->add(@$_POST['series-title'], @$_POST['series-description']);
 
-        } elseif ( isset($_POST['save-series']) && check_admin_referer('edit-series')  ) {
+        } elseif ( isset($_POST['save-series']) && check_admin_referer('edit-series') ) {
             $model_series->update(@$_POST['series_id'], @$_POST['title'], @$_POST['description']);
         }
 
@@ -108,11 +103,14 @@ class Display_Controller extends Theatre_Troupe {
 
     }
 
-// Attaches admin menus
+    /**
+     * Attaches admin menus
+     * @return void
+     */
     function attach_menus() {
         global $display;
 
-        $ttroupe_hook = add_menu_page(__('Theatre Troupe Options', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$display, 'print_admin' ));
+        $ttroupe_hook = add_menu_page(__('Theatre Troupe', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$display, 'print_admin' ));
         add_action("admin_print_scripts-$ttroupe_hook", array( &$display, 'admin_head' ));
 
         $ttroupe_hook = add_submenu_page('ttroupe_admin', __('Theatre Troupe Shows', 'theatre-troupe'), __('Shows', 'theatre-troupe'), 'manage_options', 'ttroupe_shows', array( &$display, 'print_shows' ));
@@ -126,7 +124,10 @@ class Display_Controller extends Theatre_Troupe {
     }
 
 
-// Echo JavaScript in plugin page header
+    /**
+     * Echo JavaScript in plugin page header
+     * @return void
+     */
     function admin_head() {
         wp_enqueue_script('ttroupe_admin', plugins_url() . TTROUPE_DIR . '/js/script.js', array( 'jquery' ));
     }

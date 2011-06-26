@@ -1,4 +1,3 @@
-
 var loading_image_src = 'images/loading.gif'; // Loading image to show the user during AJAX query execution
 
 /**
@@ -111,9 +110,9 @@ function process_response_msg(response, success_msg) {
         success_msg = 'Changes saved.';
     }
     if (response == '1') {
-        jQuery('#message').attr('class', 'updated').html(success_msg);
+        jQuery('#message').attr('class', 'updated below-h2').html(success_msg);
     } else {
-        jQuery('#message').attr('class', 'error');
+        jQuery('#message').attr('class', 'error below-h2');
         if (response == '0') {
             response = 'Something went wrong, the data didn\'t validate...';
         } else if (response == '-1') {

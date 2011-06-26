@@ -4,8 +4,11 @@
 
 <div id="message"></div>
 <br class="clear"/>
+<p>
+    <?php _e('Use series to categorize shows. Think of them as Post categories.', 'theatre-troupe'); ?>
+</p>
 <!-- Add new series -->
-<form action="" method="post"/>
+<form action="" method="post">
 <?php wp_nonce_field('add-series'); ?>
 <table>
     <tr>
@@ -61,7 +64,7 @@
                    title="<?php _e('Edit', 'theatre-troupe') ?>">
                     <?php _e('Edit', 'theatre-troupe') ?></a>
 
-                <input type="button" class="delete-series" class="button-secondary"
+                <input type="button" class="delete-series button-secondary"
                        onclick="trash('series', <?php echo $row->id ?>, this)"
                        value="<?php _e('Trash', 'theatre-troupe') ?>"/>
 
@@ -90,8 +93,8 @@ wp_nonce_field('delete_item', 'delete_nonce');
 
 /* Link to deleted or active entries */
 if ( isset($_GET['deleted']) ):
-        wp_nonce_field('restore_item', 'restore_nonce'); ?>
-        
+    wp_nonce_field('restore_item', 'restore_nonce'); ?>
+
 <a href="<?php echo remove_query_arg('deleted') ?>" class="button-secondary"
    style="float: right; margin-top: 20px;"
    title="<?php _e('View active')?>"><?php _e('View active')?></a>

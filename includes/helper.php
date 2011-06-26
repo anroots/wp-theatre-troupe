@@ -97,6 +97,8 @@ function ttroupe_show_actors($show_id) {
             <td><button class=\"button-secondary\" onclick=\"manage_show_participants('remove', $show_id, $actor->ID, this);\">" . __('Remove', 'theatre-troupe') . "</button></td>
             </tr>";
         }
+    } else {
+        $html = '<tr><td colspan="2">'.__("Empty", "theatre-troupe").'</td> </tr>';
     }
     return $html;
 }

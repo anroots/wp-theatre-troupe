@@ -10,14 +10,17 @@
     <div id="message"></div>
 
     <!-- GENERAL SETTINGS -->
-    <h3><?php _e('About Theatre Troupe', 'theatre-troupe') ?></h3>
-    <p>
-        Instructions here
-    </p>
+    <h3><?php echo __('About Theatre Troupe', 'theatre-troupe') .' v'.TTROUPE_VERSION?></h3>
 
 
-    <br/>
-    <a href="<?php echo add_query_arg('install', 'true') ?>" class="button-primary">Run MYSQL installation routine</a>
+        <?php _e('<p><strong>TheatreTroupe</strong> is a Wordpress plugin for small performing groups
+        for listing shows and associated actors.<br /> As your group admin, you can easily enter and display your previous and
+        upcoming shows/performances anywhere on your pages sidebar.</p>
+
+        <p>The plugin was developed for a Estonian improvisation comedy
+        troupe "<a href="http://jaa.ee">Improgrupp Jaa!</a>" and is available for free under the GPL2 licence.
+        <br />Support-, feature requests and bug reports are welcome
+        to andoroots+devel@gmail.com or directly to <a href="https://github.com/anroots/wp-theatre-troupe">github</a>.</p> ', 'theatre-troupe'); ?>
 
 </div>
 

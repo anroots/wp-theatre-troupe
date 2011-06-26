@@ -78,7 +78,7 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
     public function form($instance) {
 
         /* Set up some default widget settings. */
-        $defaults = array( 'title' => __('Upcoming Shows', 'theatre-troupe'), 'type' => 0 );
+        $defaults = array( 'title' => __('Previous Shows', 'theatre-troupe'), 'type' => 0 );
         $instance = wp_parse_args((array) $instance, $defaults); ?>
 
     <p>

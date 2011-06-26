@@ -12,11 +12,7 @@
 
     <!-- Edit series -->
     <form action="<?php echo remove_query_arg('edit') ?>" method="POST"/>
-<?php
-if ( function_exists('wp_nonce_field') ) {
-    wp_nonce_field('ttroupe_shows');
-}
-    ?>
+<?php wp_nonce_field('edit-series'); ?>
     <table>
         <tr>
             <td><?php _e('Title', 'theatre-troupe') ?></td>

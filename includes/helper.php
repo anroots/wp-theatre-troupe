@@ -39,10 +39,11 @@ function ttroupe_actor_rows() {
 
             // Generate status selectbox
             $options = NULL;
-            $actor_status = get_user_meta($actor->ID, 'ttroupe_status');
+            $actor_status = get_user_meta($actor->ID, 'ttroupe_status', TRUE);
 
             foreach ( $model_actors->actor_statuses() as $key => $status ) {
-                $options .= "<option value=\"$key\" " . selected($actor_status, $key) . ">$status</option>";
+                $s = ($actor_status == $key) ? ' selected' : '';
+                $options .= "<option value=\"$key\"$s>$status</option>";
             }
 
             $html .= "
@@ -75,26 +76,6 @@ function ttroupe_actor_options() {
     if ( !empty($actors) ) {
         foreach ( $actors as $actor ) {
             $html .= "<option value=\"$actor->ID\">$actor->display_name</option>";
-        }
-    }
-    return $html;
-}
-
-/**
- * Generates selectbox options for selecting the main actors page.
- * Selected option is the already saved main actors page.
- * The main actors page is assumed to have subpages for each actor.
- * @return void
- */
-function ttroupe_actor_page_options() {
-    global $theatreTroupe;
-    $pages = get_pages();
-
-    $html = NULL;
-
-    if ( !empty($pages) ) {
-        foreach ( $pages as $page ) {
-            $html .= "<option value=\"$page->ID\" " . selected($theatreTroupe->options['actors_main_page'], $page->ID) . ">$page->post_title</option>";
         }
     }
     return $html;

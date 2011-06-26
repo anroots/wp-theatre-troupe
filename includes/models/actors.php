@@ -58,7 +58,11 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
         if ( !current_user_can('manage_options') ) {
             die(__('Sorry, only Admin can do that', 'theatre-troupe'));
         }
-        return update_user_meta($actor_id, 'ttroupe_status', $status);
+
+        if ($this->get_status($actor_id) != $status) {
+            return update_user_meta($actor_id, 'ttroupe_status', $status);
+        }
+        return TRUE;
     }
 
 
@@ -81,11 +85,21 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
 
     /**
+     * Returns the actor's current status
+     * @param int $actor_id
+     * @return mixed
+     */
+    public function get_status($actor_id) {
+        return get_user_meta($actor_id, 'ttroupe_status', TRUE);
+    }
+
+    /**
      * Returns a list of all statuses an actor can have
      * @return array
      */
     public function actor_statuses() {
         return array(
+            'unassigned' => __('Unassigned', 'theatre-troupe'),
             'active' => __('Active', 'theatre-troupe'),
             'passive' => __('Passive', 'theatre-troupe'),
             'previous' => __('Previous Member', 'theatre-troupe')

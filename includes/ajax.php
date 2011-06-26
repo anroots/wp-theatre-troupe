@@ -23,7 +23,7 @@ class Theatre_Troupe_Ajax {
         $id = (int) @$_POST['id'];
         $what = @$_POST['what'];
 
-        if ( !in_array($what, array( 'shows', 'series' )) ) {
+        if ( !in_array($what, array( 'shows', 'series' )) || !check_ajax_referer('delete_item')) {
             die('0');
         }
         if ( $theatreTroupe->change_status($what, $id, 'deleted') ) {
@@ -43,28 +43,13 @@ class Theatre_Troupe_Ajax {
         $id = (int) @$_POST['id'];
         $what = @$_POST['what'];
 
-        if ( !in_array($what, array( 'shows', 'series' )) ) {
+        if ( !in_array($what, array( 'shows', 'series' )) || !check_ajax_referer('restore_item') ) {
             die('0');
         }
         if ( $theatreTroupe->change_status($what, $id, 'active') ) {
             die('1');
         }
         die('0');
-    }
-
-    /**
-     * Saves plugin settings
-     * @return void
-     */
-    public function save_settings() {
-        global $theatreTroupe;
-        $actors_main_page = (int) @$_POST['actors_main_page'];
-        if ( $actors_main_page <= 0 ) {
-            die('System error #0x002');
-        }
-        $theatreTroupe->options['actors_main_page'] = $actors_main_page;
-        $theatreTroupe->save_options();
-        die('1');
     }
 
 
@@ -77,6 +62,7 @@ class Theatre_Troupe_Ajax {
         $actor_id = (int) @$_POST['actor_id'];
         $show_id = (int) @$_POST['show_id'];
 
+        check_ajax_referer('manage_participants');
 
         if ( $_POST['type'] == 'add' ) {
             $result = $model_actors->add_to_show($show_id, $actor_id);
@@ -97,6 +83,8 @@ class Theatre_Troupe_Ajax {
      */
     public function change_actor_status() {
         global $model_actors;
+
+        check_ajax_referer('manage_actor_status');
 
         if ( $model_actors->change_status((int) @$_POST['actor_id'], @$_POST['status']) ) {
             die('1');

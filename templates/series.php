@@ -6,11 +6,7 @@
 <br class="clear"/>
 <!-- Add new series -->
 <form action="" method="post"/>
-<?php
-        if ( function_exists('wp_nonce_field') ) {
-    wp_nonce_field('ttroupe_series');
-}
-?>
+<?php wp_nonce_field('add-series'); ?>
 <table>
     <tr>
         <td><?php _e('Add new series', 'theatre-troupe') ?>: *</td>
@@ -89,11 +85,17 @@
 
 
 <?php
- /* Link to deleted or active entries */
-if ( isset($_GET['deleted']) ): ?>
+
+wp_nonce_field('delete_item', 'delete_nonce');
+
+/* Link to deleted or active entries */
+if ( isset($_GET['deleted']) ):
+        wp_nonce_field('restore_item', 'restore_nonce'); ?>
+        
 <a href="<?php echo remove_query_arg('deleted') ?>" class="button-secondary"
    style="float: right; margin-top: 20px;"
    title="<?php _e('View active')?>"><?php _e('View active')?></a>
+
 <?php else: ?>
 <a href="<?php echo add_query_arg('deleted', 'true') ?>" class="button-secondary"
    style="float: right; margin-top: 20px;"

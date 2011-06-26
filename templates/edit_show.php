@@ -12,11 +12,7 @@
 
     <!-- Edit show -->
     <form action="<?php echo remove_query_arg('edit') ?>" method="POST"/>
-<?php
-if ( function_exists('wp_nonce_field') ) {
-    wp_nonce_field('ttroupe_shows');
-}
-    ?>
+<?php wp_nonce_field('edit-shows'); ?>
     <table>
         <tr>
             <td><?php _e('Title', 'theatre-troupe') ?></td>
@@ -83,5 +79,6 @@ if ( function_exists('wp_nonce_field') ) {
         </tr>
         </tfoot>
     </table>
+    <?php wp_nonce_field('manage_participants', 'participants_nonce'); ?>
 </div>
 

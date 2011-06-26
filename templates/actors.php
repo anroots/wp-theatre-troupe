@@ -5,6 +5,7 @@
 
 <!-- List actors -->
 <h3><?php _e('Change actor membership status', 'theatre-troupe') ?></h3>
+    <?php wp_nonce_field('manage_actor_status', 'actor_status_nonce'); ?>
 <table class="widefat">
     <thead>
     <tr>

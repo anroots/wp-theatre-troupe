@@ -10,26 +10,11 @@
     <div id="message"></div>
 
     <!-- GENERAL SETTINGS -->
-    <h3><?php _e('General settings', 'theatre-troupe') ?></h3>
+    <h3><?php _e('About Theatre Troupe', 'theatre-troupe') ?></h3>
+    <p>
+        Instructions here
+    </p>
 
-    <table>
-        <tr>
-            <td><?php _e('Main actor page (has subpages with actor profiles)', 'theatre-troupe') ?></td>
-            <td><select name="actors-main-page">
-                <?php echo ttroupe_actor_page_options() ?>
-            </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><br class="clear"/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button id="save-settings" class="button-primary"><?php _e('Save', 'theatre-troupe') ?></button>
-            </td>
-        </tr>
-    </table>
 
     <br/>
     <a href="<?php echo add_query_arg('install', 'true') ?>" class="button-primary">Run MYSQL installation routine</a>

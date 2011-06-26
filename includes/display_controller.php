@@ -32,12 +32,12 @@ class Display_Controller extends Theatre_Troupe {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
-        global $theatreTroupe, $model_series, $model_shows;
+        global $model_series, $model_shows;
 
-        if ( isset($_POST['save-show']) ) {
+        if ( isset($_POST['save-show']) && check_admin_referer('edit-shows')) {
             $model_shows->update(@$_POST['show_id'], @$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
 
-        } elseif ( isset($_POST['create-show']) ) {
+        } elseif ( isset($_POST['create-show']) && check_admin_referer('create-show')) {
             // New show
             $model_shows->create(@$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
         }
@@ -86,10 +86,10 @@ class Display_Controller extends Theatre_Troupe {
         global $model_series;
 
         // New series
-        if ( isset($_POST['add-series']) ) {
+        if ( isset($_POST['add-series']) && check_admin_referer('add-series') ) {
             $model_series->add(@$_POST['series-title'], @$_POST['series-description']);
 
-        } elseif ( isset($_POST['save-series']) ) {
+        } elseif ( isset($_POST['save-series']) && check_admin_referer('edit-series')  ) {
             $model_series->update(@$_POST['series_id'], @$_POST['title'], @$_POST['description']);
         }
 

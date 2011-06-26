@@ -47,4 +47,6 @@ add_action('wp_ajax_ttroupe_change_actor_status', array( &$ajax, 'change_actor_s
 add_action('wp_ajax_ttroupe_delete', array( &$ajax, 'delete' ));
 add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
 
+register_activation_hook( __FILE__, array(&$theatreTroupe, 'install') );
+
 ?>

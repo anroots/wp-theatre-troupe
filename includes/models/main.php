@@ -4,7 +4,7 @@
  */
 class Theatre_Troupe {
 
-    public $options = array( 'actors_main_page' => 2 ); // Plugin settings
+    //public $options = array( 'actors_main_page' => 2 ); // Plugin settings
 
     function Theatre_Troupe() {
         global $wpdb;
@@ -16,13 +16,13 @@ class Theatre_Troupe {
             $wpdb->ttroupe_show_participants = $wpdb->prefix . 'ttroupe_show_participants';
         }
 
-        // Overwrite default settings with those saved by the user
+        /*// Overwrite default settings with those saved by the user
         $storedOptions = get_option('theatre_troupe_options');
         if ( !empty($storedOptions) && is_array($storedOptions) ) {
             foreach ( $storedOptions as $key => $value ) {
                 $this->options[$key] = $value;
             }
-        }
+        }*/
     }
 
 
@@ -101,11 +101,11 @@ class Theatre_Troupe {
 
 
     /**
-     * Create database tables during the installation of the plugin
+     * Create database tables during the activation of the plugin
+     * @static
      * @return void
-     * @todo Call this function from the installation script
      */
-    function install() {
+    static function install() {
         global $wpdb;
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
@@ -137,7 +137,6 @@ class Theatre_Troupe {
                 UNIQUE KEY id (id)
 		        );";
         dbDelta($sql);
-
     }
 }
 

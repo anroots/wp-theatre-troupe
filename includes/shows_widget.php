@@ -4,6 +4,8 @@
  * Implements a widget to show previous or
  * upcoming shows
  */
+
+
 add_action('widgets_init', 'theatre_troupe_load_widgets');
 
 function theatre_troupe_load_widgets() {
@@ -21,10 +23,16 @@ class Theatre_Troupe_Widget extends WP_Widget {
 load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 */
         /* Widget settings. */
-        $widget_ops = array( 'classname' => 'shows', 'description' => __('Displays previous or upcoming shows', 'theatre-troupe') );
+        $widget_ops = array(
+		'classname' => 'shows',
+		'description' => __('Displays previous or upcoming shows',
+				    'theatre-troupe') );
 
         /* Widget control settings. */
-        $control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'shows-widget' );
+        $control_ops = array(
+		'width' => 300,
+		'height' => 350,
+		'id_base' => 'shows-widget' );
 
         /* Create the widget. */
         $this->WP_Widget('shows-widget', __('Theatre Troupe Shows', 'theatre-troupe'), $widget_ops, $control_ops);
@@ -99,6 +107,46 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
     }
 
+    private function format_date($datetime, $onlyTime = false) {
+        if ( WPLANG == 'et_EE') {
+            $fmt = '%H.%M';
+            if (!$onlyTime) {
+                $fmt = '%e. %B (%A) kell ' . $fmt;
+            }
+        } else {
+            if ($onlyTime) {
+                $fmt = '%X';
+            } else {
+                $fmt = '%c';
+            }
+        }
+        $res = strftime($fmt, $datetime);
+
+        // Temporary fix - Estonian umlauts weren't showing correctly
+        return htmlentities($res);
+    }
+
+    private function format_start_end_dates($start_date, $end_date) {
+        $startDateNumeric = strtotime($start_date);
+        $endDateNumeric   = strtotime($end_date);
+
+        $startDateStr = $this->format_date($startDateNumeric);
+        // Display end only if it's set (and later than start date)
+        if ( $endDateNumeric > $startDateNumeric ) {
+            if ( date('d:m:Y', $endDateNumeric) == date('d:m:Y', $startDateNumeric) ) {
+                // If end date is on same day as start date, only display the end TIME
+                $onlyTime = true;
+            } else {
+                $onlyTime = false;
+            }
+            $endDateStr = ' - ' . $this->format_date($endDateNumeric, $onlyTime);
+        } else {
+            $endDateStr = '';
+        }
+
+        return array($startDateStr, $endDateStr);
+    }
+
 
     /**
      * Output widget content to the visitor
@@ -118,31 +166,26 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
             // Add this to the sidebar for each active show of type $type
             foreach ( $shows as $show ) {
-
-                $end_date = NULL;
-                $time = strtotime($show->start_date);
-                $start_date = date('d.m.Y', $time) . sprintf(__(" at %s o'clock ", 'theatre-troupe'), date('H:i', $time));
-
-                // Display end date only if it's set
-                if ( strtotime($show->end_date) > strtotime($show->start_date) ) {
-                    $time = strtotime($show->end_date);
-                    $end_date = ' - ' . date('d.m.Y', $time) . sprintf(__(" at %s o'clock ", 'theatre-troupe'), date('H:i', $time));
-                }
-
+                list($startDateStr, $endDateStr) = $this->format_start_end_dates(
+                    $show->start_date, $show->end_date);
 
                 // Actual HTML for each show
-                $html .= "<li><strong>$show->series_title</strong> $show->title<br />
-                        <i>$start_date $end_date</i><br />
-                        " . __('Location', 'theatre-troupe') . ": $show->location
-                        </li>";
+                $html .=  "<li><strong>$show->series_title</strong>: $show->title<br />"
+                        . "<i>" . $startDateStr . $endDateStr . "</i><br />"
+                        . "$show->location";
+                if ($show->linkurl) {
+                    $html .= ' <a href="' . $show->linkurl . '">' . $show->linkname
+                          .  '</a>';
+                }
+                $html .= "</li>";
 
             }
 
         } else {
             $html .= __('No shows listed yet', 'theatre-troupe');
         }
-
         $html .= '</ul>';
+
         return $html;
     }
 }

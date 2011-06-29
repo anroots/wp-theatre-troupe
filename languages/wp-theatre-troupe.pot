@@ -21,7 +21,7 @@ msgstr "Seeriad"
 
 #: templates/series.php:8
 msgid "Use series to categorize shows. Think of them as Post categories."
-msgstr ""
+msgstr "Iga etendus kuulub mingi seeria alla."
 
 #: templates/series.php:15
 msgid "Add new series"
@@ -108,7 +108,7 @@ msgstr "Vaata kustutatuid"
 #: includes/display_controller.php:116
 #: includes/shows_widget.php:30
 msgid "Theatre Troupe Shows"
-msgstr ""
+msgstr "Theatre Troupe etendused"
 
 #: templates/shows.php:14
 msgid "Add a new show"
@@ -163,7 +163,7 @@ msgstr "Haldamine"
 
 #: templates/shows.php:141
 msgid "You must add a series first."
-msgstr ""
+msgstr "Kõigepealt pead lisama seeria."
 
 #: templates/actors.php:3
 #: includes/display_controller.php:119
@@ -175,6 +175,8 @@ msgid ""
 "Actors are your current Wordpress users. To create a new actor, simply add a new user from\n"
 "        <a href=\"user-new.php\">the users page</a>."
 msgstr ""
+"Näitlejad on selles süsteemis kõik Wordpressi kasutajad. Uue näitleja lisamiseks loo\n"
+"talle kasutaja <a href=\"user-new.php\">vastava lehe</a> alt."
 
 #: templates/actors.php:10
 msgid "Actor statuses"
@@ -182,23 +184,23 @@ msgstr "Näitlejate staatused"
 
 #: templates/actors.php:12
 msgid "<strong>Unassigned</strong> - Do nothing with this actor, can not add to shows."
-msgstr ""
+msgstr "<strong>Sidumata</strong> - Seda kasutajat ei näidata kusagil ja teda ei saa etendusega seostada."
 
 #: templates/actors.php:13
 msgid "<strong>Active</strong> - Will show in all associated actions (shows page, show details etc)."
-msgstr ""
+msgstr "<strong>Aktiivne</strong> - Nidatakse kikides kohtades (etenduste lehtedel jne)."
 
 #: templates/actors.php:14
 msgid "<strong>Passive</strong> - Can not be added as a participant in future shows. "
-msgstr ""
+msgstr "<strong>Passiivne</strong> - Uute etendustega ei saa siduda."
 
 #: templates/actors.php:15
 msgid "<strong>Previous Member</strong> - Same as Unassigned, but shows up in the Members page. "
-msgstr ""
+msgstr "<strong>Endine liige</strong> - Sama mis Sidumata, aga teda näidatakse liikmete nimekirjas."
 
 #: templates/actors.php:19
 msgid "Change actor membership status"
-msgstr ""
+msgstr "Muuda näitleja staatust"
 
 #: templates/actors.php:24
 #: templates/actors.php:34
@@ -208,15 +210,15 @@ msgstr "Näitleja nimi"
 #: templates/actors.php:25
 #: templates/actors.php:35
 msgid "Change Status"
-msgstr "Muuda Staatust"
+msgstr "Muuda staatust"
 
 #: templates/admin.php:8
 msgid "Theatre Troupe Options"
-msgstr ""
+msgstr "Theatre Troupe sätted"
 
 #: templates/admin.php:13
 msgid "About Theatre Troupe"
-msgstr ""
+msgstr "Info plugini kohta"
 
 #: templates/admin.php:16
 msgid ""
@@ -229,10 +231,18 @@ msgid ""
 "        <br />Support-, feature requests and bug reports are welcome\n"
 "        to andoroots+devel@gmail.com or directly to <a href=\"https://github.com/anroots/wp-theatre-troupe\">github</a>.</p> "
 msgstr ""
+"TheatreTroupe on Wordpressi laiendus väikestele teatrigruppidele etenduste ja nendel\n"
+"esinenud näitlejate lihtsaks haldamiseks. Administraatorina on õimalik sisestada ja\n"
+"muuta nii möödunud kui tulevasi etendusi, ning need ilmuvad üle veebilehe automaatselt\n"
+"õigetesse kohtadesse."
+"\n"
+"Plugin töötati välja <a href=\"http://www.jaa.ee\">Improgrupp Jaa!</a> jaoks, ning on saadaval tasuta GPL2 litsentsi alusel.\n"
+"Küsimused ning veateated on teretulnud aadressile andoroots+devel@gmail.com või otse\n"
+"<a href=\"https://github.com/anroots/wp-theatre-troupe\">githubis</a>."
 
 #: templates/edit_show.php:8
 msgid "Edit Show"
-msgstr "Muuda Etendust"
+msgstr "Muuda etendust"
 
 #: templates/edit_show.php:47
 #: templates/edit_series.php:31
@@ -247,7 +257,7 @@ msgstr "Salvesta"
 
 #: templates/edit_show.php:58
 msgid "Actors associated with the show"
-msgstr ""
+msgstr "Etendusega seotud näitlejad"
 
 #: templates/edit_show.php:60
 msgid "Add actor to the show"
@@ -268,21 +278,21 @@ msgstr "Eemalda"
 
 #: templates/edit_series.php:8
 msgid "Edit Series"
-msgstr "Muuda Seeriaid"
+msgstr "Muuda seeriaid"
 
 #: includes/display_controller.php:24
 #: includes/display_controller.php:64
 #: includes/display_controller.php:78
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "Sul puudub sellele lehele ligipääs."
 
 #: includes/display_controller.php:36
 msgid "Did you fill all the required fields?"
-msgstr ""
+msgstr "Kas täitsidärakõik vajalikud äljad?"
 
 #: includes/display_controller.php:113
 msgid "Theatre Troupe"
-msgstr ""
+msgstr "Theatre Troupe"
 
 #: includes/display_controller.php:116
 msgid "Shows"
@@ -290,15 +300,15 @@ msgstr "Etendused"
 
 #: includes/display_controller.php:119
 msgid "Theatre Troupe Actors"
-msgstr ""
+msgstr "Theatre Troupe Näitlejad"
 
 #: includes/display_controller.php:122
 msgid "Theatre Troupe Series"
-msgstr ""
+msgstr "Theatre Troupe Seeriad"
 
 #: includes/models/actors.php:59
 msgid "Sorry, only Admin can do that"
-msgstr ""
+msgstr "Ainult administraator saab seda teha"
 
 #: includes/models/actors.php:102
 msgid "Unassigned"
@@ -314,7 +324,7 @@ msgstr "Passiivne"
 
 #: includes/models/actors.php:105
 msgid "Previous Member"
-msgstr "Lahkunud Liige"
+msgstr "Endine liige"
 
 #: includes/shows_widget.php:24
 msgid "Displays previous or upcoming shows"
@@ -330,7 +340,7 @@ msgstr "Pealkiri:"
 
 #: includes/shows_widget.php:91
 msgid "Widget type"
-msgstr "Vidina tüüp"
+msgstr "Widgeti tüüp"
 
 #: includes/shows_widget.php:93
 msgid "Past shows"
@@ -347,15 +357,15 @@ msgstr ""
 
 #: includes/shows_widget.php:142
 msgid "No shows listed yet"
-msgstr ""
+msgstr "Sa pole lisanud ühtegi etendust"
 
 #. Plugin Name of the plugin/theme
 msgid "WP Theatre Troupe"
-msgstr ""
+msgstr "WP Theatre Troupe"
 
 #. Plugin URI of the plugin/theme
 msgid "http://jaa.ee/"
-msgstr ""
+msgstr "http://www.jaa.ee"
 
 #. Description of the plugin/theme
 msgid "This plugin will enable small theatre troups and other performing groups to list their shows and participating actors."

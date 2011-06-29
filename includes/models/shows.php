@@ -51,7 +51,10 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
      * @param  $end
      * @return bool
      */
-    public function update($show_id, $series_id, $title, $location, $start, $end) {
+    public function update(/*$show_id, $series_id, $title, $location, $start, $end*/) {
+        $funcArgs = func_get_args();
+        extract($funcArgs[0]);
+
         $series_id = (int) $series_id;
         if ( empty($title) ||
              empty($start) ||
@@ -61,13 +64,15 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
         ) {
             return FALSE;
         }
-
         global $wpdb;
-        $wpdb->update($wpdb->ttroupe_shows, array( 'series_id' => $series_id,
-                                                 'title' => $title,
-                                                 'location' => $location,
-                                                 'start_date' => $start,
-                                                 'end_date' => $end ), array( 'id' => $show_id ));
+        $wpdb->update($wpdb->ttroupe_shows, array(
+            'series_id' => $series_id,
+            'title' => $title,
+            'location' => $location,
+            'linkurl' => $linkurl,
+            'linkname' => $linkname,
+            'start_date' => $start,
+            'end_date' => $end ), array( 'id' => $show_id ));
         return TRUE;
     }
 
@@ -81,7 +86,8 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
      * @param string $end
      * @return int|bool New show ID
      */
-    public function create($series_id, $title, $location, $start, $end) {
+    public function create(/*$series_id, $title, $location, $start, $end*/) {
+        extract(func_get_args());
         $series_id = (int) $series_id;
         if ( empty($start) ||
              empty($series_id) ||
@@ -91,11 +97,14 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
         }
 
         global $wpdb;
-        $wpdb->insert($wpdb->ttroupe_shows, array( 'series_id' => $series_id,
-                                                 'title' => $title,
-                                                 'location' => $location,
-                                                 'start_date' => $start,
-                                                 'end_date' => $end ));
+        $wpdb->insert($wpdb->ttroupe_shows, array(
+            'series_id' => $series_id,
+             'title' => $title,
+             'location' => $location,
+             'linkurl' => $linkurl,
+             'linkname' => $linkname,
+             'start_date' => $start,
+             'end_date' => $end ));
         return $wpdb->insert_id;
     }
 

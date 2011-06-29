@@ -51,13 +51,13 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
      * @param  $end
      * @return bool
      */
-    public function update(/*$show_id, $series_id, $title, $location, $start, $end*/) {
+    public function update() {
         $funcArgs = func_get_args();
         extract($funcArgs[0]);
 
         $series_id = (int) $series_id;
         if ( empty($title) ||
-             empty($start) ||
+             empty($start_date) ||
              empty($series_id) ||
              !$this->check_existence('series', $series_id) ||
              !$this->check_existence('shows', $show_id)
@@ -71,25 +71,21 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
             'location' => $location,
             'linkurl' => $linkurl,
             'linkname' => $linkname,
-            'start_date' => $start,
-            'end_date' => $end ), array( 'id' => $show_id ));
+            'start_date' => $start_date,
+            'end_date' => $end_date ), array( 'id' => $show_id ));
         return TRUE;
     }
 
 
     /**
      * Create a new show
-     * @param int $series_id Required, links shows with series
-     * @param string $title Required
-     * @param string $location
-     * @param string $start Required
-     * @param string $end
+     * @param array $args Assoc array with posted show info
      * @return int|bool New show ID
      */
-    public function create(/*$series_id, $title, $location, $start, $end*/) {
-        extract(func_get_args());
+    public function create($args) {
+        extract($args);
         $series_id = (int) $series_id;
-        if ( empty($start) ||
+        if ( empty($start_date) ||
              empty($series_id) ||
              !$this->check_existence('series', $series_id)
         ) {
@@ -103,8 +99,8 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
              'location' => $location,
              'linkurl' => $linkurl,
              'linkname' => $linkname,
-             'start_date' => $start,
-             'end_date' => $end ));
+             'start_date' => $start_date,
+             'end_date' => $end_date ));
         return $wpdb->insert_id;
     }
 

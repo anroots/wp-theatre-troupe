@@ -27,7 +27,7 @@ class Display_Controller extends Theatre_Troupe {
         global $model_series, $model_shows;
 
         $postArgs = array('series_id', 'title', 'location', 'linkurl', 'linkname',
-                'start-date', 'end-date');
+                'start_date', 'end_date');
 
         if ( isset($_POST['save-show']) && check_admin_referer('edit-shows') ) {
             $postArgs[] = 'show_id';

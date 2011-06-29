@@ -45,12 +45,12 @@
 
         <tr>
             <td><?php _e('Start date / time', 'theatre-troupe') ?></td>
-            <td><input type="text" size="25" maxlength="19" name="start-date"
+            <td><input type="text" size="25" maxlength="19" name="start_date"
                        value="<?php echo $show->start_date ?>"/></td>
         </tr>
         <tr>
             <td><?php _e('End date / time', 'theatre-troupe') ?></td>
-            <td><input type="text" size="25" maxlength="19" name="end-date"
+            <td><input type="text" size="25" maxlength="19" name="end_date"
                        value="<?php echo $show->end_date ?>"/></td>
         </tr>
         <tr>

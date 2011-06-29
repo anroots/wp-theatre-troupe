@@ -50,13 +50,13 @@
 
         <tr>
             <td><?php _e('Start date / time', 'theatre-troupe') ?> *</td>
-            <td><input type="text" size="25" maxlength="16" name="start-date"
+            <td><input type="text" size="25" maxlength="16" name="start_date"
                        value="<?php echo date('Y-m-d H:i', time() + 604800) ?>"/>
             </td>
         </tr>
         <tr>
             <td><?php _e('End date / time', 'theatre-troupe') ?></td>
-            <td><input type="text" size="25" maxlength="16" name="end-date"
+            <td><input type="text" size="25" maxlength="16" name="end_date"
                        value="<?php echo date('Y-m-d H:i', time() + 604800) ?>"/></td>
         </tr>
         <tr>

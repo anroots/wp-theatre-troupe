@@ -16,7 +16,7 @@
     <table>
         <tr>
             <td><?php _e('Title', 'theatre-troupe') ?></td>
-            <td><input type="text" placeholder="<?php _e('Title', 'theatre-troupe') ?>" size="20" maxlength="255"
+            <td><input type="text" placeholder="<?php _e('Title', 'theatre-troupe') ?>" size="50" maxlength="255"
                        name="title" value="<?php echo $show->title ?>"/></td>
         </tr>
         <tr>
@@ -29,17 +29,28 @@
         </tr>
         <tr>
             <td><?php _e('Location', 'theatre-troupe') ?></td>
-            <td><input type="text" placeholder="<?php _e('Location', 'theatre-troupe') ?>" size="20" maxlength="255"
+            <td><input type="text" placeholder="<?php _e('Location', 'theatre-troupe') ?>" size="50" maxlength="255"
                        name="location" value="<?php echo $show->location ?>"/></td>
         </tr>
         <tr>
+            <td><?php _e('Link URL', 'theatre-troupe') ?></td>
+            <td><input type="text" placeholder="<?php _e('Link URL', 'theatre-troupe') ?>" size="50" maxlength="255"
+                       name="linkurl" value="<?php echo $show->linkurl ?>"/></td>
+        </tr>
+        <tr>
+            <td><?php _e('Link name', 'theatre-troupe') ?></td>
+            <td><input type="text" placeholder="<?php _e('Link name', 'theatre-troupe') ?>" size="50" maxlength="255"
+                       name="linkname" value="<?php echo $show->linkname ?>"/></td>
+        </tr>
+
+        <tr>
             <td><?php _e('Start date / time', 'theatre-troupe') ?></td>
-            <td><input type="text" size="19" maxlength="19" name="start-date"
+            <td><input type="text" size="25" maxlength="19" name="start-date"
                        value="<?php echo $show->start_date ?>"/></td>
         </tr>
         <tr>
             <td><?php _e('End date / time', 'theatre-troupe') ?></td>
-            <td><input type="text" size="19" maxlength="19" name="end-date"
+            <td><input type="text" size="25" maxlength="19" name="end-date"
                        value="<?php echo $show->end_date ?>"/></td>
         </tr>
         <tr>

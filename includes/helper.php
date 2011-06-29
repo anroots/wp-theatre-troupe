@@ -73,7 +73,9 @@ function ttroupe_actor_options() {
 
     $html = NULL;
 
-    if ( !empty($actors) ) {
+    if ( empty($actors) ) {
+        $html .= "<option value=\"-1\">No actors assigned</option>";
+    } else {
         foreach ( $actors as $actor ) {
             $html .= "<option value=\"$actor->ID\">$actor->display_name</option>";
         }

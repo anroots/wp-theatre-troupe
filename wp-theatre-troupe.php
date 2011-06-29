@@ -10,7 +10,7 @@ Licence: GPL2
 */
 
 /*
-Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
+Copyright 2011     Ando Roots  (email : ando@roots.ee)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -25,14 +25,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
-
 define('TTROUPE_DIR', '/wp-theatre-troupe');
 define('TTROUPE_VERSION', '1.0');
 
-// Translations
+// Load in translation strings
 load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
+setlocale(LC_TIME, WPLANG);
 
 // Include plugin classes and helpers
 if ( !class_exists('Theatre_Troupe') ) {

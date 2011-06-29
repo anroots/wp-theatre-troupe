@@ -21,7 +21,7 @@
     <table>
         <tr>
             <td><?php _e('Title', 'theatre-troupe') ?></td>
-            <td><input type="text" placeholder="<?php _e('Title', 'theatre-troupe') ?>" size="20" maxlength="255"
+            <td><input type="text" placeholder="<?php _e('Title', 'theatre-troupe') ?>" size="50" maxlength="255"
                        name="title"/></td>
         </tr>
         <tr>
@@ -34,17 +34,29 @@
         </tr>
         <tr>
             <td><?php _e('Location', 'theatre-troupe') ?></td>
-            <td><input type="text" placeholder="<?php _e('Location', 'theatre-troupe') ?>" size="20" maxlength="255"
+            <td><input type="text" placeholder="<?php _e('Location', 'theatre-troupe') ?>" size="50" maxlength="255"
                        name="location"/></td>
         </tr>
         <tr>
+            <td><?php _e('Link URL', 'theatre-troupe') ?></td>
+            <td><input type="text" placeholder="<?php _e('Link URL', 'theatre-troupe') ?>" size="50" maxlength="255"
+                       name="linkurl"/></td>
+        </tr>
+        <tr>
+            <td><?php _e('Link name', 'theatre-troupe') ?></td>
+            <td><input type="text" placeholder="<?php _e('Link name', 'theatre-troupe') ?>" size="50" maxlength="255"
+                       name="linkname"/></td>
+        </tr>
+
+        <tr>
             <td><?php _e('Start date / time', 'theatre-troupe') ?> *</td>
-            <td><input type="text" size="16" maxlength="16" name="start-date"
-                       value="<?php echo date('Y-m-d H:i', time() + 604800) ?>"/></td>
+            <td><input type="text" size="25" maxlength="16" name="start-date"
+                       value="<?php echo date('Y-m-d H:i', time() + 604800) ?>"/>
+            </td>
         </tr>
         <tr>
             <td><?php _e('End date / time', 'theatre-troupe') ?></td>
-            <td><input type="text" size="16" maxlength="16" name="end-date"
+            <td><input type="text" size="25" maxlength="16" name="end-date"
                        value="<?php echo date('Y-m-d H:i', time() + 604800) ?>"/></td>
         </tr>
         <tr>

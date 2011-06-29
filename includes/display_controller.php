@@ -26,12 +26,24 @@ class Display_Controller extends Theatre_Troupe {
 
         global $model_series, $model_shows;
 
-        if ( isset($_POST['save-show']) && check_admin_referer('edit-shows') ) {
-            $model_shows->update(@$_POST['show_id'], @$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
+        $postArgs = array('series_id', 'title', 'location', 'linkurl', 'linkname',
+                'start-date', 'end-date');
 
+        if ( isset($_POST['save-show']) && check_admin_referer('edit-shows') ) {
+            $postArgs[] = 'show_id';
+            $updatedArgs = array();
+            foreach ($postArgs as $key) {
+                $updatedArgs[$key] = @$_POST[$key];
+            }
+            $model_shows->update($updatedArgs);
         } elseif ( isset($_POST['create-show']) && check_admin_referer('create-show') ) {
             // New show
-            $result = $model_shows->create(@$_POST['series_id'], @$_POST['title'], @$_POST['location'], @$_POST['start-date'], @$_POST['end-date']);
+            $newArgs = array();
+            foreach ($postArgs as $key) {
+                $newArgs[$key] = @$_POST[$key];
+            }
+
+            $result = $model_shows->create($newArgs);
             if ( !$result ) {
                 $error = '<div class="error below-h2">' . __('Did you fill all the required fields?', 'theatre-troupe') . '</div>';
             }

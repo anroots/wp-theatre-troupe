@@ -114,7 +114,7 @@ class Theatre_Troupe {
 		  title VARCHAR(55) DEFAULT 'No Name' NOT NULL,
 		  description TEXT NULL DEFAULT NULL,
 		  status VARCHAR(15) DEFAULT 'active' NOT NULL,
-		  UNIQUE KEY id (id)
+		  PRIMARY KEY id (id)
 		);";
         dbDelta($sql);
 
@@ -123,10 +123,12 @@ class Theatre_Troupe {
 		  series_id mediumint(9) NOT NULL,
 		  title VARCHAR(255) DEFAULT 'No Name' NOT NULL,
 		  location VARCHAR(255) DEFAULT 'The usual' NOT NULL,
+          linkurl VARCHAR(255) NULL,
+          linkname VARCHAR(255) NULL,
 		  start_date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 		  end_date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 		  status VARCHAR(15) DEFAULT 'active' NOT NULL,
-		  UNIQUE KEY id (id)
+		  PRIMARY KEY id (id)
 		);";
         dbDelta($sql);
 
@@ -134,7 +136,7 @@ class Theatre_Troupe {
                 id INT( 10 ) NOT NULL AUTO_INCREMENT,
                 actor_id INT( 8 ) UNSIGNED NOT NULL,
                 show_id INT( 8 ) UNSIGNED NOT NULL,
-                UNIQUE KEY id (id)
+                PRIMARY KEY (actor_id, show_id)
 		        );";
         dbDelta($sql);
     }

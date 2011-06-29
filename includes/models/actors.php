@@ -12,9 +12,16 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
         global $model_actors;
 
         if ( $status != NULL && array_key_exists($status, $model_actors->actor_statuses()) ) {
-            return get_users(array( 'meta_key' => 'ttroupe_status', 'meta_value' => $status ));
+            $getUsersArgs = array( 'meta_key' => 'ttroupe_status', 'meta_value' => $status );
         }
-        return get_users();
+   
+        if (get_bloginfo('version') >= 3.1) {
+            $getUsersFunc = 'get_users';
+        } else {
+            $getUsersFunc = 'get_users_of_blog';
+        }
+
+        return call_user_func($getUsersFunc, $getUsersArgs);
     }
 
 

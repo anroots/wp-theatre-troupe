@@ -35,7 +35,7 @@ class Theatre_Troupe_Shortcode {
 
             foreach ( $shows as $show ) {
                 $show_data = $model_shows->get($show->show_id);
-                $date = mysql2date('d.m.y', $show_data->start_date);
+                $date = date_i18n(get_option('date_format'), strtotime($show->start_date));
                 $html .= "<li><i>$date</i> <strong>$show_data->title</strong></li>";
             }
 
@@ -110,8 +110,6 @@ class Theatre_Troupe_Shortcode {
     }
 
 
-
-
     /**
      * Prints out a list of actors by actor status
      * @param $attrs contains @param status as a string
@@ -127,8 +125,8 @@ class Theatre_Troupe_Shortcode {
 
         $statuses = $model_actors->actor_statuses();
 
-        if (!isset($status) || !array_key_exists($status, $statuses)) {
-           return NULL;
+        if ( !isset($status) || !array_key_exists($status, $statuses) ) {
+            return NULL;
         }
 
         if ( empty($content) ) {
@@ -150,6 +148,7 @@ class Theatre_Troupe_Shortcode {
         }
         return $html;
     }
+
 }
 
 ?>

@@ -67,14 +67,13 @@ class Theatre_Troupe_Series extends Theatre_Troupe {
     }
 
 
-
     /**
      * Returns a DB object of show_id's for all shows whose parent (series_id) matches
      * @param $series_id The ID of the parent series
      * @return null|object
      */
     public function get_children($series_id) {
-                        global $wpdb;
+        global $wpdb;
         if ( empty($series_id) ) {
             return NULL;
         }

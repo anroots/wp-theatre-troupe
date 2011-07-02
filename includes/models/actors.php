@@ -174,7 +174,6 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
     }
 
 
-
     /**
      * Wrapper for serie_play_counts
      * Returns an array with actor play count in the series
@@ -184,7 +183,7 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
      */
     public function serie_play_counts($serie_id) {
         $play_counts = $this->series_play_counts();
-        if (isset($play_counts[$serie_id])) {
+        if ( isset($play_counts[$serie_id]) ) {
             arsort($play_counts[$serie_id]);
             return $play_counts[$serie_id];
         }

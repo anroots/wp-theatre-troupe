@@ -13,11 +13,11 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
      *      series_id => int Return only shows belonging to a series
      * @return mixed
      */
-    public function get($show_id = NULL, $filters = array()) {
+    public function get($show_id = NULL, $filters = array( )) {
         global $wpdb;
 
-        $default_filters = array('status' => 'active', 'timeline' => 'all', 'series_id' => NULL); // Defaults
-        foreach ($default_filters as $key => $df) {
+        $default_filters = array( 'status' => 'active', 'timeline' => 'all', 'series_id' => NULL ); // Defaults
+        foreach ( $default_filters as $key => $df ) {
             $filters[$key] = (isset($filters[$key])) ? $filters[$key] : $default_filters[$key];
         }
 
@@ -31,8 +31,8 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
 									WHERE $wpdb->ttroupe_series.status = 'active'$show_id";
 
         // Filter by status
-        if ( $filters['status'] == 'active' ) {
-            $sql .= " AND $wpdb->ttroupe_shows.status = '".$filters['status']."'$show_id";
+        if ( in_array($filters['status'], array( 'active', 'deleted' )) ) {
+            $sql .= " AND $wpdb->ttroupe_shows.status = '" . $filters['status'] . "'$show_id";
         }
 
         // Filter by timeline
@@ -42,8 +42,8 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
             $sql .= " AND $wpdb->ttroupe_shows.start_date > CURDATE()";
         }
 
-        if (!empty($filters['series_id'])) {
-            $sql .= " AND $wpdb->ttroupe_shows.series_id = '".$filters['series_id']."'";
+        if ( !empty($filters['series_id']) ) {
+            $sql .= " AND $wpdb->ttroupe_shows.series_id = '" . $filters['series_id'] . "'";
         }
 
         $query = $wpdb->get_results($sql, OBJECT);
@@ -55,13 +55,27 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
 
 
     /**
+     * Get the ID of the closest show
+     * @param string $type Either any|next|prev specifies the direction of the lookup
+     * @return int show_id
+     */
+    public function get_closest($type = 'any') {
+        global $wpdb;
+
+        $where = NULL;
+        if ( $type == 'next' ) {
+            $where = 'AND start_date > NOW() ';
+        } elseif ( $type == 'prev' ) {
+            $where = 'AND start_date < NOW() ';
+        }
+
+        $sql = "SELECT * FROM $wpdb->ttroupe_shows WHERE status='active' $where ORDER BY TIMESTAMPDIFF(MINUTE, start_date, NOW()) DESC";
+        $query = $wpdb->get_var($sql);
+        return $query;
+    }
+
+    /**
      * Update show info
-     * @param  $show_id
-     * @param  $series_id
-     * @param  $title
-     * @param  $location
-     * @param  $start
-     * @param  $end
      * @return bool
      */
     public function update() {
@@ -79,13 +93,13 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
         }
         global $wpdb;
         $wpdb->update($wpdb->ttroupe_shows, array(
-            'series_id' => $series_id,
-            'title' => $title,
-            'location' => $location,
-            'linkurl' => $linkurl,
-            'linkname' => $linkname,
-            'start_date' => $start_date,
-            'end_date' => $end_date ), array( 'id' => $show_id ));
+                                                 'series_id' => $series_id,
+                                                 'title' => $title,
+                                                 'location' => $location,
+                                                 'linkurl' => $linkurl,
+                                                 'linkname' => $linkname,
+                                                 'start_date' => $start_date,
+                                                 'end_date' => $end_date ), array( 'id' => $show_id ));
         return TRUE;
     }
 
@@ -107,13 +121,13 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
 
         global $wpdb;
         $wpdb->insert($wpdb->ttroupe_shows, array(
-            'series_id' => $series_id,
-             'title' => $title,
-             'location' => $location,
-             'linkurl' => $linkurl,
-             'linkname' => $linkname,
-             'start_date' => $start_date,
-             'end_date' => $end_date ));
+                                                 'series_id' => $series_id,
+                                                 'title' => $title,
+                                                 'location' => $location,
+                                                 'linkurl' => $linkurl,
+                                                 'linkname' => $linkname,
+                                                 'start_date' => $start_date,
+                                                 'end_date' => $end_date ));
         return $wpdb->insert_id;
     }
 

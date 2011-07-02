@@ -4,7 +4,7 @@ Plugin Name: WP Theatre Troupe
 Plugin URI: http://jaa.ee/
 Description: This plugin will enable small theatre troups and other performing groups to list their shows and participating actors.
 Author: Ando Roots
-Version: 1.0
+Version: 1.1
 Author URI: http://ando.roots.ee/
 Licence: GPL2
 */
@@ -26,7 +26,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 define('TTROUPE_DIR', '/wp-theatre-troupe');
-define('TTROUPE_VERSION', '1.0');
+define('TTROUPE_VERSION', '1.1');
 
 // Load in translation strings
 load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
@@ -42,7 +42,6 @@ if ( !class_exists('Theatre_Troupe') ) {
     include('includes/ajax.php');
     include('includes/display_controller.php');
     include('includes/helper.php');
-    include('includes/shows_widget.php');
 }
 
 
@@ -72,7 +71,19 @@ register_activation_hook(__FILE__, array( &$theatreTroupe, 'install' ));
 // Shortcodes
 include('includes/shortcodes.php');
 $shortCode = new Theatre_Troupe_Shortcode();
-add_shortcode( 'ttroupe-actor-shows', array(&$shortCode, 'actor_shows') );
-add_shortcode( 'ttroupe-series-list', array(&$shortCode, 'series_list') );
-add_shortcode( 'ttroupe-actors-list', array(&$shortCode, 'actors_list') );
+add_shortcode('ttroupe-actor-shows', array( &$shortCode, 'actor_shows' ));
+add_shortcode('ttroupe-series-list', array( &$shortCode, 'series_list' ));
+add_shortcode('ttroupe-actors-list', array( &$shortCode, 'actors_list' ));
+
+
+//Widgets
+add_action('widgets_init', 'theatre_troupe_load_widgets');
+
+function theatre_troupe_load_widgets() {
+    include('includes/shows_widget.php');
+    include('includes/next_show_widget.php');
+    register_widget('Theatre_Troupe_Shows_Widget');
+    register_widget('Theatre_Troupe_Next_Show_Widget');
+}
+
 ?>

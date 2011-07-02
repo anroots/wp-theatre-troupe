@@ -48,7 +48,7 @@ function ttroupe_actor_rows() {
 
             $html .= "
 	<tr>
-			<td>$actor->ID</td>
+			<td>#$actor->ID</td>
 			<td>$actor->display_name</td>
 			<td>
 				<select>
@@ -101,7 +101,7 @@ function ttroupe_show_actors($show_id) {
             </tr>";
         }
     } else {
-        $html = '<tr><td colspan="2">'.__("Empty", "theatre-troupe").'</td> </tr>';
+        $html = '<tr><td colspan="2">' . __("Empty", "theatre-troupe") . '</td> </tr>';
     }
     return $html;
 }

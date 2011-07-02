@@ -26,20 +26,20 @@ class Display_Controller extends Theatre_Troupe {
 
         global $model_series, $model_shows;
 
-        $postArgs = array('series_id', 'title', 'location', 'linkurl', 'linkname',
-                'start_date', 'end_date');
+        $postArgs = array( 'series_id', 'title', 'location', 'linkurl', 'linkname',
+                           'start_date', 'end_date' );
 
         if ( isset($_POST['save-show']) && check_admin_referer('edit-shows') ) {
             $postArgs[] = 'show_id';
-            $updatedArgs = array();
-            foreach ($postArgs as $key) {
+            $updatedArgs = array( );
+            foreach ( $postArgs as $key ) {
                 $updatedArgs[$key] = @$_POST[$key];
             }
             $model_shows->update($updatedArgs);
         } elseif ( isset($_POST['create-show']) && check_admin_referer('create-show') ) {
             // New show
-            $newArgs = array();
-            foreach ($postArgs as $key) {
+            $newArgs = array( );
+            foreach ( $postArgs as $key ) {
                 $newArgs[$key] = @$_POST[$key];
             }
 
@@ -56,7 +56,7 @@ class Display_Controller extends Theatre_Troupe {
 
         } else {
             if ( isset($_GET['deleted']) ) {
-                $shows = $model_shows->get(NULL, array('deleted' => TRUE));
+                $shows = $model_shows->get(NULL, array( 'status' => 'deleted' ));
             } else {
                 $shows = $model_shows->get();
             }

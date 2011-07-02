@@ -6,33 +6,22 @@
  */
 
 
-add_action('widgets_init', 'theatre_troupe_load_widgets');
-
-function theatre_troupe_load_widgets() {
-    register_widget('Theatre_Troupe_Widget');
-}
+class Theatre_Troupe_Shows_Widget extends WP_Widget {
 
 
-class Theatre_Troupe_Widget extends WP_Widget {
+    public function Theatre_Troupe_Shows_Widget() {
 
-
-    public function Theatre_Troupe_Widget() {
-        /*define('TTROUPE_DIR', '/wp-theatre-troupe');
-
-// Translations
-load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
-*/
         /* Widget settings. */
         $widget_ops = array(
-		'classname' => 'shows',
-		'description' => __('Displays previous or upcoming shows',
-				    'theatre-troupe') );
+            'classname' => 'shows',
+            'description' => __('Displays previous or upcoming shows',
+                                'theatre-troupe') );
 
         /* Widget control settings. */
         $control_ops = array(
-		'width' => 300,
-		'height' => 350,
-		'id_base' => 'shows-widget' );
+            'width' => 300,
+            'height' => 350,
+            'id_base' => 'shows-widget' );
 
         /* Create the widget. */
         $this->WP_Widget('shows-widget', __('Theatre Troupe Shows', 'theatre-troupe'), $widget_ops, $control_ops);
@@ -108,13 +97,13 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
     }
 
     private function format_date($datetime, $onlyTime = false) {
-        if ( WPLANG == 'et_EE') {
+        if ( WPLANG == 'et_EE' ) {
             $fmt = '%H.%M';
-            if (!$onlyTime) {
+            if ( !$onlyTime ) {
                 $fmt = '%e. %B (%A) kell ' . $fmt;
             }
         } else {
-            if ($onlyTime) {
+            if ( $onlyTime ) {
                 $fmt = '%X';
             } else {
                 $fmt = '%c';
@@ -126,9 +115,16 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
         return htmlentities($res);
     }
 
+
+    /**
+     * @todo: Remove this, move to native WP functions
+     * @param $start_date
+     * @param $end_date
+     * @return array
+     */
     private function format_start_end_dates($start_date, $end_date) {
         $startDateNumeric = strtotime($start_date);
-        $endDateNumeric   = strtotime($end_date);
+        $endDateNumeric = strtotime($end_date);
 
         $startDateStr = $this->format_date($startDateNumeric);
         if ( $endDateNumeric > $startDateNumeric ) {
@@ -143,7 +139,7 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
             $endDateStr = '';
         }
 
-        return array($startDateStr, $endDateStr);
+        return array( $startDateStr, $endDateStr );
     }
 
 
@@ -153,12 +149,11 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
      * @return void
      */
     private function widget_content($type = 0) {
-        require_once(WP_PLUGIN_DIR . TTROUPE_DIR . '/includes/models/shows.php');
-        $model_shows = New Theatre_Troupe_Shows();
+        global $model_shows;
 
         $type = ($type == 0) ? 'past' : 'future';
 
-        $shows = $model_shows->get(NULL, array('status' => 'active', 'timeline' => $type));
+        $shows = $model_shows->get(NULL, array( 'status' => 'active', 'timeline' => $type ));
 
         $html = '<ul>';
         if ( !empty($shows) ) {
@@ -169,12 +164,12 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
                     $show->start_date, $show->end_date);
 
                 // Actual HTML for each show
-                $html .=  "<li><strong>$show->series_title</strong>: $show->title<br />"
-                        . "<i>" . $startDateStr . $endDateStr . "</i><br />"
-                        . "$show->location";
-                if ($show->linkurl) {
+                $html .= "<li><strong>$show->series_title</strong>: $show->title<br />"
+                         . "<i>" . $startDateStr . $endDateStr . "</i><br />"
+                         . "$show->location";
+                if ( $show->linkurl ) {
                     $html .= ' <a href="' . $show->linkurl . '">' . $show->linkname
-                          .  '</a>';
+                             . '</a>';
                 }
                 $html .= "</li>";
 

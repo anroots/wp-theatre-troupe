@@ -69,7 +69,11 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
             $where = 'AND start_date < NOW() ';
         }
 
-        $sql = "SELECT * FROM $wpdb->ttroupe_shows WHERE status='active' $where ORDER BY TIMESTAMPDIFF(MINUTE, start_date, NOW()) DESC";
+        $sql = "SELECT $wpdb->ttroupe_shows.id FROM $wpdb->ttroupe_shows
+                LEFT JOIN $wpdb->ttroupe_series ON ($wpdb->ttroupe_shows.series_id = $wpdb->ttroupe_series.id)
+                WHERE $wpdb->ttroupe_series.status = 'active'
+                AND $wpdb->ttroupe_shows.status='active' $where
+                ORDER BY TIMESTAMPDIFF(MINUTE, start_date, NOW()) DESC LIMIT 1";
         $query = $wpdb->get_var($sql);
         return $query;
     }

@@ -106,7 +106,7 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
         $show = $model_shows->get($show_id);
 
         $start_date = date_i18n(get_option('date_format'), strtotime($show->start_date));
-        $html = "<h1>$title</h1><br /> <strong>$start_date</strong> <br />$show->title<br />";
+        $html = "<h2>$title</h2><br /> <strong>$start_date</strong> <br />$show->title<br />";
         if ( !empty($show->location) ) {
             $html .= __('Location', 'theatre-troupe') . ": $show->location";
         }

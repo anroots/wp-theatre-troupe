@@ -56,7 +56,7 @@ class Display_Controller extends Theatre_Troupe {
 
         } else {
             if ( isset($_GET['deleted']) ) {
-                $shows = $model_shows->get(NULL, 'deleted');
+                $shows = $model_shows->get(NULL, array('deleted' => TRUE));
             } else {
                 $shows = $model_shows->get();
             }

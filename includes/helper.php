@@ -48,6 +48,7 @@ function ttroupe_actor_rows() {
 
             $html .= "
 	<tr>
+			<td>$actor->ID</td>
 			<td>$actor->display_name</td>
 			<td>
 				<select>

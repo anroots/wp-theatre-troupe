@@ -21,6 +21,7 @@
 <table class="widefat">
     <thead>
     <tr>
+        <th><?php _e('ID', 'theatre-troupe') ?></th>
         <th><?php _e('Actor name', 'theatre-troupe') ?></th>
         <th width="50%"><?php _e('Change Status', 'theatre-troupe') ?></th>
     </tr>
@@ -31,6 +32,7 @@
     </tbody>
     <tfoot>
     <tr>
+        <th><?php _e('ID', 'theatre-troupe') ?></th>
         <th><?php _e('Actor name', 'theatre-troupe') ?></th>
         <th><?php _e('Change Status', 'theatre-troupe') ?></th>
     </tr>

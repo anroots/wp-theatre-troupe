@@ -68,4 +68,10 @@ add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
 
 register_activation_hook(__FILE__, array( &$theatreTroupe, 'install' ));
 
+
+// Shortcodes
+include('includes/shortcodes.php');
+$shortCode = new Theatre_Troupe_Shortcode();
+add_shortcode( 'ttroupe-actor-shows', array(&$shortCode, 'actor_shows') );
+add_shortcode( 'ttroupe-series-list', array(&$shortCode, 'series_list') );
 ?>

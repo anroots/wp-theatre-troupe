@@ -66,6 +66,29 @@ class Theatre_Troupe_Series extends Theatre_Troupe {
         return TRUE;
     }
 
+
+
+    /**
+     * Returns a DB object of show_id's for all shows whose parent (series_id) matches
+     * @param $series_id The ID of the parent series
+     * @return null|object
+     */
+    public function get_children($series_id) {
+                        global $wpdb;
+        if ( empty($series_id) ) {
+            return NULL;
+        }
+
+        $sql = "SELECT id
+                    FROM $wpdb->ttroupe_shows
+                    WHERE series_id = '$series_id'";
+
+        $query = $wpdb->get_results($sql, OBJECT);
+
+        return $query;
+    }
+
+
 }
 
 ?>

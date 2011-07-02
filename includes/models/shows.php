@@ -6,12 +6,21 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
     /**
      * Returns shows
      * @param int $show_id If specified, return info about a specific show
-     * @param string $status Allows to view deleted or active shows
-     * @param string $timeline Only return all|upcoming|past shows
+     * @param array $filters Allows to add extra filters to the result
+     * Possible key => values are:
+     *      status => active | deleted Allows to view deleted or active shows
+     *      timeline => all | future | past Only return all|upcoming|past shows
+     *      series_id => int Return only shows belonging to a series
      * @return mixed
      */
-    public function get($show_id = NULL, $status = 'active', $timeline = 'all') {
+    public function get($show_id = NULL, $filters = array()) {
         global $wpdb;
+
+        $default_filters = array('status' => 'active', 'timeline' => 'all', 'series_id' => NULL); // Defaults
+        foreach ($default_filters as $key => $df) {
+            $filters[$key] = (isset($filters[$key])) ? $filters[$key] : $default_filters[$key];
+        }
+
         if ( !empty($show_id) ) {
             $show_id = " AND $wpdb->ttroupe_shows.id = '$show_id'";
         }
@@ -19,18 +28,22 @@ class Theatre_Troupe_Shows extends Theatre_Troupe {
         $sql = "SELECT $wpdb->ttroupe_shows.*, $wpdb->ttroupe_series.title AS series_title
 									FROM $wpdb->ttroupe_shows
 									LEFT JOIN $wpdb->ttroupe_series ON ($wpdb->ttroupe_series.id = $wpdb->ttroupe_shows.series_id)
-									WHERE $wpdb->ttroupe_shows.status = '$status'$show_id";
+									WHERE $wpdb->ttroupe_series.status = 'active'$show_id";
 
         // Filter by status
-        if ( $status == 'active' ) {
-            $sql .= "AND $wpdb->ttroupe_series.status = '$status'$show_id";
+        if ( $filters['status'] == 'active' ) {
+            $sql .= " AND $wpdb->ttroupe_shows.status = '".$filters['status']."'$show_id";
         }
 
         // Filter by timeline
-        if ( $timeline == 'past' ) {
-            $sql .= "AND $wpdb->ttroupe_shows.start_date < CURDATE()";
-        } elseif ( $timeline == 'future' ) {
-            $sql .= "AND $wpdb->ttroupe_shows.start_date > CURDATE()";
+        if ( $filters['timeline'] == 'past' ) {
+            $sql .= " AND $wpdb->ttroupe_shows.start_date < CURDATE()";
+        } elseif ( $filters['timeline'] == 'future' ) {
+            $sql .= " AND $wpdb->ttroupe_shows.start_date > CURDATE()";
+        }
+
+        if (!empty($filters['series_id'])) {
+            $sql .= " AND $wpdb->ttroupe_shows.series_id = '".$filters['series_id']."'";
         }
 
         $query = $wpdb->get_results($sql, OBJECT);

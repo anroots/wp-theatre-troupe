@@ -131,7 +131,6 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
         $endDateNumeric   = strtotime($end_date);
 
         $startDateStr = $this->format_date($startDateNumeric);
-        // Display end only if it's set (and later than start date)
         if ( $endDateNumeric > $startDateNumeric ) {
             if ( date('d:m:Y', $endDateNumeric) == date('d:m:Y', $startDateNumeric) ) {
                 // If end date is on same day as start date, only display the end TIME
@@ -159,7 +158,7 @@ load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
 
         $type = ($type == 0) ? 'past' : 'future';
 
-        $shows = $model_shows->get(NULL, 'active', $type);
+        $shows = $model_shows->get(NULL, array('status' => 'active', 'timeline' => $type));
 
         $html = '<ul>';
         if ( !empty($shows) ) {

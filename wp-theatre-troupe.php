@@ -74,4 +74,5 @@ include('includes/shortcodes.php');
 $shortCode = new Theatre_Troupe_Shortcode();
 add_shortcode( 'ttroupe-actor-shows', array(&$shortCode, 'actor_shows') );
 add_shortcode( 'ttroupe-series-list', array(&$shortCode, 'series_list') );
+add_shortcode( 'ttroupe-actors-list', array(&$shortCode, 'actors_list') );
 ?>

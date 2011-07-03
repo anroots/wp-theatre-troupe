@@ -29,7 +29,8 @@ define('TTROUPE_DIR', '/wp-theatre-troupe');
 define('TTROUPE_VERSION', '1.1');
 
 // Load in translation strings
-load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages/');
+load_plugin_textdomain('theatre-troupe', false, TTROUPE_DIR . '/languages');
+
 
 setlocale(LC_TIME, WPLANG);
 

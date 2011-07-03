@@ -125,7 +125,7 @@ class Theatre_Troupe_Shortcode {
 
         $statuses = $model_actors->actor_statuses();
 
-        if ( !isset($status) || !array_key_exists($status, $statuses) ) {
+        if ( !isset($status) || !array_key_exists($status, $statuses) || $status = 'unassigned') {
             return NULL;
         }
 
@@ -172,7 +172,8 @@ class Theatre_Troupe_Shortcode {
         $end_date = strtotime($show->end_date);
         $end_date = ($end_date > $start_date) ? ' - '.date_i18n(get_option('links_updated_date_format'), $end_date) : NULL;
         $start_date = date_i18n(get_option('links_updated_date_format'), $start_date);
-
+        $actors = $model_shows->get_actors($show->id);
+        
         include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/show_details.php');
     }
 

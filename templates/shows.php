@@ -142,11 +142,11 @@
 
         <a href="<?php echo remove_query_arg('deleted') ?>" class="button-secondary"
            style="float: right; margin-top: 20px;"
-           title="<?php _e('View active')?>"><?php _e('View active')?></a>
+           title="<?php _e('View active', 'theatre-troupe')?>"><?php _e('View active', 'theatre-troupe')?></a>
         <?php else: ?>
         <a href="<?php echo add_query_arg('deleted', 'true') ?>" class="button-secondary"
            style="float: right; margin-top: 20px;"
-           title="<?php _e('View deleted')?>"><?php _e('View deleted')?></a>
+           title="<?php _e('View deleted', 'theatre-troupe')?>"><?php _e('View deleted', 'theatre-troupe')?></a>
         <?php endif; ?>
 
 

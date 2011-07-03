@@ -103,13 +103,13 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
         }
         $show = $model_shows->get($show_id);
 
-        $start_date = date_i18n(get_option('date_format'), strtotime($show->start_date));
-        $html = ttroupe_show_details_link($show->id, "<strong>$start_date</strong>")."<br />$show->title<br />";
+        $start_date = date_i18n(get_option('links_updated_date_format'), strtotime($show->start_date));
+        $html = "<p style=\"font-size: 1.2em;\">".ttroupe_show_details_link($show->id, "<strong>$start_date</strong>")."</p>$show->title";
         if ( !empty($show->location) ) {
-            $html .= __('Location', 'theatre-troupe') . ": $show->location";
+            $html .= "<br />".__('Location', 'theatre-troupe') . ": $show->location";
         }
 
-        $html .= "<h2>" . __('Participating actors', 'theatre-troupe') . "</h2><ul>";
+        $html .= "<p>" . __('Participating actors:', 'theatre-troupe') . "</p><ul>";
 
         $actors = $model_shows->get_actors($show_id);
         if ( !empty($actors) ) {

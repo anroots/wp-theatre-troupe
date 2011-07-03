@@ -1,0 +1,579 @@
+# Copyright (C) 2010 WP Theatre Troupe
+# This file is distributed under the same license as the WP Theatre Troupe package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Theatre Troupe 1.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-theatre-troupe\n"
+"POT-Creation-Date: 2011-07-03 18:15:01+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2011-07-03 22:27+0300\n"
+"Last-Translator: Ando Roots <ando@roots.ee>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: templates/show_details.php:22
+#: templates/series.php:3
+#: templates/shows.php:28
+#: templates/edit_show.php:23
+#: includes/display_controller.php:139
+#: includes/shortcodes.php:71
+msgid "Series"
+msgstr "Seeriad"
+
+#: templates/show_details.php:26
+msgid "Series description"
+msgstr "Seeria kirjeldus"
+
+#: templates/show_details.php:32
+#: templates/shows.php:36
+#: templates/shows.php:37
+#: templates/shows.php:80
+#: templates/edit_show.php:31
+#: templates/edit_show.php:32
+#: includes/next_show_widget.php:109
+msgid "Location"
+msgstr "Asukoht"
+
+#: templates/show_details.php:40
+msgid "Link"
+msgstr "Viide (URL)"
+
+#: templates/show_details.php:49
+#: includes/shortcodes.php:91
+msgid "Participating actors"
+msgstr "Osalevad näitlejad"
+
+#: templates/show_details.php:56
+msgid "The roster is empty at the moment"
+msgstr "Näitlejate nimekiri on hetkel tühi."
+
+#: templates/series.php:8
+msgid "Use series to categorize shows. Think of them as Post categories."
+msgstr "Iga etendus kuulub mingi seeria alla."
+
+#: templates/series.php:15
+msgid "Add new series"
+msgstr "Lisa uus seeria"
+
+#: templates/series.php:17
+#: templates/shows.php:79
+msgid "Series title"
+msgstr "Seeria pealkiri"
+
+#: templates/series.php:22
+#: templates/series.php:23
+#: templates/series.php:44
+#: templates/admin.php:60
+#: templates/edit_series.php:24
+#: templates/edit_series.php:25
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: templates/series.php:30
+msgid "Create"
+msgstr "Loo uus"
+
+#: templates/series.php:38
+msgid "List of deleted series"
+msgstr "Nimekiri kustutatud seeriatest"
+
+#: templates/series.php:39
+msgid "List of inserted series"
+msgstr "Nimekiri loodud seeriatest"
+
+#: templates/series.php:43
+#: templates/shows.php:23
+#: templates/shows.php:24
+#: templates/edit_show.php:18
+#: templates/edit_show.php:19
+#: templates/edit_series.php:18
+#: templates/edit_series.php:19
+msgid "Title"
+msgstr "Pealkiri"
+
+#: templates/series.php:45
+msgid "Delete"
+msgstr "Kustuta"
+
+#: templates/series.php:59
+#: templates/shows.php:103
+msgid "Restore"
+msgstr "Taasta"
+
+#: templates/series.php:62
+#: templates/shows.php:100
+msgid "Delete permanently"
+msgstr "Kustuta jäädavalt"
+
+#: templates/series.php:66
+#: templates/series.php:67
+#: templates/shows.php:108
+#: templates/shows.php:109
+msgid "Edit"
+msgstr "Muuda"
+
+#: templates/series.php:71
+#: templates/shows.php:113
+msgid "Trash"
+msgstr "Kustuta"
+
+#: templates/series.php:79
+#: templates/shows.php:122
+#: includes/helper.php:104
+msgid "Empty"
+msgstr "Tühi"
+
+#: templates/series.php:102
+#: templates/shows.php:145
+msgid "View active"
+msgstr "Vaata aktiivseid"
+
+#: templates/series.php:107
+#: templates/shows.php:149
+msgid "View deleted"
+msgstr "Vaata kustutatuid"
+
+#: templates/shows.php:8
+#: includes/display_controller.php:133
+#: includes/shows_widget.php:27
+msgid "Theatre Troupe Shows"
+msgstr "Theatre Troupe etendused"
+
+#: templates/shows.php:14
+msgid "Add a new show"
+msgstr "Lisa uus etendus"
+
+#: templates/shows.php:41
+#: templates/shows.php:42
+#: templates/edit_show.php:36
+#: templates/edit_show.php:37
+msgid "Link URL"
+msgstr "Viite URL"
+
+#: templates/shows.php:46
+#: templates/shows.php:47
+#: templates/edit_show.php:41
+#: templates/edit_show.php:42
+msgid "Link name"
+msgstr "Viite pealkiri"
+
+#: templates/shows.php:53
+#: templates/edit_show.php:48
+msgid "Start date / time"
+msgstr "Alguskuupäev / kellaaeg"
+
+#: templates/shows.php:59
+#: templates/edit_show.php:53
+msgid "End date / time"
+msgstr "Lõpu kuupäev / kellaaeg"
+
+#: templates/shows.php:66
+msgid "Create show"
+msgstr "Loo etendus"
+
+#: templates/shows.php:73
+msgid "List of deleted shows"
+msgstr "Nimekiri kustutatud etendustest"
+
+#: templates/shows.php:74
+msgid "List of inserted shows"
+msgstr "Nimekiri sisestatud etendustest"
+
+#: templates/shows.php:78
+msgid "Show title"
+msgstr "Etenduse pealkiri"
+
+#: templates/shows.php:81
+msgid "Start"
+msgstr "Algus"
+
+#: templates/shows.php:82
+msgid "End"
+msgstr "Lõpp"
+
+#: templates/shows.php:83
+msgid "Manage"
+msgstr "Haldamine"
+
+#: templates/shows.php:154
+msgid "You must add a series first."
+msgstr "Kõigepealt pead lisama seeria."
+
+#: templates/actors.php:3
+#: includes/display_controller.php:136
+msgid "Actors"
+msgstr "Näitlejad"
+
+#: templates/actors.php:7
+msgid ""
+"Actors are your current Wordpress users. To create a new actor, simply add a new user from\n"
+"        <a href=\"user-new.php\">the users page</a>."
+msgstr ""
+"Näitlejatena koheldakse Wordpress-i kasutajakontosid. Näitleja lisamiseks tuleb luua uus WP kasutajakonto\n"
+"        <a href=\"user-new.php\"> kasutajate halduslehelt</a>."
+
+#: templates/actors.php:10
+msgid "Actor statuses"
+msgstr "Näitlejate staatused"
+
+#: templates/actors.php:12
+msgid "<strong>Unassigned</strong> - Do nothing with this actor, can not add to shows."
+msgstr "<strong>Sidumata</strong> - Seda kasutajat ei näidata kusagil ja teda ei saa etendusega seostada."
+
+#: templates/actors.php:13
+msgid "<strong>Active</strong> - Will show in all associated actions (shows page, show details etc)."
+msgstr "<strong>Aktiivne</strong> - Näitleja ilmub igal pool (etenduste leht, liikmete leht jne)."
+
+#: templates/actors.php:14
+msgid "<strong>Passive</strong> - Can not be added as a participant in future shows. "
+msgstr "<strong>Passiivne</strong> - Näitlejat ei saa lisada etenduses osalejaks."
+
+#: templates/actors.php:15
+msgid "<strong>Previous Member</strong> - Same as Unassigned, but shows up in the Members page. "
+msgstr "<strong>Endine liige</strong> - Sama, mis Sidumata, aga on võimalik kuvada näitlejate (<i>[ttroupe-actors-list]</i>) nimekirjas."
+
+#: templates/actors.php:19
+msgid "Change actor membership status"
+msgstr "Muuda näitleja staatust"
+
+#: templates/actors.php:24
+#: templates/actors.php:35
+msgid "ID"
+msgstr "ID"
+
+#: templates/actors.php:25
+#: templates/actors.php:36
+msgid "Actor name"
+msgstr "Näitleja nimi"
+
+#: templates/actors.php:26
+#: templates/actors.php:37
+msgid "Change Status"
+msgstr "Muuda staatust"
+
+#: templates/admin.php:8
+#: templates/admin.php:26
+msgid "About Theatre Troupe"
+msgstr "Theatre Troupe Info"
+
+#: templates/admin.php:13
+msgid "General Settings"
+msgstr "Üldised Seaded"
+
+#: templates/admin.php:15
+msgid "Select the page that contains the shortcode [ttroupe-show-details]"
+msgstr "Vali nimekirjast leht, kus asub [ttroupe-show-details] kood."
+
+#: templates/admin.php:20
+msgid "Update"
+msgstr "Uuenda"
+
+#: templates/admin.php:30
+#, fuzzy
+msgid ""
+"<p><strong>TheatreTroupe</strong> is a Wordpress plugin for small performing groups\n"
+"            for listing shows and associated actors. The plugin enables You, the group admin, display information\n"
+"             about actors, upcoming and previous shows/performances easily on the sidebar using widgets or more\n"
+"             detailed information anywhere on the site with shortcodes.</p>\n"
+"\n"
+"            <p>The plugin was developed for the Estonian improvisation comedy\n"
+"            troupe \"<a href=\"http://jaa.ee\">Improgrupp Jaa!</a> and is available for free under the GPL2 licence.\n"
+"             Support-, feature requests and bug reports are welcome\n"
+"            to andoroots+devel@gmail.com or directly to <a href=\"https://github.com/anroots/wp-theatre-troupe\">github</a>.</p>\n"
+"\n"
+"             <h4>Widgets</h4>\n"
+"\n"
+"             <p>TheatreTroupe includes two widgets.</p>\n"
+"             <p>The <strong>Theatre Troupe Shows</strong> widget is able to list either past or upcoming shows on the sidebar. You can choose\n"
+"             the behaviour of the widget from a dropdown menu.</p>\n"
+"             <p>The <strong>Theatre Troupe Next Show</strong> widget will display basic information about the next upcoming show and a\n"
+"                list of actors who will be performing. If no next show exists, the last show is displayed instead.</p>"
+msgstr ""
+"<p><strong>TheatreTroupe</strong> on Wordpress lisa (<i>plugin</i>) väikestele (teatri) gruppidele \n"
+"            etenduste ja näitlejate kergeks kuvamiseks. Plugin võimaldab kuvada infot grupi liikmetest (näitlejatest) ja tulevastest ning toimunud etendustest \n"
+"             vidinates või detailsemat infot suvalises kohas <i>shortcode</i> abil\n"
+"</p>\n"
+"\n"
+"            <p>Antud lisa arendati, arvestades \n"
+"             \"<a href=\"http://jaa.ee\">Improgrupp Jaa!</a> vajadusi ning on saadaval tasuta GPL2 litsentsi alusel.\n"
+"             Veateated ja tagasiside on oodatud e-posti kujul aadressile \n"
+"            andoroots+dev@gmail.com või <a href=\"https://github.com/anroots/wp-theatre-troupe\">github</a> repositooriumisse.</p>\n"
+"\n"
+"             <h4>Widgets</h4>\n"
+"\n"
+"             <p>TheatreTroupe sisaldab kahte <i>widget</i>-it.</p>\n"
+"             <p><strong>Theatre Troupe Etendused</strong> <i>widget</i> võimaldab kuvada toimunud või tulevasi etendusi.</p>\n"
+"             <p><strong>Theatre Troupe Järgmine Etendus</strong> widget kuvab infot järgmisena toimuva etenduse kohta ning kaasab ka nimekirja osalevatest näitlejatest. Kui tulevast etendust ei ole, näidatakse infot viimati toimunud etenduse kohta.</p>"
+
+#: templates/admin.php:53
+msgid "Available <a href=\"http://en.support.wordpress.com/shortcodes/\" title=\"Documentation\">Shortcodes</a>"
+msgstr "Available <a href=\"http://en.support.wordpress.com/shortcodes/\" title=\"Documentation\">Shortcodes</a>"
+
+#: templates/admin.php:57
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: templates/admin.php:58
+msgid "Parameters"
+msgstr "Parameetrid"
+
+#: templates/admin.php:59
+msgid "Content <i>(between [code][/code])</i>"
+msgstr "Koodi sisu <i>([code] ja [/code] vahel)</i>"
+
+#: templates/admin.php:61
+msgid "Usage Example"
+msgstr "Näide"
+
+#: templates/admin.php:69
+msgid ""
+"Creates a page for displaying details about a show. <strong>The creation of this page is important.</strong>\n"
+"                            The links from sidebar widgets and other shortcodes link to this page. You have to choose the page you pasted the shortcode from the options menu above,\n"
+"                              otherwise the links will be broken."
+msgstr ""
+"Loob lehe etenduse detailse info kuvamiseks. <strong>Selle koodi kasutamine on tähtis!</strong>\n"
+"Etenduste lingid viitavad sellele lehele ning kui seda ei eksisteeri, on need katki. Peale selle koodi kasutamist tuleb vastav leht valida Üldiste Seadete alt rippmenüüst."
+
+#: templates/admin.php:76
+#: templates/admin.php:94
+msgid "required"
+msgstr "kohustuslik"
+
+#: templates/admin.php:77
+#: templates/admin.php:87
+#: templates/admin.php:97
+msgid "Optional title"
+msgstr "Pealkiri"
+
+#: templates/admin.php:78
+msgid "Prints a list of shows the actor, specified by the actor_id parameter <i>(you can see actor ID-s in the Actors subpage)</i>, has played in."
+msgstr "Näitab nimekirja etendustest, kus näitleja osalenud on. Näitleja määratakse actor_id parameetriga. <i>(Näitleja ID leiab näitlejate alamlehelt.)</i>"
+
+#: templates/admin.php:80
+msgid "List of shows actor #5 has played in"
+msgstr "Nimekiri etendustest, kus näitleja ID-ga #5 mänginud on."
+
+#: templates/admin.php:88
+msgid "Prints a list of all active series, shows and and actor who have played in any of the shows."
+msgstr "Näitab nimekirja kõikidest seeriatest, etendustest ning näitlejatest, kes vähemalt ühes etenduses mänginud on."
+
+#: templates/admin.php:89
+msgid "List of all series"
+msgstr "Nimekiri kõikidest seeriatest"
+
+#: templates/admin.php:94
+msgid "Accepted values are:"
+msgstr "Võimalikud väärtused on:"
+
+#: templates/admin.php:98
+msgid "Prints a list of actors who have the specified status."
+msgstr "Näitab nimekirja näitlejatest, kel on vastav staatus."
+
+#: templates/admin.php:100
+msgid "The following actors are actively participating in shows"
+msgstr "Järgnevad näitlejad osalevad aktiivselt etendustes."
+
+#: templates/admin.php:107
+msgid "Credits"
+msgstr "WP plugina kirjutasid:"
+
+#: templates/edit_show.php:8
+msgid "Edit Show"
+msgstr "Muuda etendust"
+
+#: templates/edit_show.php:59
+#: templates/edit_series.php:31
+msgid "Back"
+msgstr "Tagasi"
+
+#: templates/edit_show.php:63
+#: templates/edit_series.php:35
+#: includes/helper.php:58
+msgid "Save"
+msgstr "Salvesta"
+
+#: templates/edit_show.php:70
+msgid "Actors associated with the show"
+msgstr "Etendusega seotud näitlejad"
+
+#: templates/edit_show.php:72
+msgid "Add actor to the show"
+msgstr "Lisa näitleja etenduses osalejaks"
+
+#: templates/edit_show.php:75
+msgid "Add"
+msgstr "Lisa"
+
+#: templates/edit_show.php:81
+msgid "Name"
+msgstr "Nimi"
+
+#: templates/edit_show.php:82
+#: includes/helper.php:100
+msgid "Remove"
+msgstr "Eemalda"
+
+#: templates/edit_series.php:8
+msgid "Edit Series"
+msgstr "Muuda seeriaid"
+
+#: includes/display_controller.php:29
+#: includes/display_controller.php:81
+#: includes/display_controller.php:95
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Sul puudub sellele lehele ligipääs."
+
+#: includes/display_controller.php:53
+msgid "Did you fill all the required fields?"
+msgstr "Kas täitsid kõik nõutud väljad?"
+
+#: includes/display_controller.php:130
+msgid "Theatre Troupe"
+msgstr "Theatre Troupe"
+
+#: includes/display_controller.php:133
+msgid "Shows"
+msgstr "Etendused"
+
+#: includes/display_controller.php:136
+msgid "Theatre Troupe Actors"
+msgstr "Theatre Troupe Näitlejad"
+
+#: includes/display_controller.php:139
+msgid "Theatre Troupe Series"
+msgstr "Theatre Troupe Seeriad"
+
+#: includes/shortcodes.php:22
+msgid "Actor's Shows"
+msgstr "Näitleja Etendused"
+
+#: includes/shortcodes.php:44
+msgid "The actor has not yet participated in any shows."
+msgstr "See näitleja ei ole veel üheski etenduses osalenud."
+
+#: includes/shortcodes.php:62
+msgid "List of all shows"
+msgstr "Nimekiri kõikidest etendustest."
+
+#: includes/shortcodes.php:77
+msgid "List of shows"
+msgstr "Nimekiri etendustest"
+
+#: includes/shortcodes.php:84
+msgid "There are now shows here."
+msgstr "Siin ei ole ühtegi etendust."
+
+#: includes/shortcodes.php:97
+msgid "shows"
+msgstr "etendust"
+
+#: includes/shortcodes.php:100
+msgid "No-one has participated in this series!"
+msgstr "Keegi ei ole selles seerias mänginud!"
+
+#: includes/shortcodes.php:106
+msgid "No series have been added."
+msgstr "Ühtegi seeriat ei ole lisatud."
+
+#: includes/shortcodes.php:147
+msgid "No actors in this category."
+msgstr "Selles kategoorias ei ole ühtegi näitlejat."
+
+#: includes/models/actors.php:88
+msgid "Sorry, only Admin can do that"
+msgstr "Ainult administraator saab seda teha"
+
+#: includes/models/actors.php:131
+msgid "Unassigned"
+msgstr "Määramata"
+
+#: includes/models/actors.php:132
+msgid "Active"
+msgstr "Aktiivne"
+
+#: includes/models/actors.php:133
+msgid "Passive"
+msgstr "Passiivne"
+
+#: includes/models/actors.php:134
+msgid "Previous Member"
+msgstr "Endine liige"
+
+#: includes/shows_widget.php:17
+msgid "Displays previous or upcoming shows"
+msgstr "Kuva toimunud või tulevasi etendusi"
+
+#: includes/shows_widget.php:78
+msgid "Previous Shows"
+msgstr "Toimunud etendused"
+
+#: includes/shows_widget.php:82
+#: includes/next_show_widget.php:80
+msgid "Title:"
+msgstr "Pealkiri:"
+
+#: includes/shows_widget.php:88
+msgid "Widget type"
+msgstr "Widgeti tüüp"
+
+#: includes/shows_widget.php:90
+msgid "Past shows"
+msgstr "Toimunud etendused"
+
+#: includes/shows_widget.php:91
+msgid "Upcoming shows"
+msgstr "Tulevased etendused"
+
+#: includes/shows_widget.php:181
+msgid "No shows listed yet"
+msgstr "Ühtegi etendust pole sisestatud!"
+
+#: includes/helper.php:137
+msgid "Details"
+msgstr "Üksikasjad"
+
+#: includes/next_show_widget.php:17
+msgid "Displays information about the next or latest show."
+msgstr "Näitab informatsiooni järgmise või viimati toimunud etenduse kohta."
+
+#: includes/next_show_widget.php:27
+msgid "Theatre Troupe Next Show"
+msgstr "Theatre Troupe Järgmine Etendus"
+
+#: includes/next_show_widget.php:76
+msgid "Next Show"
+msgstr "Järgmine Etendus"
+
+#: includes/next_show_widget.php:102
+msgid "No shows found"
+msgstr "Ühtegi etendust ei leitud"
+
+#: includes/next_show_widget.php:112
+msgid "Participating actors:"
+msgstr "Osalevad näitlejad:"
+
+#: includes/next_show_widget.php:121
+msgid "None added yet..."
+msgstr "Tühi..."
+
+#. Plugin Name of the plugin/theme
+msgid "WP Theatre Troupe"
+msgstr "WP Theatre Troupe"
+
+#. Plugin URI of the plugin/theme
+msgid "http://jaa.ee/"
+msgstr "http://jaa.ee/"
+
+#. Description of the plugin/theme
+msgid "This plugin will enable small theatre troups and other performing groups to list their shows and participating actors."
+msgstr "See lisa (plugin) võimaldab väikestel näiteringidel ja teistel esinevatel gruppidel kuvada nimekirja etendustest ja mängivatest näitlejatest."
+
+#. Author of the plugin/theme
+msgid "Ando Roots"
+msgstr "Ando Roots"
+
+#. Author URI of the plugin/theme
+msgid "http://ando.roots.ee/"
+msgstr "http://ando.roots.ee/"
+

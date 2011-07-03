@@ -4,7 +4,6 @@
  */
 class Theatre_Troupe {
 
-
     function Theatre_Troupe() {
         global $wpdb;
 
@@ -14,8 +13,8 @@ class Theatre_Troupe {
             $wpdb->ttroupe_shows = $wpdb->prefix . 'ttroupe_shows';
             $wpdb->ttroupe_show_participants = $wpdb->prefix . 'ttroupe_show_participants';
         }
-
     }
+    
 
     /**
      * Delete an object (show, actor, series)

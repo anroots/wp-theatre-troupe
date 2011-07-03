@@ -35,7 +35,7 @@
             <p>The plugin was developed for the Estonian improvisation comedy
             troupe "<a href="http://jaa.ee">Improgrupp Jaa!</a> and is available for free under the GPL2 licence.
              Support-, feature requests and bug reports are welcome
-            to andoroots+devel@gmail.com or directly to <a href="https://github.com/anroots/wp-theatre-troupe">github</a>.</p>
+            to andoroots+dev@gmail.com or directly to <a href="https://github.com/anroots/wp-theatre-troupe">github</a>.</p>
 
              <h4>Widgets</h4>
 
@@ -62,6 +62,15 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+            <td style="white-space: nowrap;">[ttroupe-show-details]</td>
+            <td>None</td>
+            <td>None</td>
+            <td><?php _e('Creates a page for displaying details about a show. <strong>The creation of this page is important.</strong>
+                            The links from sidebar widgets and other shortcodes link to this page. You have to choose the page you pasted the shortcode from the options menu above,
+                              otherwise the links will be broken.', 'theatre-troupe')?></td>
+            <td style="white-space: nowrap;"><code>[ttroupe-show-details]</code></td>
+        </tr>
         <tr>
             <td style="white-space: nowrap">[ttroupe-actor-shows]</td>
             <td>actor_id (<?php _e('required', 'theatre-troupe')?>)*</td>
@@ -96,7 +105,7 @@
     <p>
         <i>
             <?php _e('Credits', 'theatre-troupe')?>: <a href="http://ando.roots.ee/" title="Blog">Ando Roots</a>,
-            <a href="http://pullerits.wordpress.com/" title="Blog">Peep Pullerits</a> >>
+            <a href="http://pullerits.wordpress.com/" title="Blog">Peep Pullerits</a>,
             <a href="http://jaa.ee/" title="Website">Improgrupp Jaa!</a>
         </i>
     </p>

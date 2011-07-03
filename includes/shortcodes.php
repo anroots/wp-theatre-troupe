@@ -35,8 +35,8 @@ class Theatre_Troupe_Shortcode {
 
             foreach ( $shows as $show ) {
                 $show_data = $model_shows->get($show->show_id);
-                $date = date_i18n(get_option('date_format'), strtotime($show->start_date));
-                $html .= "<li><i>$date</i> <strong>$show_data->title</strong></li>";
+                $date = date_i18n(get_option('date_format'), strtotime($show_data->start_date));
+                $html .= "<li><i>".ttroupe_show_details_link($show->show_id, $date)."</i> <strong>$show_data->title</strong></li>";
             }
 
             $html .= '</ul>';
@@ -78,7 +78,7 @@ class Theatre_Troupe_Shortcode {
 
                     foreach ( $shows as $show ) {
                         $date = date_i18n(get_option('date_format'), strtotime($show->start_date));
-                        $html .= "<li><i>$date</i> <strong>$show->title</strong></li>";
+                        $html .= "<li><i>".ttroupe_show_details_link($show->id, $date)."</i> <strong>$show->title</strong></li>";
                     }
                 } else {
                     $html .= "<ul><li>" . __('There are now shows here.', 'theatre-troupe') . "</li>";
@@ -147,6 +147,33 @@ class Theatre_Troupe_Shortcode {
             $html .= __('No actors in this category.', 'theatre-troupe');
         }
         return $html;
+    }
+
+
+    /**
+     * Prints all the information available for a given show.
+     * The page containing the matching shortcode should not be directly accessed,
+     * but rather referenced by other shortcodes/widgets so that the show_id param can
+     * be added to the URL.
+     * If no show_id is present the page defaults to the closest show in regards to NOW() or dies.
+     * @return string
+     */
+    public function show_details() {
+        global $model_shows, $model_series;
+        $show_id = (isset($_GET['show_id'])) ? $_GET['show_id'] : $model_shows->get_closest();
+        if ( empty($show_id) ) {
+            return '<h1>404</h1>';
+        }
+
+        $show = $model_shows->get($show_id);
+        $series = $model_series->get($show->series_id);
+
+        $start_date = strtotime($show->start_date);
+        $end_date = strtotime($show->end_date);
+        $end_date = ($end_date > $start_date) ? ' - '.date_i18n(get_option('links_updated_date_format'), $end_date) : NULL;
+        $start_date = date_i18n(get_option('links_updated_date_format'), $start_date);
+
+        include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/show_details.php');
     }
 
 }

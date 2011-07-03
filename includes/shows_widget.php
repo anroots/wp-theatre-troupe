@@ -165,7 +165,9 @@ class Theatre_Troupe_Shows_Widget extends WP_Widget {
 
                 // Actual HTML for each show
                 $html .= "<li><strong>$show->series_title</strong>: $show->title<br />"
-                         . "<i>" . $startDateStr . $endDateStr . "</i><br />"
+                         . "<i>
+                         ".ttroupe_show_details_link($show->id, $startDateStr) ."
+                         ". $endDateStr . "</i><br />"
                          . "$show->location";
                 if ( $show->linkurl ) {
                     $html .= ' <a href="' . $show->linkurl . '">' . $show->linkname

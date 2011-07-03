@@ -4,7 +4,6 @@
  */
 class Theatre_Troupe {
 
-    //public $options = array( 'actors_main_page' => 2 ); // Plugin settings
 
     function Theatre_Troupe() {
         global $wpdb;
@@ -16,24 +15,7 @@ class Theatre_Troupe {
             $wpdb->ttroupe_show_participants = $wpdb->prefix . 'ttroupe_show_participants';
         }
 
-        /*// Overwrite default settings with those saved by the user
-        $storedOptions = get_option('theatre_troupe_options');
-        if ( !empty($storedOptions) && is_array($storedOptions) ) {
-            foreach ( $storedOptions as $key => $value ) {
-                $this->options[$key] = $value;
-            }
-        }*/
     }
-
-
-    /**
-     * Saves plugin settings to the WP options table
-     * @return void
-     */
-    public function save_options() {
-        update_option('theatre_troupe_options', $this->options);
-    }
-
 
     /**
      * Delete an object (show, actor, series)

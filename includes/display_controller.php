@@ -11,6 +11,11 @@ class Display_Controller extends Theatre_Troupe {
      * @return void
      */
     public function print_admin() {
+
+        if (isset($_POST['save_settings'])) {
+            $link = get_permalink(@$_POST['show_details_page']);
+            update_option('ttroupe_show_details_url', $link);
+        }
         include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
     }
 

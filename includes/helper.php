@@ -106,4 +106,38 @@ function ttroupe_show_actors($show_id) {
     return $html;
 }
 
+
+
+/**
+ * Generates options for selecting the page for the shortcode [ttroupe-show-details]
+ * @return null|string
+ */
+function ttroupe_pages_options() {
+    $pages = get_pages();
+
+    $html = NULL;
+
+    if ( !empty($pages) ) {
+        $select = get_option('ttroupe_show_details_url'); // Permalink to a page
+        foreach ( $pages as $page ) {
+            $html .= "<option value=\"$page->ID\" ".selected( $select, get_permalink($page->ID) ).">$page->post_title</option>";
+        }
+    }
+    return $html;
+}
+
+
+/**
+ * Returns the HTML link for a show's details page.
+ * @param int $show_id
+ * @param null $link_text Optional link text
+ * @return string
+ */
+function ttroupe_show_details_link($show_id, $link_text = NULL) {
+    $details = __('Details', 'theatre-troupe');
+    if (empty($link_text)) {
+        $link_text = $details;
+    }
+    return '<a href="'.get_option("ttroupe_show_details_url").'?show_id='.$show_id.'" title="'.$details.'">'.$link_text.'</a>';
+}
 ?>

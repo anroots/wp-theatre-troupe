@@ -10,6 +10,19 @@
     <div id="message"></div>
 
     <!-- GENERAL SETTINGS -->
+    <h3><?php _e('General Settings', 'theatre-troupe')?></h3>
+    <form action="" method="post">
+        <?php _e('Select the page that contains the shortcode [ttroupe-show-details]', 'theatre-troupe')?><br />
+        <select name="show_details_page">
+            <?php echo ttroupe_pages_options() ?>
+        </select>
+        
+        <input type="submit" name="save_settings" value="<?php _e('Update')?>" />
+    </form>
+
+
+    <!-- ABOUT -->
+    <br />
     <h3><?php echo __('About Theatre Troupe', 'theatre-troupe') . ' v' . TTROUPE_VERSION?></h3>
 
 

@@ -94,11 +94,9 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
         global $model_shows;
 
         $show_id = $model_shows->get_closest('next');
-        $title = __('Next show', 'theatre-troupe');
 
         if ( empty($show_id) ) {
             $show_id = $model_shows->get_closest('prev');
-            $title = __('Previous show', 'theatre-troupe');
         }
         if ( empty($show_id) ) {
             return __('No shows found', 'theatre-troupe');
@@ -106,7 +104,7 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
         $show = $model_shows->get($show_id);
 
         $start_date = date_i18n(get_option('date_format'), strtotime($show->start_date));
-        $html = "<h2>$title</h2><br /> <strong>$start_date</strong> <br />$show->title<br />";
+        $html = ttroupe_show_details_link($show->id, "<strong>$start_date</strong>")."<br />$show->title<br />";
         if ( !empty($show->location) ) {
             $html .= __('Location', 'theatre-troupe') . ": $show->location";
         }

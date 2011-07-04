@@ -53,7 +53,7 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
      * @param int $actor_id
      * @return bool|int
      */
-    public function add_to_show($show_id, $actor_id) {
+    public function add_to_show($show_id, $actor_id) { 
 
         global $wpdb, $model_shows;
 

@@ -160,7 +160,7 @@ class Theatre_Troupe_Shortcode {
      */
     public function show_details() {
         global $model_shows, $model_series;
-        $show_id = (isset($_GET['show_id'])) ? $_GET['show_id'] : $model_shows->get_closest();
+        $show_id = (isset($_GET['show_id'])) ? $_GET['show_id'] : $model_shows->get_closest('prev');
         if ( empty($show_id) ) {
             return '<h1>404</h1>';
         }

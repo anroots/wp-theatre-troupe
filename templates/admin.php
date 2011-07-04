@@ -64,8 +64,8 @@
         <tbody>
         <tr>
             <td style="white-space: nowrap;">[ttroupe-show-details]</td>
-            <td>None</td>
-            <td>None</td>
+            <td><?php _e('None', 'theatre-troupe')?></td>
+            <td><?php _e('None', 'theatre-troupe')?></td>
             <td><?php _e('Creates a page for displaying details about a show. <strong>The creation of this page is important.</strong>
                             The links from sidebar widgets and other shortcodes link to this page. You have to choose the page you pasted the shortcode from the options menu above,
                               otherwise the links will be broken.', 'theatre-troupe')?></td>
@@ -83,7 +83,7 @@
 
         <tr>
             <td style="white-space: nowrap">[ttroupe-series-list]</td>
-            <td>None</td>
+            <td><?php _e('None', 'theatre-troupe')?></td>
             <td><?php _e('Optional title', 'theatre-troupe')?></td>
             <td><?php _e('Prints a list of all active series, shows and and actor who have played in any of the shows.', 'theatre-troupe')?></td>
             <td><code>[ttroupe-series-list]<?php _e('List of all series', 'theatre-troupe')?>

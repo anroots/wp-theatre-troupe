@@ -120,34 +120,6 @@ class Display_Controller extends Theatre_Troupe {
 
     }
 
-    /**
-     * Attaches admin menus
-     * @return void
-     */
-    function attach_menus() {
-        global $display;
-
-        $ttroupe_hook = add_menu_page(__('Theatre Troupe', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$display, 'print_admin' ));
-        add_action("admin_print_scripts-$ttroupe_hook", array( &$display, 'admin_head' ));
-
-        $ttroupe_hook = add_submenu_page('ttroupe_admin', __('Theatre Troupe Shows', 'theatre-troupe'), __('Shows', 'theatre-troupe'), 'manage_options', 'ttroupe_shows', array( &$display, 'print_shows' ));
-        add_action("admin_print_scripts-$ttroupe_hook", array( &$display, 'admin_head' ));
-
-        $ttroupe_hook = add_submenu_page('ttroupe_admin', __('Theatre Troupe Actors', 'theatre-troupe'), __('Actors', 'theatre-troupe'), 'manage_options', 'ttroupe_actors', array( &$display, 'print_actors' ));
-        add_action("admin_print_scripts-$ttroupe_hook", array( &$display, 'admin_head' ));
-
-        $ttroupe_hook = add_submenu_page('ttroupe_admin', __('Theatre Troupe Series', 'theatre-troupe'), __('Series', 'theatre-troupe'), 'manage_options', 'ttroupe_series', array( &$display, 'print_series' ));
-        add_action("admin_print_scripts-$ttroupe_hook", array( &$display, 'admin_head' ));
-    }
-
-
-    /**
-     * Echo JavaScript in plugin page header
-     * @return void
-     */
-    function admin_head() {
-        wp_enqueue_script('ttroupe_admin', plugins_url() . TTROUPE_DIR . '/js/script.js', array( 'jquery' ));
-    }
 
 
 }

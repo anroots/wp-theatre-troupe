@@ -56,7 +56,9 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
         $sql = "SELECT show_id
                     FROM $wpdb->ttroupe_show_participants
-                    WHERE actor_id = '$actor_id'";
+                    LEFT JOIN $wpdb->ttroupe_shows ON ($wpdb->ttroupe_shows.id = $wpdb->ttroupe_show_participants.show_id)
+                    WHERE $wpdb->ttroupe_show_participants.actor_id = '$actor_id'
+                    AND $wpdb->ttroupe_shows.status = 'active'";
 
         $query = $wpdb->get_results($sql, OBJECT);
 
@@ -211,6 +213,31 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
             return $play_counts[$serie_id];
         }
         return NULL;
+    }
+
+
+
+    /**
+     * Checks whether the current URL is a profile page.
+     * If so, return the user_id of the actor, FALSE otherwise.
+     * @return bool|int
+     */
+    public function is_profile_page() {
+        $current_url = $_SERVER['REQUEST_URI'];
+        global $wpdb;
+
+        $table = $wpdb->prefix.'usermeta';
+        $sql = "SELECT meta_value, user_id FROM $table WHERE meta_key = 'ttroupe_profile_page'";
+        $query = $wpdb->get_results($sql, OBJECT);
+
+        if (!empty($query)) {
+            foreach ($query as $meta) {
+                if (stristr($meta->meta_value, $current_url)) {
+                    return $meta->user_id;
+                }
+            }
+        }
+        return FALSE;
     }
 }
 

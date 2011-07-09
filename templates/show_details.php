@@ -6,10 +6,6 @@
  */
 ?>
 <h2 class="entry-title"><?php echo $show->title?></h2>
-    <div class="entry-meta">
-        <?php echo $start_date?>  
-        <?php echo $end_date?>
-    </div>
 
     <table>
         <thead>
@@ -18,6 +14,13 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+            <td><?php _e('Timeframe', 'theatre-troupe')?></td>
+            <td>
+        <?php echo $start_date?>
+        <?php echo $end_date?>
+            </td>
+        </tr>
         <tr>
             <td><?php _e('Series', 'theatre-troupe')?></td>
             <td><?php echo $series->title?></td>

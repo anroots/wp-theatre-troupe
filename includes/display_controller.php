@@ -15,6 +15,7 @@ class Display_Controller extends Theatre_Troupe {
         if (isset($_POST['save_settings'])) {
             $link = get_permalink(@$_POST['show_details_page']);
             update_option('ttroupe_show_details_url', $link);
+            update_option('ttroupe_insert_shows', (int)@$_POST['insert_shows']); // Insert a list of played shows?
         }
         include(TTROUPE_PATH . 'templates/admin.php');
     }

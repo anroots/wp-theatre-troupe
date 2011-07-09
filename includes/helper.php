@@ -129,7 +129,8 @@ function ttroupe_pages_options($selected = NULL) {
 
     if ( !empty($pages) ) {
         foreach ( $pages as $page ) {
-            $html .= "<option value=\"$page->ID\" " . selected($selected, get_permalink($page->ID)) . ">$page->post_title</option>";
+            $sel = ($selected == get_permalink($page->ID)) ? ' selected = "selected"' : '';
+            $html .= "<option value=\"$page->ID\" " . $sel . ">$page->post_title</option>";
         }
     }
     return $html;

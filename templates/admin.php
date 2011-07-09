@@ -9,21 +9,53 @@
 
     <div id="message"></div>
 
+    <br />
     <!-- GENERAL SETTINGS -->
-    <h3><?php _e('General Settings', 'theatre-troupe')?></h3>
     <form action="" method="post">
-        <?php _e('Select the page that contains the shortcode [ttroupe-show-details]', 'theatre-troupe')?><br />
-        <select name="show_details_page">
-            <option value=""></option>
-            <?php echo ttroupe_pages_options(get_option('ttroupe_show_details_url')) ?>
-        </select>
-        
-        <input type="submit" name="save_settings" value="<?php _e('Update')?>" />
+        <table class="widefat" style="max-width: 500px; ">
+            <thead>
+            <tr>
+                <th colspan="2"><?php _e('General Settings', 'theatre-troupe')?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <?php _e('Select the page that contains the shortcode [ttroupe-show-details]', 'theatre-troupe')?>
+                </td>
+                <td>
+                    <select name="show_details_page">
+                        <option value=""></option>
+                        <?php echo ttroupe_pages_options(get_option('ttroupe_show_details_url')) ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <label for="insert_shows">
+                    <?php _e('Auto-insert a list of shows the actor as participated in to the bottom of his/her profile page?', 'theatre-troupe')?>
+                    </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="insert_shows" id="insert_shows" value="1"<?php echo ((bool)get_option('ttroupe_insert_shows')) ? ' checked' : NULL?>/>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>
+                    <input type="submit" name="save_settings" value="<?php _e('Update')?>"/>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
     </form>
 
 
     <!-- ABOUT -->
-    <br />
+    <br/>
+
     <h3><?php echo __('About Theatre Troupe', 'theatre-troupe') . ' v' . TTROUPE_VERSION?></h3>
 
 

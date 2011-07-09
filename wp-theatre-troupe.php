@@ -117,6 +117,8 @@ add_shortcode('ttroupe-series-list', array( &$shortCode, 'series_list' ));
 add_shortcode('ttroupe-actors-list', array( &$shortCode, 'actors_list' ));
 add_shortcode('ttroupe-show-details', array( &$shortCode, 'show_details' ));
 
+// Automatic display of actor shows on actor's page
+add_action('the_content', array( &$shortCode, 'auto_insert_actor_shows'));
 
 //Widgets
 add_action('widgets_init', 'theatre_troupe_load_widgets');

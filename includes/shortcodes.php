@@ -177,6 +177,28 @@ class Theatre_Troupe_Shortcode {
         include(TTROUPE_PATH . 'templates/show_details.php');
     }
 
+
+    /**
+     * Inserts the output of [ttroupe-actor-shows] to the bottom of the page
+     * if the page is listed as a profile page.
+     * The function must be set as enabled from settings.
+     * @param $content
+     * @return string
+     */
+    public function auto_insert_actor_shows($content) {
+        if (!get_option('ttroupe_insert_shows')) {
+            return $content;
+        }
+        global $model_actors;
+        $actor_id = $model_actors->is_profile_page();
+        if (empty($actor_id)) {
+            return $content;
+        }
+
+        $content .= $this->actor_shows(array('actor_id' => $actor_id));
+        return $content;
+    }
+
 }
 
 ?>

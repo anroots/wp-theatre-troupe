@@ -16,7 +16,7 @@ class Display_Controller extends Theatre_Troupe {
             $link = get_permalink(@$_POST['show_details_page']);
             update_option('ttroupe_show_details_url', $link);
         }
-        include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/admin.php');
+        include(TTROUPE_PATH . 'templates/admin.php');
     }
 
 
@@ -57,7 +57,7 @@ class Display_Controller extends Theatre_Troupe {
 
         if ( isset($_GET['edit']) && $this->check_existence('shows', $_GET['edit']) ) {
             $show = $model_shows->get($_GET['edit']);
-            include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/edit_show.php');
+            include(TTROUPE_PATH . 'templates/edit_show.php');
 
         } else {
             if ( isset($_GET['deleted']) ) {
@@ -67,7 +67,7 @@ class Display_Controller extends Theatre_Troupe {
             }
 
             $series = $model_series->get();
-            include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/shows.php');
+            include(TTROUPE_PATH . 'templates/shows.php');
         }
     }
 
@@ -81,7 +81,7 @@ class Display_Controller extends Theatre_Troupe {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
-        include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/actors.php');
+        include(TTROUPE_PATH .'templates/actors.php');
 
     }
 
@@ -107,7 +107,7 @@ class Display_Controller extends Theatre_Troupe {
 
         if ( isset($_GET['edit']) && $this->check_existence('series', $_GET['edit']) ) {
             $series = $model_series->get($_GET['edit']);
-            include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/edit_series.php');
+            include(TTROUPE_PATH . 'templates/edit_series.php');
 
         } else {
             if ( isset($_GET['deleted']) ) {
@@ -115,7 +115,7 @@ class Display_Controller extends Theatre_Troupe {
             } else {
                 $series = $model_series->get();
             }
-            include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/series.php');
+            include(TTROUPE_PATH. 'templates/series.php');
         }
 
     }

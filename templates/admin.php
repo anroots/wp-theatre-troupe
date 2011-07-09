@@ -14,6 +14,7 @@
     <form action="" method="post">
         <?php _e('Select the page that contains the shortcode [ttroupe-show-details]', 'theatre-troupe')?><br />
         <select name="show_details_page">
+            <option value=""></option>
             <?php echo ttroupe_pages_options() ?>
         </select>
         

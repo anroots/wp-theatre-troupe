@@ -121,6 +121,23 @@ class Theatre_Troupe {
 		        );";
         dbDelta($sql);
     }
+
+
+    /**
+     * Shows a notification on every admin page until the initial settings are saved.
+     * @return void
+     */
+    public function settings_not_set() {
+        $page = get_option('ttroupe_show_details_url');
+        if (!empty($page)) {
+            return NULL;
+        }
+        echo '<div class="updated fade below-h2"><p>
+            '.__("<strong>TheatreTroupe:</strong> Please set the show details page
+            on the <a href='admin.php?page=ttroupe_admin' title='Settings page'>TheatreTroupe Settings Page</a>
+            or the links to show details will be broken.", "theatre-troupe").'
+        </p></div>';
+    }
 }
 
 

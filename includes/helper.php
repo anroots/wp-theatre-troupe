@@ -139,6 +139,10 @@ function ttroupe_show_details_link($show_id, $link_text = NULL) {
     if (empty($link_text)) {
         $link_text = $details;
     }
-    return '<a href="'.add_query_arg("show_id", $show_id, get_option("ttroupe_show_details_url")).'" title="'.$details.'">'.$link_text.'</a>';
+    $url = add_query_arg('show_id', $show_id, get_option('ttroupe_show_details_url'));
+    if (empty($url)) {
+        $url = '#';
+    }
+    return '<a href="'.$url.'" title="'.$details.'">'.$link_text.'</a>';
 }
 ?>

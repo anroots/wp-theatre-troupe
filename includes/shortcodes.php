@@ -174,7 +174,7 @@ class Theatre_Troupe_Shortcode {
         $start_date = date_i18n(get_option('links_updated_date_format'), $start_date);
         $actors = $model_shows->get_actors($show->id);
         
-        include(WP_PLUGIN_DIR . TTROUPE_DIR . '/templates/show_details.php');
+        include(TTROUPE_PATH . 'templates/show_details.php');
     }
 
 }

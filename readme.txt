@@ -1,14 +1,14 @@
 === Theatre Troupe ===
 Author: Ando Roots
 Author URI: http://ando.roots.ee
-Contributors: Peep Pullerits
+Contributors: Ando Roots, Peep Pullerits
 Plugin name: Theatre Troupe
 Donate link: http://www.jaa.ee
 Tags: theatre,improv,acting,drama,shows,performance,theatre
 Requires at least: 3.1.3
-Tested up to: 3.1.3
+Tested up to: 3.2
 Stable tag: trunk
-Version: 1.2
+Version: 1.3
 
 A Wordpress plugin for small performing groups for listing shows and associated actors.
 

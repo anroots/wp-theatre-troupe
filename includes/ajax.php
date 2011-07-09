@@ -78,15 +78,15 @@ class Theatre_Troupe_Ajax {
 
 
     /**
-     * Change actor's status
+     * Change actor's status and/or profile page
      * @return void
      */
-    public function change_actor_status() {
+    public function change_actor_info() {
         global $model_actors;
+        
+        check_ajax_referer('manage_actor_info');
 
-        check_ajax_referer('manage_actor_status');
-
-        if ( $model_actors->change_status((int) @$_POST['actor_id'], @$_POST['status']) ) {
+        if ($model_actors->change_info((int) @$_POST['actor_id'], @$_POST['status'], @$_POST['profile_page']) ) {
             die('1');
         }
         die('0');

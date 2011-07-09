@@ -102,7 +102,7 @@ if ( class_exists('Theatre_Troupe') ) {
 
 // AJAX bindings
 add_action('wp_ajax_ttroupe_manage_show_participants', array( &$ajax, 'manage_show_participants' ));
-add_action('wp_ajax_ttroupe_change_actor_status', array( &$ajax, 'change_actor_status' ));
+add_action('wp_ajax_ttroupe_change_actor_info', array( &$ajax, 'change_actor_info' ));
 add_action('wp_ajax_ttroupe_delete', array( &$ajax, 'delete' ));
 add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
 

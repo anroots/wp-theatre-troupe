@@ -17,13 +17,15 @@
 
 <!-- List actors -->
 <h3><?php _e('Change actor membership status', 'theatre-troupe') ?></h3>
-<?php wp_nonce_field('manage_actor_status', 'actor_status_nonce'); ?>
+<?php wp_nonce_field('manage_actor_info', 'actor_info_nonce'); ?>
 <table class="widefat">
     <thead>
     <tr>
         <th><?php _e('ID', 'theatre-troupe') ?></th>
         <th><?php _e('Actor name', 'theatre-troupe') ?></th>
-        <th width="50%"><?php _e('Change Status', 'theatre-troupe') ?></th>
+        <th><?php _e('Profile page', 'theatre-troupe') ?></th>
+        <th><?php _e('Change Status', 'theatre-troupe') ?></th>
+        <th width="30%"><?php _e('Save', 'theatre-troupe') ?></th>
     </tr>
     </thead>
 
@@ -34,7 +36,9 @@
     <tr>
         <th><?php _e('ID', 'theatre-troupe') ?></th>
         <th><?php _e('Actor name', 'theatre-troupe') ?></th>
+        <th><?php _e('Profile page', 'theatre-troupe') ?></th>
         <th><?php _e('Change Status', 'theatre-troupe') ?></th>
+        <th><?php _e('Save', 'theatre-troupe') ?></th>
     </tr>
     </tfoot>
 </table>

@@ -109,7 +109,7 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
             $html .= "<br />".__('Location', 'theatre-troupe') . ": $show->location";
         }
 
-        $html .= "<p>" . __('Participating actors:', 'theatre-troupe') . "</p><ul>";
+    /*    $html .= "<p>" . __('Participating actors:', 'theatre-troupe') . "</p><ul>";
 
         $actors = $model_shows->get_actors($show_id);
         if ( !empty($actors) ) {
@@ -121,8 +121,8 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
             $html .= "<li>" . __('None added yet...', 'theatre-troupe') . "</li>";
         }
 
-        $html .= '</ul>';
-
+        $html .= '</ul>';*/
+        $html .= ttroupe_actors_list($show->id);
         return $html;
     }
 }

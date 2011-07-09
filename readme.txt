@@ -39,7 +39,7 @@ Why is this section empty?
 - Because no questions have been asked yet.
 
 == Donations ==
-Aww, that's nice! Thank you for the kind thought!
+Sponsorship proposals are welcome to andoroots+dev@gmail.com
 
 == Upgrade Notice ==
-This is the first release.
+Everything should work fine after an upgrade from 1.2 => 1.3. No database tables have been changed.

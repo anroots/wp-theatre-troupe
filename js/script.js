@@ -15,6 +15,7 @@ function restore(what, id, that) {
         _ajax_nonce: jQuery('#restore_nonce').val()
     };
 
+    jQuery('#message').html('');
     // Send data
     jQuery.post(ajaxurl, data, function(response) {
         if (response == '1') {
@@ -40,6 +41,7 @@ function trash(what, id, that) {
         _ajax_nonce: jQuery('#delete_nonce').val()
     };
 
+    jQuery('#message').html('');
     // Send data
     jQuery.post(ajaxurl, data, function(response) {
         if (response == '1') {
@@ -65,6 +67,7 @@ function manage_show_participants(type, show_id, actor_id, that) {
         _ajax_nonce: jQuery('#participants_nonce').val()
     };
 
+    jQuery('#message').html('');
     // Send data
     jQuery.post(ajaxurl, data, function(response) {
         if (response == '1') {
@@ -80,14 +83,22 @@ function manage_show_participants(type, show_id, actor_id, that) {
 }
 
 
-// Change actor's status (active|passive|previous)
-function change_actor_status(actor_id, status, that) {
+/**
+ * Change actor's status (active|passive|previous)
+ * Used on Ttroupe Actors admin page
+ * @param int actor_id
+ * @param that JS this, passed from the calling button
+ */
+function change_actor_info(actor_id, that) {
+
     var data = {
-        action: 'ttroupe_change_actor_status',
-        status: status,
+        action: 'ttroupe_change_actor_info',
+        status: jQuery(that).closest('tr').find('.status_select').val(),
+        profile_page: jQuery(that).closest('tr').find('.page_select').val(),
         actor_id: actor_id,
-        _ajax_nonce: jQuery('#actor_status_nonce').val()
+        _ajax_nonce: jQuery('#actor_info_nonce').val()
     };
+    jQuery('#message').html('');
     jQuery(that).after('<img style="margin-left: 15px;" alt="Loading..." title="Loading..." src="' + loading_image_src + '" />');
     jQuery(that).attr('disabled', 'disabled');
     // Send data
@@ -96,6 +107,7 @@ function change_actor_status(actor_id, status, that) {
         jQuery(that).removeAttr('disabled');
         process_response_msg(response);
     });
+
 }
 
 

@@ -14,7 +14,7 @@
     <table>
         <thead>
         <tr>
-            <th colspan="2">&nbsp;</th>
+            <th colspan="2"><?php _e('Show Details', 'theatre-troupe')?></th>
         </tr>
         </thead>
         <tbody>
@@ -47,12 +47,5 @@
         </tbody>
     </table>
 
-
-<?php if (!empty($actors)): ?>
-<h2><?php _e('Participating actors', 'theatre-troupe')?></h2>
-    <ul>
-        <?php foreach ($actors as $actor):?>
-            <li><?php echo $model_actors->full_name($actor->ID)?></li>
-        <?php endforeach;?>
-    </ul>
-<?php endif; ?>
+<!-- List of actors who play in this show -->
+<?php echo ttroupe_actors_list($show->id) ?>

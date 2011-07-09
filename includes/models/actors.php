@@ -87,12 +87,13 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
 
     /**
-     * Change actor's status
+     * Change actor's status and/or profile page
      * @param int $actor_id
      * @param string $status active|passive|previous
+     * @param int $profile_page
      * @return bool
      */
-    public function change_status($actor_id, $status) {
+    public function change_info($actor_id, $status, $profile_page) {
 
         if ( !$this->check_existence('actors', $actor_id)
              || !array_key_exists($status, $this->actor_statuses())
@@ -105,7 +106,13 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
         }
 
         if ( $this->get_status($actor_id) != $status ) {
-            return update_user_meta($actor_id, 'ttroupe_status', $status);
+            update_user_meta($actor_id, 'ttroupe_status', $status);
+        }
+
+        $link = get_permalink(@$_POST['profile_page']);
+
+        if (!empty($link)) {
+            return update_user_meta($actor_id, 'ttroupe_profile_page', $link);
         }
         return TRUE;
     }

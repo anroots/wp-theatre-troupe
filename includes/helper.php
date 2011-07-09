@@ -170,12 +170,18 @@ function ttroupe_actors_list($show_id) {
     if ( !empty($actors) ) {
         $html .= "<h2>" . __('Actors', 'theatre-troupe') . "</h2><ul>";
         foreach ( $actors as $actor ) {
-            $profile_link = get_user_meta($actor->ID, 'ttroupe_profile_page', TRUE);
-            $html .= '<li><a href="' .$profile_link.'" title="'.__("Profile page", "theatre-troupe").'">'. $model_actors->full_name($actor->ID) . '</a></li>';
+
+            $html .= '<li>'.ttroupe_profile_link($actor->ID).'</li>';
         }
         $html .= '</ul>';
     }
     return $html;
+}
+
+function ttroupe_profile_link($actor_id) {
+    global $model_actors;
+    $profile_link = get_user_meta($actor_id, 'ttroupe_profile_page', TRUE);
+    return '<a href="' .$profile_link.'" title="'.__("Profile page", "theatre-troupe").'">'. $model_actors->full_name($actor_id) . '</a>';
 }
 
 ?>

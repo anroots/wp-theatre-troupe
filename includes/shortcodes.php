@@ -125,7 +125,7 @@ class Theatre_Troupe_Shortcode {
 
         $statuses = $model_actors->actor_statuses();
 
-        if ( !isset($status) || !array_key_exists($status, $statuses) || $status = 'unassigned') {
+        if ( !isset($status) || !array_key_exists($status, $statuses) || $status == 'unassigned') {
             return NULL;
         }
 
@@ -140,7 +140,7 @@ class Theatre_Troupe_Shortcode {
             $html .= '<ul>';
 
             foreach ( $actors as $actor ) {
-                $html .= '<li><strong>'.$model_actors->full_name($actor->ID).'</strong></li>';
+                $html .= '<li><strong>'.ttroupe_profile_link($actor->ID).'</strong></li>';
             }
             $html .= '</ul>';
         } else {

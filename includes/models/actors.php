@@ -12,18 +12,12 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
         global $model_actors;
 
         if ( $status != NULL && array_key_exists($status, $model_actors->actor_statuses()) ) {
-            $getUsersArgs = array( 'meta_key' => 'ttroupe_status', 'meta_value' => $status );
+            $args = array( 'meta_key' => 'ttroupe_status', 'meta_value' => $status );
         } else {
-            $getUsersArgs = array( );
+            $args = array( );
         }
 
-        if ( get_bloginfo('version') >= 3.1 ) {
-            $getUsersFunc = 'get_users';
-        } else {
-            $getUsersFunc = 'get_users_of_blog';
-        }
-
-        return call_user_func($getUsersFunc, $getUsersArgs);
+        return get_users($args);
     }
 
 
@@ -223,8 +217,9 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
      * @return bool|int
      */
     public function is_profile_page() {
-        $current_url = $_SERVER['REQUEST_URI'];
         global $wpdb;
+
+        $current_url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 
         $table = $wpdb->prefix.'usermeta';
         $sql = "SELECT meta_value, user_id FROM $table WHERE meta_key = 'ttroupe_profile_page'";
@@ -232,7 +227,7 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
         if (!empty($query)) {
             foreach ($query as $meta) {
-                if (stristr($meta->meta_value, $current_url)) {
+                if ($meta->meta_value == $current_url) {
                     return $meta->user_id;
                 }
             }

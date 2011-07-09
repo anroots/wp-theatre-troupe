@@ -42,4 +42,4 @@ Why is this section empty?
 Sponsorship proposals are welcome to andoroots+dev@gmail.com
 
 == Upgrade Notice ==
-Everything should work fine after an upgrade from 1.2 => 1.3. No database tables have been changed.
+Everything should work fine after an upgrade from 1.2 => 1.3. There are no critical database changes.

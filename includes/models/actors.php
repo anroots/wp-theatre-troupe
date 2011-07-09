@@ -28,6 +28,22 @@ class Theatre_Troupe_Actors extends Theatre_Troupe {
 
 
     /**
+     * Get the user's full name (from user_meta)
+     * @param $user_id
+     * @return bool|object|string
+     */
+    public function full_name($user_id) {
+        $full_name = get_user_meta($user_id, 'first_name', TRUE).' '.get_user_meta($user_id, 'last_name', TRUE);
+        $full_name = trim($full_name);
+        
+        if (empty($full_name)) {
+            $full_name = get_userdata($user_id);
+            $full_name = $full_name->display_name;
+        }
+        return $full_name;
+    }
+
+    /**
      * Get a list of show_id's the actor has participated in
      * @param $actor_id
      * @return null|DB result

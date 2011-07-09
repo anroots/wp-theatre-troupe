@@ -91,7 +91,7 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
      * @return void
      */
     private function widget_content() {
-        global $model_shows;
+        global $model_shows, $model_actors;
 
         $show_id = $model_shows->get_closest('next');
 
@@ -115,7 +115,7 @@ class Theatre_Troupe_Next_Show_Widget extends WP_Widget {
         if ( !empty($actors) ) {
 
             foreach ( $actors as $actor ) {
-                $html .= "<li>$actor->display_name</li>";
+                $html .= '<li>'.$model_actors->full_name($actor->ID).'</li>';
             }
         } else {
             $html .= "<li>" . __('None added yet...', 'theatre-troupe') . "</li>";

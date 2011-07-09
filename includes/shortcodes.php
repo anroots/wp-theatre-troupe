@@ -94,7 +94,7 @@ class Theatre_Troupe_Shortcode {
                 if ( !empty($series_count) ) {
                     foreach ( $series_count as $actor_id => $play_cnt ) {
                         $actor_data = get_userdata($actor_id);
-                        $html .= "<li>$actor_data->display_name <i>($play_cnt " . __('shows', 'theatre-troupe') . ")</i></li>";
+                        $html .= "<li>".$model_actors->full_name($actor_id)."<i>($play_cnt " . __('shows', 'theatre-troupe') . ")</i></li>";
                     }
                 } else {
                     $html .= '<li>' . __('No-one has participated in this series!', 'theatre-troupe') . '</li>';
@@ -140,7 +140,7 @@ class Theatre_Troupe_Shortcode {
             $html .= '<ul>';
 
             foreach ( $actors as $actor ) {
-                $html .= "<li><strong>$actor->display_name</strong></li>";
+                $html .= '<li><strong>'.$model_actors->full_name($actor->ID).'</strong></li>';
             }
             $html .= '</ul>';
         } else {
@@ -162,7 +162,7 @@ class Theatre_Troupe_Shortcode {
         global $model_shows, $model_series;
         $show_id = (isset($_GET['show_id'])) ? $_GET['show_id'] : $model_shows->get_closest('prev');
         if ( empty($show_id) ) {
-            return '<h1>404</h1>';
+            return '';
         }
 
         $show = $model_shows->get($show_id);

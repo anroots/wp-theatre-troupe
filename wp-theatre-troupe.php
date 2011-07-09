@@ -4,13 +4,13 @@ Plugin Name: WP Theatre Troupe
 Plugin URI: http://jaa.ee/
 Description: This plugin will enable small theatre troups and other performing groups to list their past and upcoming shows and participating actors.
 Author: Ando Roots
-Version: 1.1
+Version: 1.2
 Author URI: http://ando.roots.ee/
 Licence: GPL2
 */
 
 /*
-Copyright 2011     Ando Roots  (email : ando@roots.ee)
+Copyright 2011     Ando Roots  (email : andoroots+dev@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -26,7 +26,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 define('TTROUPE_DIR', '/wp-theatre-troupe');
-define('TTROUPE_VERSION', '1.1');
+define('TTROUPE_VERSION', '1.2');
 
 
 // Registrer a new top-level admin menu

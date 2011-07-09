@@ -1,14 +1,14 @@
 === Theatre Troupe ===
+Author: Ando Roots
+Author URI: http://ando.roots.ee
 Contributors: Peep Pullerits
 Plugin name: Theatre Troupe
 Donate link: http://www.jaa.ee
-Author: Ando Roots
-Author URI: http://ando.roots.ee
-Tags: theatre,improv,acting,drama,shows,performance
+Tags: theatre,improv,acting,drama,shows,performance,theatre
 Requires at least: 3.1.3
 Tested up to: 3.1.3
 Stable tag: trunk
-Version: 1.1
+Version: 1.2
 
 A Wordpress plugin for small performing groups for listing shows and associated actors.
 
@@ -17,7 +17,7 @@ A Wordpress plugin for small performing groups for listing shows and associated 
 As your group admin, you can easily enter and display your previous and upcoming shows/performances anywhere on your pages sidebar.
 
 The plugin was developed for the Estonian improvisation comedy troupe "Improgrupp Jaa!" and is available for free under the GPL2 licence.
-Support-, feature requests and bug reports are welcome to andoroots+devel@gmail.com or directly to github.
+Support-, feature requests and bug reports are welcome to andoroots+dev@gmail.com or directly to github.
 
 == Installation ==
 

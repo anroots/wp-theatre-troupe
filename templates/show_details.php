@@ -22,10 +22,12 @@
             <td><?php _e('Series', 'theatre-troupe')?></td>
             <td><?php echo $series->title?></td>
         </tr>
+         <?php if (!empty($show->description)):?>
         <tr>
             <td><?php _e('Series description', 'theatre-troupe')?></td>
             <td><?php echo $series->description?></td>
         </tr>
+        <? endif; ?>
 
         <?php if (!empty($show->location)):?>
         <tr>
@@ -46,13 +48,11 @@
     </table>
 
 
+<?php if (!empty($actors)): ?>
 <h2><?php _e('Participating actors', 'theatre-troupe')?></h2>
     <ul>
-    <?php if (!empty($actors)):
-        foreach ($actors as $actor):?>
-            <li><?php echo $actor->display_name?></li>
-        <?php endforeach;
-        else: ?>
-            <li><?php _e('The roster is empty at the moment', 'theatre-troupe')?></li>
-        <?php endif; ?>
-</ul>
+        <?php foreach ($actors as $actor):?>
+            <li><?php echo $model_actors->full_name($actor->ID)?></li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

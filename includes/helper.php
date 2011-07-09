@@ -40,6 +40,7 @@ function ttroupe_actor_rows() {
             // Generate status selectbox
             $options = NULL;
             $actor_status = get_user_meta($actor->ID, 'ttroupe_status', TRUE);
+            $full_name = $model_actors->full_name($actor->ID);
 
             foreach ( $model_actors->actor_statuses() as $key => $status ) {
                 $s = ($actor_status == $key) ? ' selected' : '';
@@ -49,7 +50,7 @@ function ttroupe_actor_rows() {
             $html .= "
 	<tr>
 			<td>#$actor->ID</td>
-			<td>$actor->display_name</td>
+			<td>".$full_name."</td>
 			<td>
 				<select>
 				    $options
@@ -78,7 +79,7 @@ function ttroupe_actor_options() {
         $html .= "<option value=\"-1\">No actors assigned</option>";
     } else {
         foreach ( $actors as $actor ) {
-            $html .= "<option value=\"$actor->ID\">$actor->display_name</option>";
+            $html .= '<option value="'.$actor->ID.'">'.$model_actors->full_name($actor->ID).'</option>';
         }
     }
     return $html;
@@ -91,12 +92,12 @@ function ttroupe_actor_options() {
  * @return null|string
  */
 function ttroupe_show_actors($show_id) {
-    global $model_shows;
+    global $model_shows, $model_actors;
     $html = NULL;
     $actors = $model_shows->get_actors($show_id);
     if ( !empty($actors) ) {
         foreach ( $actors as $actor ) {
-            $html .= "<tr><td>$actor->display_name</td>
+            $html .= "<tr><td>".$model_actors->full_name($actor->ID)."</td>
             <td><button class=\"button-secondary\" onclick=\"manage_show_participants('remove', $show_id, $actor->ID, this);\">" . __('Remove', 'theatre-troupe') . "</button></td>
             </tr>";
         }

@@ -53,28 +53,6 @@ class Theatre_Troupe_Ajax {
     }
 
 
-    /**
-     * Add or remove actors from shows
-     * @return void
-     */
-    public function manage_show_participants() {
-        global $model_actors;
-        $actor_id = (int) @$_POST['actor_id'];
-        $show_id = (int) @$_POST['show_id'];
-
-        check_ajax_referer('manage_participants');
-
-        if ( $_POST['type'] == 'add' ) {
-            $result = $model_actors->add_to_show($show_id, $actor_id);
-        } else {
-            $result = $model_actors->remove_from_show($show_id, $actor_id);
-        }
-
-        if ( $result ) {
-            die('1');
-        }
-        die('0');
-    }
 
 
     /**

@@ -7,6 +7,12 @@
     <?php _e('Actors are your current Wordpress users. To create a new actor, simply add a new user from
         <a href="user-new.php">the users page</a>.', 'theatre-troupe'); ?>
 </p>
+
+  <p>
+    <?php _e('Each actor page must be created by that actor\'s user.
+    When the actor is Passive or Previous, the profile page gets hidden from the main menu.', 'theatre-troupe'); ?>
+</p>
+
 <h3><?php _e('Actor statuses', 'theatre-troupe') ?></h3>
 <ul>
     <li><?php _e('<strong>Unassigned</strong> - Do nothing with this actor, can not add to shows.', 'theatre-troupe') ?></li>

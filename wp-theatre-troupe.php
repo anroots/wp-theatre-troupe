@@ -2,9 +2,9 @@
 /*
 Plugin Name: WP Theatre Troupe
 Plugin URI: http://wordpress.org/extend/plugins/theatre-troupe/
-Description: This plugin will enable small theatre troups and other performing groups to list their past and upcoming shows and participating actors.
+Description: This plugin will enable small theatre troups and other performing groups to manage actor profile pages.
 Author: Ando Roots
-Version: 1.3
+Version: 1.4
 Author URI: http://ando.roots.ee/
 Licence: GPL2
 */
@@ -43,9 +43,7 @@ function ttroupe_attach_menus() {
     global $display;
 
     add_menu_page(__('Theatre Troupe', 'theatre-troupe'), __('Theatre Troupe', 'theatre-troupe'), 'manage_options', 'ttroupe_admin', array( &$display, 'print_admin' ));
-    add_submenu_page('ttroupe_admin', __('Theatre Troupe Shows', 'theatre-troupe'), __('Shows', 'theatre-troupe'), 'manage_options', 'ttroupe_shows', array( &$display, 'print_shows' ));
     add_submenu_page('ttroupe_admin', __('Theatre Troupe Actors', 'theatre-troupe'), __('Actors', 'theatre-troupe'), 'manage_options', 'ttroupe_actors', array( &$display, 'print_actors' ));
-    add_submenu_page('ttroupe_admin', __('Theatre Troupe Series', 'theatre-troupe'), __('Series', 'theatre-troupe'), 'manage_options', 'ttroupe_series', array( &$display, 'print_series' ));
 
     add_action("admin_print_scripts", 'ttroupe_admin_head');
 }
@@ -80,8 +78,6 @@ setlocale(LC_TIME, WPLANG);
 // Include plugin classes and helpers
 if ( !class_exists('Theatre_Troupe') ) {
     include('includes/models/main.php');
-    include('includes/models/series.php');
-    include('includes/models/shows.php');
     include('includes/models/actors.php');
     include('includes/ajax.php');
     include('includes/display_controller.php');
@@ -92,8 +88,6 @@ if ( !class_exists('Theatre_Troupe') ) {
 // Create a new instance of the main class files
 if ( class_exists('Theatre_Troupe') ) {
     $theatreTroupe = new Theatre_Troupe();
-    $model_series = new Theatre_Troupe_Series();
-    $model_shows = new Theatre_Troupe_Shows();
     $model_actors = new Theatre_Troupe_Actors();
     $ajax = new Theatre_Troupe_Ajax();
     $display = new Display_Controller();
@@ -101,10 +95,11 @@ if ( class_exists('Theatre_Troupe') ) {
 
 
 // AJAX bindings
-add_action('wp_ajax_ttroupe_manage_show_participants', array( &$ajax, 'manage_show_participants' ));
 add_action('wp_ajax_ttroupe_change_actor_info', array( &$ajax, 'change_actor_info' ));
 add_action('wp_ajax_ttroupe_delete', array( &$ajax, 'delete' ));
 add_action('wp_ajax_ttroupe_restore', array( &$ajax, 'restore' ));
+
+add_filter('get_pages','ttroupe_hide_actor_pages');
 
 register_activation_hook(__FILE__, array( &$theatreTroupe, 'install' ));
 
@@ -112,27 +107,31 @@ register_activation_hook(__FILE__, array( &$theatreTroupe, 'install' ));
 // Shortcodes
 include('includes/shortcodes.php');
 $shortCode = new Theatre_Troupe_Shortcode();
-add_shortcode('ttroupe-actor-shows', array( &$shortCode, 'actor_shows' ));
-add_shortcode('ttroupe-series-list', array( &$shortCode, 'series_list' ));
 add_shortcode('ttroupe-actors-list', array( &$shortCode, 'actors_list' ));
-add_shortcode('ttroupe-show-details', array( &$shortCode, 'show_details' ));
 
-// Automatic display of actor shows on actor's page
-add_action('the_content', array( &$shortCode, 'auto_insert_actor_shows'));
 
-//Widgets
-add_action('widgets_init', 'theatre_troupe_load_widgets');
+/**
+ * Filter method.
+ * 
+ * Hides inactive actors from pages menu
+ * @param array $pages Array of WP stdClass pages
+ * @return array $pages
+ */
+function ttroupe_hide_actor_pages($pages) {
+    global $model_actors;
 
-// Widgets loader
-function theatre_troupe_load_widgets() {
-    include('includes/shows_widget.php');
-    include('includes/next_show_widget.php');
-    register_widget('Theatre_Troupe_Shows_Widget');
-    register_widget('Theatre_Troupe_Next_Show_Widget');
+    if (!empty($pages)) {
+        foreach ($pages as $key => $page) {
+
+            $actor_name = preg_replace('/[^a-zA-Z]/', '', $model_actors->full_name($page->post_author));
+            $post_name = preg_replace('/[^a-zA-Z]/', '', $page->post_name);
+            $status = get_user_meta($page->post_author, 'ttroupe_status', TRUE);
+
+            if (($status == 'passive' || $status == 'previous') && stristr($post_name, $actor_name)) {
+               unset($pages[$key]);
+            }
+        }
+    }
+    return $pages;
 }
-
-
-// Bug the user to set the [ttroupe-show-details] shortcode page option
-add_action('admin_notices', array( &$theatreTroupe, 'settings_not_set' ));
-
 ?>

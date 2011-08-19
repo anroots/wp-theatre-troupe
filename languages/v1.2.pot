@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2011-07-03 22:27+0300\n"
+"PO-Revision-Date: 2011-07-03 22:39+0300\n"
 "Last-Translator: Ando Roots <ando@roots.ee>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -42,7 +42,7 @@ msgstr "Viide (URL)"
 #: templates/show_details.php:49
 #: includes/shortcodes.php:91
 msgid "Participating actors"
-msgstr "Osalevad näitlejad"
+msgstr "Näitlejad"
 
 #: templates/show_details.php:56
 msgid "The roster is empty at the moment"
@@ -454,7 +454,7 @@ msgstr "See näitleja ei ole veel üheski etenduses osalenud."
 
 #: includes/shortcodes.php:62
 msgid "List of all shows"
-msgstr "Nimekiri kõikidest etendustest."
+msgstr "Seeriate ja etenduste nimekiri"
 
 #: includes/shortcodes.php:77
 msgid "List of shows"

@@ -5,23 +5,7 @@
  * and formatting strings
  **/
 
-/**
- * Generates selectbox options for series list
- * @param int $active ID of the selected series
- * @return null|string
- */
-function ttroupe_series_options($active = NULL) {
-    global $model_series;
-    $series = $model_series->get();
 
-    $html = NULL;
-    if ( !empty ($series) ) {
-        foreach ( $series as $row ) {
-            $html .= "<option value=\"$row->id\" " . selected($row->id, $active) . ">$row->title</option>";
-        }
-    }
-    return $html;
-}
 
 /**
  * Generate rows for the actors
@@ -95,27 +79,6 @@ function ttroupe_actor_options() {
 }
 
 
-/**
- * Generates table rows for admin panel show participants table
- * @param  $show_id
- * @return null|string
- */
-function ttroupe_show_actors($show_id) {
-    global $model_shows, $model_actors;
-    $html = NULL;
-    $actors = $model_shows->get_actors($show_id);
-    if ( !empty($actors) ) {
-        foreach ( $actors as $actor ) {
-            $html .= "<tr><td>" . $model_actors->full_name($actor->ID) . "</td>
-            <td><button class=\"button-secondary\" onclick=\"manage_show_participants('remove', $show_id, $actor->ID, this);\">" . __('Remove', 'theatre-troupe') . "</button></td>
-            </tr>";
-        }
-    } else {
-        $html = '<tr><td colspan="2">' . __("Empty", "theatre-troupe") . '</td> </tr>';
-    }
-    return $html;
-}
-
 
 /**
  * Generates options for selecting the page for the shortcode [ttroupe-show-details]
@@ -136,24 +99,6 @@ function ttroupe_pages_options($selected = NULL) {
     return $html;
 }
 
-
-/**
- * Returns the HTML link for a show's details page.
- * @param int $show_id
- * @param null $link_text Optional link text
- * @return string
- */
-function ttroupe_show_details_link($show_id, $link_text = NULL) {
-    $details = __('Details', 'theatre-troupe');
-    if ( empty($link_text) ) {
-        $link_text = $details;
-    }
-    $url = add_query_arg('show_id', $show_id, get_option('ttroupe_show_details_url'));
-    if ( empty($url) ) {
-        $url = '#';
-    }
-    return '<a href="' . $url . '" title="' . $details . '">' . $link_text . '</a>';
-}
 
 
 /**
@@ -181,6 +126,9 @@ function ttroupe_actors_list($show_id) {
 function ttroupe_profile_link($actor_id) {
     global $model_actors;
     $profile_link = get_user_meta($actor_id, 'ttroupe_profile_page', TRUE);
+    if (empty($profile_link)) {
+        return $model_actors->full_name($actor_id);
+    }
     return '<a href="' .$profile_link.'" title="'.__("Profile page", "theatre-troupe").'">'. $model_actors->full_name($actor_id) . '</a>';
 }
 

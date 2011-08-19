@@ -1,0 +1,560 @@
+# Copyright (C) 2010 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/theatre-troupe\n"
+"POT-Creation-Date: 2011-07-09 22:26:20+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2011-07-10 01:38+0300\n"
+"Last-Translator: Ando Roots <ando@roots.ee>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wp-theatre-troupe.php:45
+msgid "Theatre Troupe"
+msgstr ""
+
+#: wp-theatre-troupe.php:46
+#: templates/shows.php:8
+#: includes/shows_widget.php:27
+msgid "Theatre Troupe Shows"
+msgstr ""
+
+#: wp-theatre-troupe.php:46
+msgid "Shows"
+msgstr ""
+
+#: wp-theatre-troupe.php:47
+msgid "Theatre Troupe Actors"
+msgstr ""
+
+#: wp-theatre-troupe.php:47
+#: templates/actors.php:3
+#: includes/helper.php:171
+msgid "Actors"
+msgstr ""
+
+#: wp-theatre-troupe.php:48
+msgid "Theatre Troupe Series"
+msgstr ""
+
+#: wp-theatre-troupe.php:48
+#: templates/shows.php:28
+#: templates/edit_show.php:23
+#: templates/series.php:3
+#: templates/show_details.php:25
+#: includes/shortcodes.php:71
+msgid "Series"
+msgstr ""
+
+#: templates/actors.php:7
+msgid ""
+"Actors are your current Wordpress users. To create a new actor, simply add a new user from\n"
+"        <a href=\"user-new.php\">the users page</a>."
+msgstr ""
+
+#: templates/actors.php:10
+msgid "Actor statuses"
+msgstr ""
+
+#: templates/actors.php:12
+msgid "<strong>Unassigned</strong> - Do nothing with this actor, can not add to shows."
+msgstr "testststefdsfsfffssf"
+
+#: templates/actors.php:13
+msgid "<strong>Active</strong> - Will show in all associated actions (shows page, show details etc)."
+msgstr ""
+
+#: templates/actors.php:14
+msgid "<strong>Passive</strong> - Can not be added as a participant in future shows. "
+msgstr ""
+
+#: templates/actors.php:15
+msgid "<strong>Previous Member</strong> - Same as Unassigned, but shows up in the Members page. "
+msgstr ""
+
+#: templates/actors.php:19
+msgid "Change actor membership status"
+msgstr ""
+
+#: templates/actors.php:24
+#: templates/actors.php:37
+msgid "ID"
+msgstr ""
+
+#: templates/actors.php:25
+#: templates/actors.php:38
+msgid "Actor name"
+msgstr ""
+
+#: templates/actors.php:26
+#: templates/actors.php:39
+#: includes/helper.php:184
+msgid "Profile page"
+msgstr ""
+
+#: templates/actors.php:27
+#: templates/actors.php:40
+msgid "Change Status"
+msgstr ""
+
+#: templates/actors.php:28
+#: templates/actors.php:41
+#: templates/edit_show.php:63
+#: templates/edit_series.php:35
+#: includes/helper.php:68
+msgid "Save"
+msgstr ""
+
+#: templates/shows.php:14
+msgid "Add a new show"
+msgstr ""
+
+#: templates/shows.php:23
+#: templates/shows.php:24
+#: templates/edit_show.php:18
+#: templates/edit_show.php:19
+#: templates/series.php:43
+#: templates/edit_series.php:18
+#: templates/edit_series.php:19
+msgid "Title"
+msgstr ""
+
+#: templates/shows.php:36
+#: templates/shows.php:37
+#: templates/shows.php:80
+#: templates/edit_show.php:31
+#: templates/edit_show.php:32
+#: templates/show_details.php:37
+#: includes/next_show_widget.php:109
+msgid "Location"
+msgstr ""
+
+#: templates/shows.php:41
+#: templates/shows.php:42
+#: templates/edit_show.php:36
+#: templates/edit_show.php:37
+msgid "Link URL"
+msgstr ""
+
+#: templates/shows.php:46
+#: templates/shows.php:47
+#: templates/edit_show.php:41
+#: templates/edit_show.php:42
+msgid "Link name"
+msgstr ""
+
+#: templates/shows.php:53
+#: templates/edit_show.php:48
+msgid "Start date / time"
+msgstr ""
+
+#: templates/shows.php:59
+#: templates/edit_show.php:53
+msgid "End date / time"
+msgstr ""
+
+#: templates/shows.php:66
+msgid "Create show"
+msgstr ""
+
+#: templates/shows.php:73
+msgid "List of deleted shows"
+msgstr ""
+
+#: templates/shows.php:74
+msgid "List of inserted shows"
+msgstr ""
+
+#: templates/shows.php:78
+msgid "Show title"
+msgstr ""
+
+#: templates/shows.php:79
+#: templates/series.php:17
+msgid "Series title"
+msgstr ""
+
+#: templates/shows.php:81
+msgid "Start"
+msgstr ""
+
+#: templates/shows.php:82
+msgid "End"
+msgstr ""
+
+#: templates/shows.php:83
+msgid "Manage"
+msgstr ""
+
+#: templates/shows.php:100
+#: templates/series.php:62
+msgid "Delete permanently"
+msgstr ""
+
+#: templates/shows.php:103
+#: templates/series.php:59
+msgid "Restore"
+msgstr ""
+
+#: templates/shows.php:108
+#: templates/shows.php:109
+#: templates/series.php:66
+#: templates/series.php:67
+msgid "Edit"
+msgstr ""
+
+#: templates/shows.php:113
+#: templates/series.php:71
+msgid "Trash"
+msgstr ""
+
+#: templates/shows.php:122
+#: templates/series.php:79
+#: includes/helper.php:114
+msgid "Empty"
+msgstr ""
+
+#: templates/shows.php:145
+#: templates/series.php:102
+msgid "View active"
+msgstr ""
+
+#: templates/shows.php:149
+#: templates/series.php:107
+msgid "View deleted"
+msgstr ""
+
+#: templates/shows.php:154
+msgid "You must add a series first."
+msgstr ""
+
+#: templates/edit_show.php:8
+msgid "Edit Show"
+msgstr ""
+
+#: templates/edit_show.php:59
+#: templates/edit_series.php:31
+msgid "Back"
+msgstr ""
+
+#: templates/edit_show.php:70
+msgid "Actors associated with the show"
+msgstr ""
+
+#: templates/edit_show.php:72
+msgid "Add actor to the show"
+msgstr ""
+
+#: templates/edit_show.php:75
+msgid "Add"
+msgstr ""
+
+#: templates/edit_show.php:81
+msgid "Name"
+msgstr ""
+
+#: templates/edit_show.php:82
+#: includes/helper.php:110
+msgid "Remove"
+msgstr ""
+
+#: templates/series.php:8
+msgid "Use series to categorize shows. Think of them as Post categories."
+msgstr ""
+
+#: templates/series.php:15
+msgid "Add new series"
+msgstr ""
+
+#: templates/series.php:22
+#: templates/series.php:23
+#: templates/series.php:44
+#: templates/admin.php:93
+#: templates/edit_series.php:24
+#: templates/edit_series.php:25
+msgid "Description"
+msgstr ""
+
+#: templates/series.php:30
+msgid "Create"
+msgstr ""
+
+#: templates/series.php:38
+msgid "List of deleted series"
+msgstr ""
+
+#: templates/series.php:39
+msgid "List of inserted series"
+msgstr ""
+
+#: templates/series.php:45
+msgid "Delete"
+msgstr ""
+
+#: templates/admin.php:8
+#: templates/admin.php:59
+msgid "About Theatre Troupe"
+msgstr ""
+
+#: templates/admin.php:18
+msgid "General Settings"
+msgstr ""
+
+#: templates/admin.php:24
+msgid "Select the page that contains the shortcode [ttroupe-show-details]"
+msgstr ""
+
+#: templates/admin.php:37
+msgid "Auto-insert a list of shows the actor as participated in to the bottom of his/her profile page?"
+msgstr ""
+
+#: templates/admin.php:48
+msgid "Update"
+msgstr ""
+
+#: templates/admin.php:63
+msgid ""
+"<p><strong>TheatreTroupe</strong> is a Wordpress plugin for small performing groups\n"
+"            for listing shows and associated actors. The plugin enables You, the group admin, display information\n"
+"             about actors, upcoming and previous shows/performances easily on the sidebar using widgets or more\n"
+"             detailed information anywhere on the site with shortcodes.</p>\n"
+"\n"
+"            <p>The plugin was developed for the Estonian improvisation comedy\n"
+"            troupe \"<a href=\"http://jaa.ee\">Improgrupp Jaa!</a> and is available for free under the GPL2 licence.\n"
+"             Support-, feature requests and bug reports are welcome\n"
+"            to andoroots+dev@gmail.com or directly to <a href=\"https://github.com/anroots/wp-theatre-troupe\">github</a>.</p>\n"
+"\n"
+"             <h4>Widgets</h4>\n"
+"\n"
+"             <p>TheatreTroupe includes two widgets.</p>\n"
+"             <p>The <strong>Theatre Troupe Shows</strong> widget is able to list either past or upcoming shows on the sidebar. You can choose\n"
+"             the behaviour of the widget from a dropdown menu.</p>\n"
+"             <p>The <strong>Theatre Troupe Next Show</strong> widget will display basic information about the next upcoming show and a\n"
+"                list of actors who will be performing. If no next show exists, the last show is displayed instead.</p>"
+msgstr ""
+
+#: templates/admin.php:86
+msgid "Available <a href=\"http://en.support.wordpress.com/shortcodes/\" title=\"Documentation\">Shortcodes</a>"
+msgstr ""
+
+#: templates/admin.php:90
+msgid "Shortcode"
+msgstr ""
+
+#: templates/admin.php:91
+msgid "Parameters"
+msgstr ""
+
+#: templates/admin.php:92
+msgid "Content <i>(between [code][/code])</i>"
+msgstr ""
+
+#: templates/admin.php:94
+msgid "Usage Example"
+msgstr ""
+
+#: templates/admin.php:100
+#: templates/admin.php:101
+#: templates/admin.php:119
+msgid "None"
+msgstr ""
+
+#: templates/admin.php:102
+msgid ""
+"Creates a page for displaying details about a show. <strong>The creation of this page is important.</strong>\n"
+"                            The links from sidebar widgets and other shortcodes link to this page. You have to choose the page you pasted the shortcode from the options menu above,\n"
+"                              otherwise the links will be broken."
+msgstr ""
+
+#: templates/admin.php:109
+#: templates/admin.php:127
+msgid "required"
+msgstr ""
+
+#: templates/admin.php:110
+#: templates/admin.php:120
+#: templates/admin.php:130
+msgid "Optional title"
+msgstr ""
+
+#: templates/admin.php:111
+msgid "Prints a list of shows the actor, specified by the actor_id parameter <i>(you can see actor ID-s in the Actors subpage)</i>, has played in."
+msgstr ""
+
+#: templates/admin.php:113
+msgid "List of shows actor #5 has played in"
+msgstr ""
+
+#: templates/admin.php:121
+msgid "Prints a list of all active series, shows and and actor who have played in any of the shows."
+msgstr ""
+
+#: templates/admin.php:122
+msgid "List of all series"
+msgstr ""
+
+#: templates/admin.php:127
+msgid "Accepted values are:"
+msgstr ""
+
+#: templates/admin.php:131
+msgid "Prints a list of actors who have the specified status."
+msgstr ""
+
+#: templates/admin.php:133
+msgid "The following actors are actively participating in shows"
+msgstr ""
+
+#: templates/admin.php:140
+msgid "Credits"
+msgstr ""
+
+#: templates/show_details.php:13
+msgid "Show Details"
+msgstr ""
+
+#: templates/show_details.php:18
+msgid "Timeframe"
+msgstr ""
+
+#: templates/show_details.php:30
+msgid "Series description"
+msgstr ""
+
+#: templates/show_details.php:45
+msgid "Link"
+msgstr ""
+
+#: templates/edit_series.php:8
+msgid "Edit Series"
+msgstr ""
+
+#: includes/display_controller.php:30
+#: includes/display_controller.php:82
+#: includes/display_controller.php:96
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/display_controller.php:54
+msgid "Did you fill all the required fields?"
+msgstr ""
+
+#: includes/shows_widget.php:17
+msgid "Displays previous or upcoming shows"
+msgstr ""
+
+#: includes/shows_widget.php:78
+msgid "Previous Shows"
+msgstr ""
+
+#: includes/shows_widget.php:82
+#: includes/next_show_widget.php:80
+msgid "Title:"
+msgstr ""
+
+#: includes/shows_widget.php:88
+msgid "Widget type"
+msgstr ""
+
+#: includes/shows_widget.php:90
+msgid "Past shows"
+msgstr ""
+
+#: includes/shows_widget.php:91
+msgid "Upcoming shows"
+msgstr ""
+
+#: includes/shows_widget.php:181
+msgid "No shows listed yet"
+msgstr ""
+
+#: includes/models/main.php:136
+msgid ""
+"<strong>TheatreTroupe:</strong> Please set the show details page\n"
+"            on the <a href='admin.php?page=ttroupe_admin' title='Settings page'>TheatreTroupe Settings Page</a>\n"
+"            or the links to show details will be broken."
+msgstr ""
+
+#: includes/models/actors.php:101
+msgid "Sorry, only Admin can do that"
+msgstr ""
+
+#: includes/models/actors.php:150
+msgid "Unassigned"
+msgstr ""
+
+#: includes/models/actors.php:151
+msgid "Active"
+msgstr ""
+
+#: includes/models/actors.php:152
+msgid "Passive"
+msgstr ""
+
+#: includes/models/actors.php:153
+msgid "Previous Member"
+msgstr ""
+
+#: includes/next_show_widget.php:17
+msgid "Displays information about the next or latest show."
+msgstr ""
+
+#: includes/next_show_widget.php:27
+msgid "Theatre Troupe Next Show"
+msgstr ""
+
+#: includes/next_show_widget.php:76
+msgid "Next Show"
+msgstr ""
+
+#: includes/next_show_widget.php:102
+msgid "No shows found"
+msgstr ""
+
+#: includes/helper.php:147
+msgid "Details"
+msgstr ""
+
+#: includes/shortcodes.php:22
+msgid "Actor's Shows"
+msgstr ""
+
+#: includes/shortcodes.php:44
+msgid "The actor has not yet participated in any shows."
+msgstr ""
+
+#: includes/shortcodes.php:62
+msgid "List of all shows"
+msgstr ""
+
+#: includes/shortcodes.php:77
+msgid "List of shows"
+msgstr ""
+
+#: includes/shortcodes.php:84
+msgid "There are now shows here."
+msgstr ""
+
+#: includes/shortcodes.php:91
+msgid "Participating actors"
+msgstr ""
+
+#: includes/shortcodes.php:97
+msgid "shows"
+msgstr ""
+
+#: includes/shortcodes.php:100
+msgid "No-one has participated in this series!"
+msgstr ""
+
+#: includes/shortcodes.php:106
+msgid "No series have been added."
+msgstr ""
+
+#: includes/shortcodes.php:147
+msgid "No actors in this category."
+msgstr ""
+

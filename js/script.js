@@ -51,37 +51,6 @@ function trash(what, id, that) {
     });
 }
 
-/**
- * Add or remove participating actors from shows
- * @param type add|remove
- * @param show_id
- * @param actor_id
- * @param that this, passed from a calling onclick
- */
-function manage_show_participants(type, show_id, actor_id, that) {
-    var data = {
-        action: 'ttroupe_manage_show_participants',
-        type: type,
-        show_id: show_id,
-        actor_id: actor_id,
-        _ajax_nonce: jQuery('#participants_nonce').val()
-    };
-
-    jQuery('#message').html('');
-    // Send data
-    jQuery.post(ajaxurl, data, function(response) {
-        if (response == '1') {
-            if (type == 'remove') {
-                jQuery(that).closest('tr').fadeOut('fast');
-            } else {
-                var name = jQuery("#actor_select option[value='" + actor_id + "']").text();
-                jQuery('#list-of-actors > tbody:last').append('<tr><td colspan="2">' + name + '</td> </tr>');
-            }
-        }
-        process_response_msg(response);
-    });
-}
-
 
 /**
  * Change actor's status (active|passive|previous)

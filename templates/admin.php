@@ -10,47 +10,6 @@
     <div id="message"></div>
 
     <br />
-    <!-- GENERAL SETTINGS -->
-    <form action="" method="post">
-        <table class="widefat" style="max-width: 500px; ">
-            <thead>
-            <tr>
-                <th colspan="2"><?php _e('General Settings', 'theatre-troupe')?></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <?php _e('Select the page that contains the shortcode [ttroupe-show-details]', 'theatre-troupe')?>
-                </td>
-                <td>
-                    <select name="show_details_page">
-                        <option value=""></option>
-                        <?php echo ttroupe_pages_options(get_option('ttroupe_show_details_url')) ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-
-                <td>
-                    <label for="insert_shows">
-                    <?php _e('Auto-insert a list of shows the actor as participated in to the bottom of his/her profile page?', 'theatre-troupe')?>
-                    </label>
-                </td>
-                <td>
-                    <input type="checkbox" name="insert_shows" id="insert_shows" value="1"<?php echo ((bool)get_option('ttroupe_insert_shows')) ? ' checked' : NULL?>/>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td>
-                    <input type="submit" name="save_settings" value="<?php _e('Update')?>"/>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
-    </form>
 
 
     <!-- ABOUT -->
@@ -61,23 +20,14 @@
 
     <div style="text-align: justify; max-width: 800px;">
         <?php _e('<p><strong>TheatreTroupe</strong> is a Wordpress plugin for small performing groups
-            for listing shows and associated actors. The plugin enables You, the group admin, display information
-             about actors, upcoming and previous shows/performances easily on the sidebar using widgets or more
-             detailed information anywhere on the site with shortcodes.</p>
+            for managing actor profile pages.</p>
 
             <p>The plugin was developed for the Estonian improvisation comedy
             troupe "<a href="http://jaa.ee">Improgrupp Jaa!</a> and is available for free under the GPL2 licence.
              Support-, feature requests and bug reports are welcome
-            to andoroots+dev@gmail.com or directly to <a href="https://github.com/anroots/wp-theatre-troupe">github</a>.</p>
+            to andoroots+dev@gmail.com or directly to <a href="https://github.com/anroots/wp-theatre-troupe">github</a>.</p>')?>
 
-             <h4>Widgets</h4>
-
-             <p>TheatreTroupe includes two widgets.</p>
-             <p>The <strong>Theatre Troupe Shows</strong> widget is able to list either past or upcoming shows on the sidebar. You can choose
-             the behaviour of the widget from a dropdown menu.</p>
-             <p>The <strong>Theatre Troupe Next Show</strong> widget will display basic information about the next upcoming show and a
-                list of actors who will be performing. If no next show exists, the last show is displayed instead.</p>', 'theatre-troupe'); ?>
-    </div>
+             </div>
     <br/>
 
 
@@ -95,33 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td style="white-space: nowrap;">[ttroupe-show-details]</td>
-            <td><?php _e('None', 'theatre-troupe')?></td>
-            <td><?php _e('None', 'theatre-troupe')?></td>
-            <td><?php _e('Creates a page for displaying details about a show. <strong>The creation of this page is important.</strong>
-                            The links from sidebar widgets and other shortcodes link to this page. You have to choose the page you pasted the shortcode from the options menu above,
-                              otherwise the links will be broken.', 'theatre-troupe')?></td>
-            <td style="white-space: nowrap;"><code>[ttroupe-show-details]</code></td>
-        </tr>
-        <tr>
-            <td style="white-space: nowrap">[ttroupe-actor-shows]</td>
-            <td>actor_id (<?php _e('required', 'theatre-troupe')?>)*</td>
-            <td><?php _e('Optional title', 'theatre-troupe')?></td>
-            <td><?php _e('Prints a list of shows the actor, specified by the actor_id parameter <i>(you can see actor ID-s in the Actors subpage)</i>, has played in.', 'theatre-troupe')?></td>
-            <td><code>[ttroupe-actor-shows
-                actor_id="5"]<?php _e('List of shows actor #5 has played in', 'theatre-troupe')?>
-                [/ttroupe-actor-shows]</code></td>
-        </tr>
 
-        <tr>
-            <td style="white-space: nowrap">[ttroupe-series-list]</td>
-            <td><?php _e('None', 'theatre-troupe')?></td>
-            <td><?php _e('Optional title', 'theatre-troupe')?></td>
-            <td><?php _e('Prints a list of all active series, shows and and actor who have played in any of the shows.', 'theatre-troupe')?></td>
-            <td><code>[ttroupe-series-list]<?php _e('List of all series', 'theatre-troupe')?>
-                [/ttroupe-series-list]</code></td>
-        </tr>
         <tr>
             <td style="white-space: nowrap">[ttroupe-actors-list]</td>
             <td>status (<?php _e('required', 'theatre-troupe')?>)* <?php _e('Accepted values are:', 'theatre-troupe')?>

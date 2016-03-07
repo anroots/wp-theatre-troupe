@@ -1,4 +1,8 @@
 === Theatre Troupe ===
+
+*** Project status: unmaintained / abandoned ***
+If you want to display a list of upcoming shows on your Wordpress website, look into event plugins such as Events Manager: https://wordpress.org/plugins/events-manager/
+
 Author: Ando Roots
 Author URI: http://ando.roots.ee
 Contributors: Ando Roots, Peep Pullerits
